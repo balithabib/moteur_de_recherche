@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html xmlns:jwt='corelib.services.web.javascript.jwt' lang='fr'>
+
+
+	<head>
+		<meta content="IE=Edge" http-equiv="X-UA-Compatible"></meta>
+		<meta charset="ISO-8859-1"></meta>
+		<meta content="-1" http-equiv="Expires"></meta>
+		<meta content="no-cache" http-equiv="Pragma"></meta>
+		<link href="/Java/Tutorial/FirstJavaProgram.wp" rel="canonical"></link>
+		
+		<link href="/corelib/services/web/javascript/jwt/Jwt.css" rel="stylesheet" type="text/css"></link>
+		<script type="text/javascript"> var __APPLICATION_PATH__ = '/';</script>
+		<script src="/corelib/services/web/javascript/Core.js" type="text/javascript"></script>
+		
+        <meta content="langage,java,liard,dominique,koor" name="keywords"></meta>
+        <meta content="Votre premier programme Java - Le tutoriel sur le langage de programmation Java" name="description"></meta>
+        <meta content="KooR.fr" name="author"></meta>
+        <meta property='fb:admins' content='1422832511' />
+        <meta property='og:image' content='http://koor.fr/Images/FacebookAd.png' />
+        <style>
+            #menuRessources {
+                background-color: #97B4C4;
+                border-left: 1px solid #7397aB;
+                border-right: 1px solid #7397aB;
+                box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3) inset;
+                color: white;
+            }
+        </style>
+
+
+		<title>KooR.fr - Votre premier programme Java - Le tutoriel sur le langage de programmation Java</title>
+        <link href="../../Styles.css" rel="stylesheet" type="text/css"></link>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+	</head>
+	
+	<body>
+        <div xmlns:web="corelib.services.web.components">
+	<header>
+	    <div>
+	        <a id='__id_auto_9_____id_auto_439__' href="/" target="_self">
+	            <img  id='__id_auto_9_____id_auto_440__' class='logo' title='Retour page d&#39;accueil KooR.fr' src="/Images/koorLogo.png"  alt="KooR.fr - Ressources pédagogiques pour programmeurs"  />
+	        </a>
+	    
+	        <div id="searchBlock">
+	           <form action="https://www.google.fr/search" id="searchForm" onsubmit="onSearch();">
+	               <input id="q" name="q" placeholder="Rechercher" type="search"></input>
+	               <img  id='__id_auto_9_____id_auto_441__' class='searchButton' title='Rechercher' src="/Images/search.png"  alt="Rechercher"  />
+	           </form>
+	        </div>
+	    </div>
+	    <nav>
+	        <a id='__id_auto_9___mnuHome' class='leftMenu' href="/" target="_self"><img  id='__id_auto_9_____id_auto_443__' style='width: 16px;' src="/Images/home.png"  alt="Return to home"  /></a>
+            <span id="classicMenuItems">
+	            <a id='__id_auto_9___mnuC' href="/C/Index.wp" target="_self">C</a>
+	            <a id='__id_auto_9___mnuCpp' href="/Cpp/Index.wp" target="_self">C++</a>
+	            <a id='__id_auto_9___mnuJava' href="/Java/Index.wp" target="_self">Java</a>
+	            <a id='__id_auto_9___mnuDotNet' href="/DotNet/Index.wp" target="_self">.NET</a>
+	            <a id='__id_auto_9___mnuPython' href="/Python/Index.wp" target="_self">Python</a>
+	            <a id='__id_auto_9___mnuPerl' href="/Perl/SupportPerl/slide1.wp" target="_self">Perl</a>
+	            <a id='__id_auto_9___mnuDevWeb' href="/DevWeb/Index.wp" target="_self">Dev. Web</a>
+	            <a id='__id_auto_9___mnuXML' href="/XML/Index.wp" target="_self">XML</a>
+	            <a id='__id_auto_9___mnuQuizz' href="/Test.wp" target="_self">Quiz</a>
+	            <a id='__id_auto_9___mnuOther' href="/Other/Index.wp" target="_self">Autres</a>
+            </span>
+            <span id="mobileMenuItems">
+                <img alt="Rubriques" src="/Images/rubriques.png" style="height: 20px; position: relative; top: 4px;"></img>
+                <a id='__id_auto_9_____id_auto_445__' style='padding-left: 2px;' href="javascript: displayMobileMenu();" target="_self">Rubriques</a>
+            </span>
+	        <a href="https://www.facebook.com/pages/Programmeurs/428448644003544" target="_blank">
+	            <img  id='__id_auto_9_____id_auto_447__' title='Notre page Facebook' src="/Images/facebookWhite.png"  alt="Notre page Facebook"  />
+	        </a>
+	        <script> document.getElementById('__id_auto_9___mnuJava').style.cssText='text-decoration: underline; background:#0fb5eb';</script>
+	    </nav>
+	</header>
+    <div> </div>
+	<script type="text/javascript">
+	
+        function displayMobileMenu() {
+            var container = $("mobileMenuItems");
+            if ( container.popup != null ) {
+                document.body.removeChild( container.popup );
+                container.popup = null;
+            } else {
+	            var popup = document.createElement( "div" );
+	            popup.id = "mainPopupMenu";
+	            popup.style.top = (computeAbsolutePosition( container ).y + 42) + "px";
+	            popup.style.left = (computeSize( document.body ).width * 0.2) + "px";
+	            popup.innerHTML = $("classicMenuItems").innerHTML;
+	            document.body.appendChild( popup );
+	            container.popup = popup;
+	        }
+        }
+	
+        function onSearch() {
+            var prefix = "site:koor.fr ";
+            $("q").value = prefix + $("q").value.replace( prefix, "" );
+        }
+               	
+	    addEventHandler( document.querySelector( ".searchButton" ), "onclick", function() {	        
+            onSearch();
+	        $('searchForm').submit();
+	    }); 
+	 
+	    addEventHandler( window, "onscroll", function() {
+	       var delta = window.scrollY ? window.scrollY : window.pageYOffset;
+	       document.querySelector( "header" ).className = Math.min( delta, 30 ) == 30 ? "smallBar" : "";
+	    });
+
+        if ( document.location.href.indexOf( "http://localhost" ) == -1 ) {
+	        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');  
+	        ga('create', 'UA-64843303-1', 'auto');
+	        ga('send', 'pageview');
+        }
+        
+        
+        
+        function zoomInSupport( image ) {
+            image.addEventListener( "click", function( event ) {
+                if ( image.width != image.naturalWidth ) {
+                    image.style.cursor = "zoom-in";
+                    let shadowNode = document.createElement( "div" );
+                    shadowNode.className = "screenshotShadow";
+                    document.body.appendChild( shadowNode );
+
+                    let imageNode = document.createElement( "img" );
+                    imageNode.className = "screenshotOriginalImage";
+                    imageNode.src = image.src;
+                    imageNode.style.left = ((window.innerWidth - image.naturalWidth - 26) / 2) + "px";
+                    imageNode.style.top = ((window.innerHeight - image.naturalHeight - 26) / 2) + "px";
+                    document.body.appendChild( imageNode );
+
+                    shadowNode.addEventListener( "click", function( event ) {
+                        document.body.removeChild( shadowNode );
+                        document.body.removeChild( imageNode );
+                    } );
+
+                    imageNode.addEventListener( "click", function( event ) {
+                        document.body.removeChild( shadowNode );
+                        document.body.removeChild( imageNode );
+                    } );
+                }
+            });
+            
+
+            image.addEventListener( "mouseover", function( event ) {
+                image.style.cursor = ( image.width != image.naturalWidth ) ? "zoom-in" : null;
+            } );
+        }
+        
+        function shareOn( socialNetwork ) {
+	        var w=600;var h=380;
+	        var x=Number((window.screen.width-w)/2);
+	        var y=Number((window.screen.height-h)/2);
+	        
+	        var url;
+	        switch( socialNetwork ) {
+	           case "facebook":
+    	           url = "http://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(location.href) + "&amp;title=" + encodeURIComponent(document.title);
+	               break;
+	           case "twitter":
+	               url = "http://twitter.com/intent/tweet?status=" + encodeURIComponent(document.title) + " - " + encodeURIComponent(location.href);
+	               break;
+	        }
+	        
+	        window.open( url, '', 'width=' + w + ',height=' + h + ',left=' + x + ',top=' + y + ', scrollbars=no' );
+        }       
+        
+        
+        window.addEventListener( "load", function( event ) {
+            var cookie = new CookieManager();
+            if ( cookie.getValue( "acceptCookies" ) == null ) {
+                document.cookiesMessage = document.createElement( "div" );
+                document.cookiesMessage.className = "cookiesMessage";
+                document.cookiesMessage.innerHTML = "\u003cb\u003eCe site n'exploite aucune donnée personnelle !\u003c/b\u003e\u003cbr/\u003e\u003cbr/\u003e " 
+                                                  + "Pour exister, ce site a besoin des réseaux sociaux (Facebook, Google+ et Twitter) ainsi que la régie de publicité Google. "
+                                                  + "\u003cb\u003ePar contre, eux les utilisent\u003c/b\u003e. En utilisant ce site, vous acceptez que des cookies soit utilisés par ces services, "
+                                                  + "afin de vous proposer des informations adaptées à vos centres d'intérêts.\u003cbr/\u003e\u003cbr/\u003e"
+                                                  + "Si vous souhaitez que ce site puisse continuer à être maintenu, merci de ne pas y utiliser de bloqueurs de publicités.\u003cbr/\u003e\u003cbr/\u003e"
+                                                  + "\u003cdiv style='text-align: center'\u003e\u003cu\u003e\u003cb\u003eFermer\u003c/b\u003e\u003c/u\u003e\u003c/div\u003e";
+                document.body.appendChild( document.cookiesMessage );
+                
+                document.cookiesMessage.addEventListener( "click", function( event ) {
+                    this.style.display = "none";
+                    cookie.setValue( "acceptCookies", true );
+                });
+            }
+        } );
+        
+	</script>
+	<div class="sideBar">
+        Bug
+        <a id="comment">
+            <img  id='__id_auto_9_____id_auto_452__' class='sideBarTwitter' title='Suggérer des Améliorations / Corrections' src="/Images/comment.png"  alt="Suggérer des Améliorations / Corrections"  />
+        </a>
+
+        <br />
+
+	    Share
+        <a href="javascript: shareOn( 'facebook' );">
+    	    <img  id='__id_auto_9_____id_auto_455__' class='sideBarFacebook' title='Partager sur Facebook' src="/Images/sideBarFacebook.png"  alt="Partager sur Facebook"  />
+    	</a>
+        <a href="javascript: shareOn( 'twitter' );">
+            <img  id='__id_auto_9_____id_auto_457__' class='sideBarTwitter' title='Partager sur Twitter' src="/Images/sideBarTwitter.png"  alt="Partager sur Twitter"  />
+        </a>
+	</div>
+	<div class="commentBlockOff" id="commentBlock">
+	   <div style="padding: 20px;">
+	       <h1>Améliorations / Corrections</h1>
+	       <p>
+	           Vous avez des améliorations (ou des corrections) à proposer pour ce document : 
+	           je vous remerçie par avance de m'en faire part, cela m'aide à améliorer le site. 
+	           <br /><br />
+	           
+	           Emplacement : <input id="txtWhere" type="text"></input>
+	           <br /><br />
+	           
+	           Description des améliorations : <br />
+	           <textarea id="txtWhat" placeholder="L'envoi est anynome. Si vous souhaitez un retour, veuillez mentionner votre email."></textarea>
+
+               <div style="text-align: right">
+                   <input id="send" type="button" value="Envoyer"></input>
+                   <input id="cancel" type="button" value="Annuler"></input>
+               </div>
+	       </p>
+	   </div>
+	</div>
+	<script type="text/javascript">
+
+        $("comment").addEventListener( "click", function() {
+            if ( window["currentSlide"] ) $("txtWhere").value = "Diapositive " + currentSlide;
+            let commentBlock = $("commentBlock");
+            commentBlock.className = commentBlock.className == "commentBlockOn" ? "commentBlockOff" : "commentBlockOn";
+            commentBlock.style.zIndex = 10000;
+        } );
+        $("send").addEventListener( "click", function() {
+            let where = $("txtWhere").value.trim();
+            let what = $("txtWhat").value.trim();
+            
+            if ( where != "" || what != "" ) {
+	            let caller = new AjaxPostCall( "/HistorizeEvol", "text", true, 0 );
+		        caller.onError = function() { console.log( "Cannot historize evolution " ); };
+		        caller.send( 
+		            "url=" + encodeURIComponent( document.location.href ) + "\u0026ts=" + new Date().getTime() + 
+		            "\u0026where=" + encodeURIComponent( where ) + "\u0026what=" + encodeURIComponent( what )
+		        );
+                window.thanksNode = document.createElement( "div" );
+                window.thanksNode.className = "thanks";
+                window.thanksNode.innerHTML = "Merci de votre participation !";
+                document.body.appendChild( window.thanksNode );
+                window.setTimeout( function() { window.thanksNode.style.opacity = 0; }, 3000 ); 
+		    }
+	        $("commentBlock").className = "commentBlockOff";            
+        } );
+        $("cancel").addEventListener( "click", function() {
+            $("commentBlock").className = "commentBlockOff";    
+        } );
+	</script>
+</div>
+        <div style="display: block;"></div>
+
+        <aside class="navigationPane" xmlns:ads="com.infinisoftware.koor.ads" xmlns:web="corelib.services.web.components">
+    <div class="back">
+        <a href="../Index.wp"><img src="/Images/leftArrow.png"></img>Accueil Java</a>
+    </div>
+    <div style="padding: 10px;">
+    
+	    <table style="margin: auto">
+	        <tr>
+	            <td>
+	                <a href="https://www.facebook.com/ProgrammeursJava" target="_blank">
+	                   <img src="/Images/facebook.png"></img>
+	                </a>
+	            </td>
+	            <td class="text">
+	                <a href="https://www.facebook.com/ProgrammeursJava" target="_blank">
+	                   <span>Notre page Facebook sur Java</span>
+	                </a>
+	            </td>
+	        </tr>
+            <tr>
+                <td>
+                    <a href="https://www.facebook.com/groups/976483459062689" target="_blank">
+                       <img src="/Images/facebook.png"></img>
+                    </a>
+                </td>
+                <td class="text">
+                    <a href="https://www.facebook.com/groups/976483459062689" target="_blank">
+                       <span>Notre groupe Facebook sur Java</span>
+                    </a>
+                </td>
+            </tr>
+	    </table>
+
+        <p class="separator">Partie 1 - Le langage Java</p>
+
+        <b>Prise en main du langage Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_35__' href="/Java/Tutorial/Index.wp" target="_self">Introduction et historique</a> <br />
+            <a id='__id_auto_37__' href="/Java/Tutorial/Installation.wp" target="_self">Préparation de votre environnement de dev.</a> <br />
+            <span>Votre première application Java (Hello World)</span> <br />
+            <a id='__id_auto_41__' href="/Java/Tutorial/Compilation.wp" target="_self">Compilation et portabilité de vos codes Java</a> <br />
+        </div><br />
+
+        <b>Les types et les opérateurs Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_46__' href="/Java/Tutorial/java_types_entiers.wp" target="_self">Manipulation des types entiers</a> <br />
+            <a id='__id_auto_48__' href="/Java/Tutorial/java_increment_decrement.wp" target="_self">Les opérateurs ++ et --</a> <br />
+            <a id='__id_auto_50__' href="/Java/Tutorial/java_operateurs_binaires.wp" target="_self">Utilisation des opérateurs binaires</a> <br />
+            <a id='__id_auto_52__' href="/Java/Tutorial/java_types_flottants.wp" target="_self">Manipulation des types flottants</a> <br />
+            <a id='__id_auto_54__' href="/Java/Tutorial/java_type_booleen.wp" target="_self">Le type boolean (booléen)</a> <br />
+            <a id='__id_auto_56__' href="/Java/Tutorial/java_type_character.wp" target="_self">Manipulation de caractères</a> <br />
+            <a id='__id_auto_58__' href="/Java/Tutorial/java_type_string.wp" target="_self">Manipulation de chaînes de caractères</a> <br />
+            <a id='__id_auto_60__' href="/Java/Tutorial/java_text_blocks_string.wp" target="_self">Les chaînes de type « Text Blocks » (Java SE 15)</a>
+            <a id='__id_auto_61__' href="/Java/Tutorial/java_stringbuilder_stringbuffer.wp" target="_self">Utilisation de StringBuffer ou de StringBuilder</a> <br />
+            <a id='__id_auto_63__' href="/Java/Tutorial/java_system_out_printf.wp" target="_self">Formatage de chaînes de caractères</a> <br />
+            <a id='__id_auto_65__' href="/Java/Tutorial/java_tableaux.wp" target="_self">Utilisation de tableaux en Java</a> <br />
+            <a id='__id_auto_67__' href="/Java/Tutorial/java_enum.wp" target="_self">Définition de types énumérés</a> <br />
+            <a id='__id_auto_69__' href="/Java/Tutorial/java_type_var.wp" target="_self">Inférence de types sur les variables locales</a> <br />
+            <a id='__id_auto_71__' href="/Java/Tutorial/java_wrapper_classes.wp" target="_self">Les classes enveloppantes (Wrapper classes)</a> <br />
+            <a id='__id_auto_73__' href="/Java/Tutorial/JavaOperators.wp" target="_self">Synthèse sur les opérateurs Java</a> <br />        
+        </div><br />
+
+        <b>Les instructions Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_78__' href="/Java/Tutorial/java_bloc_instructions.wp" target="_self">Définition de blocs d'instructions</a> <br />
+            <a id='__id_auto_80__' href="/Java/Tutorial/java_if_switch.wp" target="_self">Les instructions conditionnelles</a> <br />
+            <a id='__id_auto_82__' href="/Java/Tutorial/java_switch_se_14.wp" target="_self">Le nouveau switch (Java SE 14)</a> <br />
+            <a id='__id_auto_84__' href="/Java/Tutorial/java_for_do_while.wp" target="_self">Les instructions de boucles</a> <br />
+            <a id='__id_auto_86__' href="/Java/Tutorial/java_for_each.wp" target="_self">L'instruction « for each »</a> <br />
+            <a id='__id_auto_88__' href="/Java/Tutorial/java_break_continue.wp" target="_self">Les instructions break et continue</a> <br />
+            <a id='__id_auto_90__' href="/Java/Tutorial/java_assert.wp" target="_self">Utilisation d'assertions</a> <br />
+        </div><br />
+
+        <b>Définition de méthodes statiques en Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_95__' href="/Java/Tutorial/java_methodes_statiques.wp" target="_self">Définition de méthodes statiques</a> <br />
+            <a id='__id_auto_97__' href="/Java/Tutorial/java_methodes_parametres_variable.wp" target="_self">Méthodes à nombre variable de paramètres</a> <br />
+            <a id='__id_auto_99__' href="/Java/Tutorial/java_methodes_recursives.wp" target="_self">Mise en oeuvre de méthodes récursives</a> <br />
+        </div><br />
+ 
+        <b>Utilisation d'expressions régulières</b> 
+        <div style="padding-left: 20px">
+            <a id='__id_auto_104__' href="/Java/Tutorial/java_regular_expression.wp" target="_self">Nos premières expressions régulières</a> <br />
+            <a id='__id_auto_106__' href="/Java/Tutorial/java_regular_expression_compilation.wp" target="_self">Compilation d'expressions régulières</a> <br />
+            <a id='__id_auto_108__' href="/Java/Tutorial/java_regular_expression_substitution.wp" target="_self">Substitutions via des expressions régulières</a> <br />
+            <a id='__id_auto_110__' href="/Java/Tutorial/java_regular_expression_extraction.wp" target="_self">Extraction de données par expressions régulières</a> <br />
+            <a id='__id_auto_112__' href="/Java/Tutorial/java_regular_expression_scanner.wp" target="_self">Utilisation de la classe java.util.Scanner</a> <br />
+            <a id='__id_auto_114__' href="/Java/Tutorial/java_regular_expression_reference.wp" target="_self">Guide de référence sur les expressions régulières</a> <br />
+            <a id='__id_auto_116__' href="/Java/Tutorial/java_regular_expression_test_tool.wp" target="_self">Outils de vérification d'expressions régulières</a> <br />
+        </div><br />
+ 
+        <b>Programmation Orientée Object (POO) en Java</b> 
+        <div style="padding-left: 20px">
+            <a id='__id_auto_121__' href="/Java/Tutorial/java_poo_encapsulation.wp" target="_self">Introduction à la POO et principe d'encapsulation</a> <br />
+            <a id='__id_auto_123__' href="/Java/Tutorial/java_poo_heritage.wp" target="_self">Mise en oeuvre du concept d'héritage</a> <br />
+            <a id='__id_auto_125__' href="/Java/Tutorial/java_poo_type_abstrait.wp" target="_self">Méthodes abstraites, classes abstraites et interfaces</a> <br />
+            <a id='__id_auto_127__' href="/Java/Tutorial/java_poo_interface.wp" target="_self">Implémentations d'interfaces</a> <br />
+            <a id='__id_auto_129__' href="/Java/Tutorial/java_poo_lambda.wp" target="_self">Expressions Lambdas et références sur méthodes</a> <br />
+            <a id='__id_auto_131__' href="/Java/Tutorial/java_poo_interface2.wp" target="_self">Aspects avancés sur la définition d'interfaces</a> <br />
+        </div><br />
+
+        <b>Gestion des exceptions en Java</b> 
+        <div style="padding-left: 20px">
+            <a id='__id_auto_136__' href="/Java/Tutorial/java_exception_throw_try_catch_finally.wp" target="_self">Introduction à la gestion des exceptions</a> <br />
+            <a id='__id_auto_138__' href="/Java/Tutorial/java_exception_classe.wp" target="_self">Mise en oeuvre d'une classe d'exception</a> <br />
+            <a id='__id_auto_140__' href="/Java/Tutorial/java_exception_try_with_resources.wp" target="_self">Comparaison entre try/finally et le try-with-resources</a> <br />
+            <a id='__id_auto_142__' href="/Java/Tutorial/java_exception_multi_catch.wp" target="_self">Aspects complémentaires liés au traitement d'exceptions en Java</a> <br />
+        </div><br />
+        
+        <b>Utilisation de la généricité en Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_147__' href="/Java/Tutorial/java_generics_introduction.wp" target="_self">Introduction à la généricité en Java</a> <br />
+            <a id='__id_auto_149__' href="/Java/Tutorial/java_generics_classe.wp" target="_self">Apprendre à coder une classe générique</a> <br />
+            <a id='__id_auto_151__' href="/Java/Tutorial/java_generics_methode.wp" target="_self">Définition de méthodes génériques</a> <br />
+        </div><br />
+        
+        <b>Le moteur de réflexion en Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_156__' href="/Java/Tutorial/java_reflexion_introduction.wp" target="_self">Introduction à la réflexion Java</a> <br />
+            <a id='__id_auto_158__' href="/Java/Tutorial/java_reflexion_persistance.wp" target="_self">Coder un moteur de sérialisation</a> <br />
+            <a id='__id_auto_160__' href="/Java/Tutorial/java_reflexion_introspection.wp" target="_self">JavaBeans et l'introspection</a> <br />
+        </div><br />
+
+        <b>Utilisation d'annotations</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_165__' href="/Java/Tutorial/java_annotations_introduction.wp" target="_self">Introduction à l'utilisation d'annotations</a> <br />
+            <a id='__id_auto_167__' href="/Java/Tutorial/java_annotations_definition.wp" target="_self">Coder un nouveau type d'annotations</a> <br />
+            <a id='__id_auto_169__' href="/Java/Tutorial/java_annotations_test_framework.wp" target="_self">Coder un mini framework de test avec les annotations</a> <br />
+        </div><br />
+
+        <b>Packages, archives Java et modules </b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_174__' href="/Java/Tutorial/packages.wp" target="_self">La notion de package en Java</a> <br />
+            <a id='__id_auto_176__' href="/Java/Tutorial/Visibilite.wp" target="_self">Les droits d'accès en Java</a> <br />
+            <a id='__id_auto_178__' href="/Java/Tutorial/java_archive_jar.wp" target="_self">Les archives Java et l'outil jar</a> <br />
+            <a id='__id_auto_180__' href="/Java/Tutorial/java_module.wp" target="_self">Les modules Java et l'outil jmod</a> <br />
+            <a id='__id_auto_182__' href="/Java/Tutorial/java_jlink_jaotc.wp" target="_self">Les outils jlink et jaotc</a> <br />
+        </div><br />
+
+        <b>Le Garbage Collector (Ramasse miettes)</b>       
+        <div style="padding-left: 20px">
+            <a id='__id_auto_187__' href="/Java/Tutorial/GarbageCollector.wp" target="_self">Introduction au GC</a> <br />
+            <a id='__id_auto_189__' href="/Java/Tutorial/GCAlgorithms.wp" target="_self">Les différents algorithmes de GC</a> <br />
+            <a id='__id_auto_191__' href="/Java/Tutorial/HotspotOptions.wp" target="_self">Quelques options de la JVM Hotspot</a> <br />
+            <a id='__id_auto_193__' href="/Java/Tutorial/TuningTools.wp" target="_self">Outils de monitoring (mémoire/GC)</a>
+        </div> <br /> 
+
+
+        <p class="separator">Partie 2 - Bonnes pratiques de développement</p>
+
+        <style>
+            .separator { color: #505050; font-size: 18px; font-weight: bold; border-bottom: #505050 1px solid; }
+        </style>
+
+        <b>Produire la documentation avec l'outil Javadoc</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_199__' href="/Java/Tutorial/java_javadoc_introduction.wp" target="_self">La documentation via Javadoc</a> <br />
+            <a id='__id_auto_201__' href="/Java/Tutorial/java_javadoc_styles.wp" target="_self">Personnalisation HTML/CSS d'une Javadoc</a> <br />
+            <a id='__id_auto_203__' href="/Java/Tutorial/java_javadoc_doclet.wp" target="_self">Mise en oeuvre de Doclets</a> <br />
+        </div><br />
+        
+        <b>Mise en oeuvre de tests unitaires</b> 
+        <div style="padding-left: 20px">
+            <a id='__id_auto_208__' href="/Java/Tutorial/java_junit_unit_test.wp" target="_self">Pourquoi développer des tests unitaires ?</a> <br />
+            <a id='__id_auto_210__' href="/Java/Tutorial/java_junit3.wp" target="_self">Mise en oeuvre de tests unitaires avec JUnit 3.x</a> <br />
+            <a id='__id_auto_212__' href="/Java/Tutorial/java_junit4.wp" target="_self">Mise en oeuvre de tests unitaires avec JUnit 4.x</a> <br />
+            <a id='__id_auto_214__' href="/Java/Tutorial/java_junit5.wp" target="_self">Mise en oeuvre de tests unitaires avec JUnit 5.x</a> <br />
+            <a id='__id_auto_216__' href="/Java/Tutorial/java_junit_code_coverage.wp" target="_self">Tests unitaires et couverture de code (code coverage)</a> <br />
+            <a id='__id_auto_218__' href="/Java/Tutorial/java_junit_mock_objects.wp" target="_self">Utilisation de « Mock objects » dans vos tests</a> <br />
+        </div><br />
+
+        <b>Utiliser une API de logging</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_223__' href="/Java/Tutorial/java_logging.wp" target="_self">Pourquoi utiliser une API de logging ?</a> <br />
+            <a id='__id_auto_225__' href="/Java/Tutorial/java_logging_util.wp" target="_self">Utilisation du package java.util.logging</a> <br />
+            <a id='__id_auto_227__' href="/Java/Tutorial/java_logging_log4j2.wp" target="_self">Utilisation de l'API Log4J2</a> <br />
+            <a id='__id_auto_229__' href="/Java/Tutorial/java_logging_slf4j.wp" target="_self">Utilisation de l'API SLF4J</a> <br />
+        </div> <br />        
+
+        <b>Utiliser les Design Patterns dans vos codes Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_234__' href="/Java/Tutorial/java_design_patterns.wp" target="_self">Qu'est-ce qu'un « Design Pattern » ?</a> <br />
+            <a id='__id_auto_236__' href="/Java/Tutorial/java_design_patterns_singleton.wp" target="_self">Le design pattern « Singleton »</a> <br />
+            <a id='__id_auto_238__' href="/Java/Tutorial/java_design_patterns_factory_method.wp" target="_self">Le design pattern « Factory Method »</a> <br />
+            <a id='__id_auto_240__' href="/Java/Tutorial/java_design_patterns_abstract_factory.wp" target="_self">Le design pattern « Abstract Factory »</a> <br />
+            <a id='__id_auto_242__' href="/Java/Tutorial/java_design_patterns_builder.wp" target="_self">Le design pattern « Builder »</a> <br />
+            <a id='__id_auto_244__' href="/Java/Tutorial/java_design_patterns_composite.wp" target="_self">Le design pattern « Composite »</a> <br />
+        </div> <br />   
+       
+        <!--  Utiliser un débugger et un profileur ???? : debug Eclipse / JVisualVM  -->
+       
+        <b>Utiliser un outil de build</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_249__' href="/Java/Tutorial/java_build_tools.wp" target="_self">Pourquoi utiliser un outil de build ?</a> <br />
+            <a id='__id_auto_251__' href="/Java/Tutorial/java_build_ant.wp" target="_self">Utilisation de l'outil Apache Ant</a> <br />
+            <a id='__id_auto_253__' href="/Java/Tutorial/java_build_maven.wp" target="_self">Utilisation de l'outil Apache Maven</a> <br />
+        </div> <br />   
+
+        <b>Utiliser un gestionnaire de code source</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_258__' href="/Java/Tutorial/java_scm.wp" target="_self">Pourquoi utiliser un gestionnaire de code source ?</a> <br />
+            <a id='__id_auto_260__' href="/Java/Tutorial/java_scm_svn.wp" target="_self">Utilisation de SVN (SubVersioN)</a> <br />
+            <a id='__id_auto_262__' href="/Java/Tutorial/java_scm_git.wp" target="_self">Utilisation de GIT</a> <br />
+        </div> <br />           
+        
+        <b>Intégration continue dans vos développements Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_267__' href="/Java/Tutorial/java_integration_continue.wp" target="_self">Qu'est-ce que l'intégration continue ?</a> <br />
+            <a id='__id_auto_269__' href="/Java/Tutorial/java_integration_continue_jenkins.wp" target="_self">Intégration continue avec Jenkins pour Java</a> <br />
+            <a id='__id_auto_271__' href="/Java/Tutorial/java_integration_continue_jenkins_advanced.wp" target="_self">Aspects avancés liés à l'utilisation de Jenkins</a> <br />
+        </div> <br />
+        
+                
+        <p class="separator">Partie 3 - Les API Java</p>
+
+        <b>La gestion du temps et des dates</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_277__' href="/Java/Tutorial/java_time_date.wp" target="_self">La gestion du temps avec les API historiques</a> <br />
+            <a id='__id_auto_279__' href="/Java/Tutorial/java_time_calendar.wp" target="_self">L'API des calendars</a> <br />
+            <a id='__id_auto_281__' href="/Java/Tutorial/java_time_jodatime.wp" target="_self">Le package java.time (JodaTime)</a> <br />
+        </div> <br />
+
+
+        <!--  
+                
+        <b>Utilisation des collections Java</b>
+        <div style="padding-left: 20px">
+            <web:Link href=".wp" smart="true">Présentation du package java.util</web:Link> <br/>
+            <web:Link href=".wp" smart="true">Utilisation de tableaux dynamiques</web:Link> <br/>           (ArrayList / Vector)
+            <web:Link href=".wp" smart="true">Utilisation de piles et de files (FIFO vs LIFO)</web:Link> <br/>
+            <web:Link href=".wp" smart="true">Utilisation de tableaux associatifs</web:Link> <br/>          (HashMap / Hashtable)
+            <web:Link href=".wp" smart="true">L'API des streams</web:Link> <br/>
+        </div> <br/>
+
+        <b>Internationalisation d'applications Java</b>
+        ...
+        
+        <b>La gestion des entrées/sorties en Java</b>
+        <div style="padding-left: 20px">
+            <web:Link href=".wp" smart="true">Présentation du package java.io</web:Link> <br/>
+            <web:Link href=".wp" smart="true">Utilisation des InputStream/OutputStream</web:Link> <br/>
+            <web:Link href=".wp" smart="true">Utilisation des Reader/Writer</web:Link> <br/>
+            <web:Link href=".wp" smart="true">La sérialisation en Java</web:Link> <br/>
+            <web:Link href=".wp" smart="true">Présentation des packages NIO</web:Link> <br/>
+            <web:Link href=".wp" smart="true">Présentation des packages NIO2</web:Link> <br/>
+        </div> <br/>
+        
+        <b>Utilisation de threads en Java</b>
+        ...
+
+         -->
+    
+        <b>Quelques autres API Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_286__' href="/Java/Tutorial/Threads.wp" target="_self">La gestion des threads</a> <br />
+            <!-- <web:Link href="ThreadPool.wp" smart="true">Utilisation de pool de threads</web:Link> <br/  -->
+            <a id='__id_auto_288__' href="/Java/JDBC.wp" target="_self">Le tutoriel JDBC (Java DataBase Connectivity)</a> <br />
+            <a id='__id_auto_290__' href="/Java/TutorialSwing/Index.wp" target="_self">Le tutoriel Swing</a>
+            
+            <a id='__id_auto_291__' style='display:none' href="/Java/API/java/lang/String/toUpperCase.wp" target="_self">toUpperCase</a>
+            <a id='__id_auto_292__' style='display:none' href="/Python/API/python/builtins/list/append.wp" target="_self">list python append</a>
+        </div> <br />
+
+        <p class="separator">Partie 4 - Nos autres ressources Java</p>
+        
+        <b>Autres documents à consulter</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_297__' href="/Java/API/Index.wp" target="_self">Description des API du Java SE</a> <br />
+            <!--   Les principales API Java les plus utilisées : itext, poi, apache commons, java ee, spring, ...  -->
+            <a id='__id_auto_299__' href="/Java/TutorialVideos/Index.wp" target="_self">Toutes les vidéos de ce tutoriel Java</a> <br />
+        </div> <br />
+        
+            
+        <b>Pour vérifier vos connaissances Java</b>
+        <div style="padding-left: 20px">
+            <a id='__id_auto_304__' href="/Test.wp" target="_self">Notre QCM / Quiz sur le langage Java</a> <br />
+        </div> <br />
+            	   
+        <br />
+                    
+	    <div style="text-align: center">
+	        <div xmlns:web="corelib.services.web.components">
+    <link href="http://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" type="text/css"></link>
+	
+    
+    
+    
+    <a id='__id_auto_309___ticTacToe' style='display: inline-block; width: 200px; text-decoration: none;' href="/gameGPS?id=com.infinisoftware.tictactoe" target="_blank">
+        <div style="text-align: right; font-family: Orbitron, verdana, arial; font-size: 12px;">Android Game</div>
+        <img  id='__id_auto_309_____id_auto_496__' style='width:200px' title='Click to go to Google Play Store' src="/Images/ads/TicTacToe.png"  alt="Alien Attacks - Android Game"  />
+    </a>
+    
+    
+    
+    
+</div>
+	    </div>
+	    
+	    <br /><br />
+	</div>
+</aside><script src="/navigationPane.js" type="text/javascript"></script>
+
+        <div class="pageContent">
+            <div style="margin: auto; text-align: center">
+    <script async="async" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!--  Code Samples Top Banner  -->
+    <ins class="adsbygoogle" data-ad-client="ca-pub-6351935933260946" data-ad-slot="3406056112" style="display:inline-block;width:728px;height:90px"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+            
+            <h1>Votre premier programme Java</h1>
+            
+            <div style="text-align: center">
+                <a class="navigationButton" href="javascript: document.querySelector( 'header nav a' ).click();" style="float: left; margin-right: 10px; padding-left: 10px; padding-right: 0px;">
+                    <img src="/Images/hamburger.png" style="width: 32px;"></img>
+                </a>
+                <a class="navigationButton" href="Installation.wp" style="float: left;">
+                    <img src="/Images/leftArrow.png" style="width: 32px;"></img>
+                    Installation de Java  
+                </a>
+                <a class="navigationButton" href="Compilation.wp" style="float: right;">
+                    <img src="/Images/rightArrow.png" style="width: 32px;"></img>
+                    Compilation
+                </a>
+            </div> <br /> <br /> <br />
+            
+                       
+            <p style="text-indent: 0px;" xmlns:web="corelib.services.web.components">
+    <b>Accès rapide :</b> <br />
+
+<span style="white-space: pre">      </span><a href="#anchor-1">La vidéo</a><br /><span style="white-space: pre">      </span><a href="#anchor-2">Structure générale du programme "Hello World"</a><br /><span style="white-space: pre">      </span><a href="#anchor-3">Conventions de codage</a><br /><span style="white-space: pre">      </span><a href="#anchor-4">Utilisation de commentaires</a><br /><span style="white-space: pre">      </span><a href="#anchor-5">Utilisation de l'atelier Eclipse</a><br /></p>
+	
+            <a name="Vidéo"><a name="anchor-1"></a><h2>La vidéo</h2></a>
+
+            <p>
+                Cette vidéo vous montre comment produire votre première application Java en utilisant l'IDE (Integrated Development Environment) Eclipse.
+            </p>
+            
+            <div style="text-align: center">
+                <div style="display: inline-block; vertical-align: top; margin-bottom: 10px; text-align: center; margin: auto;" xmlns:web="corelib.services.web.components">
+    
+    <iframe allowfullscreen="allowfullscreen" frameborder="0" id="__id_auto_330__Frame" style="display: inline-block; box-sizing: border-box;"></iframe>
+    <script type="text/javascript">
+        var frame = $("__id_auto_330__Frame");
+        frame.src = "https://www.youtube.com/embed/lO_n1bFXOdQ";
+        frame.style.width = 700 + "px";
+        frame.style.height = 400 + "px";
+    </script>
+    <br />
+    
+    <span id='__id_auto_330_____id_auto_435__' style='font-weight: bold;' class='text'>Votre première application Java (Hello World)</span>
+
+</div>
+            </div>
+	
+			<a name="Structure"><a name="anchor-2"></a><h2>Structure générale du programme "Hello World"</h2></a>
+					
+			<p>
+				Histoire de ne pas déroger aux règles ancestrales de la programmation, nous allons commencer nos manipulations par un bon vieux programme HelloWorld mais
+				codé en langage Java. Ce premier programme, classique lors de nos premières manipulations d'un nouveau langage, aura pour but d'afficher sur la console un
+				message de bienvenue.
+			</p>
+			
+			<p>
+				<b>ATTENTION</b> : D'un certain point de vue, Java est un langage relativement strict. Une classe publique doit être placée dans un fichier du même nom (nous allons revenir
+				sur le concept de classe ultérieurement). Du coup, notre premier programme doit obligatoirement être placé dans un fichier appelé <i>HelloWorld.java</i>.
+				De même, faites attention aux minuscules et aux majuscules : un simple écart sur un caractère pourra produire une erreur. Le langage Java est sensible à la
+				casse (en anglais, <i>case sensitive</i>). Même sur les noms de fichiers, le compilateur Java cherchera à garantir la bonne utilisation des minuscules et
+				des majuscules. 
+			</p>
+			
+            <center><table class='JwtCodeColorer' border='0' cellspacing='0' cellpadding='0' id='__id_auto_338__'><tr>
+<td style='text-align: right; width: 1%;' valign='top'><pre class='JwtCodeColorerLineNumbers'>
+ 1 
+ 2 
+ 3 
+ 4 
+ 5 
+ 6 
+ 7 
+</pre></td>
+<td valign='top'><pre class='JwtCodeColorerLines'>
+<span style='color:rgb(127,0,85); font-weight: bold'>public</span> <span style='color:rgb(127,0,85); font-weight: bold'>class</span> HelloWorld  {
+
+    <span style='color:rgb(127,0,85); font-weight: bold'>public</span> <span style='color:rgb(127,0,85); font-weight: bold'>static</span> <span style='color:rgb(127,0,85); font-weight: bold'>void</span> main( String [] args ) {
+        System.out.println( <span style='color:rgb(42,0,255)'>"Hello World"</span> );
+    }
+
+}
+</pre></td>
+</tr>
+<caption align='bottom' class='JwtCodeColorerCaption'>Fichier "HelloWorld.java"</caption>
+</table></center>
+			
+						
+
+			<p>
+				L'élément principal de ce programme est la classe. Une classe est un type de données, mais ne nous formalisons pas sur ce point de syntaxe, nous y
+				reviendrons ultérieurement. Cette classe contient une méthode statique appelée main (ligne 03) : il s'agit en fait d'une simple fonction, mais comme elle est placée
+				dans une classe, on parle de méthode. Elle va constituer le point d'entrée de notre programme (un peu à l'instar des langages C et C++).
+			</p>
+	
+			<p>
+				Cette méthode ne contient qu'une ligne de code (ligne 04) qui permet de retrouver l'objet de flux de sortie standard (il est par défaut redirigé vers la console) à
+				partir du système et de lui demander d'afficher le message "HelloWorld". Comme ce message est une chaîne de caractères, on la place entre double guillemets.
+			</p>
+			
+			<a name="JavaBeans"><a name="anchor-3"></a><h2>Conventions de codage</h2></a>
+	
+			<p>
+				Le langage Java impose (ou parfois conventionne) un certain nombre de choses en terme de conventions de codage. Cela peut être vu comme une bonne chose
+				dans le sens ou si vous prenez un programme écrit par un autre développeur Java, la manière d'utiliser les minuscules, les majuscules, les caractères _,
+				..., sera la même que celle que vous utiliserez. Cela facilitera largement la prise en main de ce code. De plus, toute la librairie Java a été développée
+				par SUN en respectant ces règles. Si vous ne les respectez pas, vos codes (qui obligatoirement utiliseront la librairie Java) partageront deux conventions
+				distinctes.
+			</p>
+	
+			<p>
+				Notez qu'il s'agit de conventions de codage. Néanmoins, respectez-les, sinon certains mécanismes que nous verrons ultérieurement ne fonctionneront pas
+				correctement (le modèle Java Beans notamment). Voici une liste des principales conventions de codage utilisées en Java :
+			</p>
+	
+			<ul>
+				<li>
+					<p>Une classe publique doit être placée dans un fichier du même nom.</p>
+				</li>
+				<li>
+					<p>Un nom de type (classe ou interface, nous y reviendrons) doit commencer par une majuscule. On recapitalise à chaque nouveau mot. Ex: <i>HelloWorld</i>.</p>
+				</li>
+				<li>
+					<p>Une variable déclarée dans une classe (on parle d'attribut) doit commencer par une minuscule. On recapitalise à chaque nouveau mot.
+						Ex: <i>loopCounter</i>.</p>
+				</li>
+				<li>
+					<p>Une fonction dans une classe (on parle de méthode) doit aussi s'écrire de la même manière</p>
+				</li>
+				<li>
+					<p>Les constantes s'écrivent en majuscules. On sépare chaque mot par un caractère _. Ex: <i>PI</i> ou <i>MAX_PRIORITY</i>.</p>
+				</li>
+			</ul>
+	
+			<a name="Comments"><a name="anchor-4"></a><h2>Utilisation de commentaires</h2></a>
+	
+			<p>
+	      		A titre indicatif, un commentaire permet de placer de l'information au sein d'un programme. Cette information est non significative au niveau de
+	      		l'exécution du programme, mais qui prend tout son sens, en termes de compréhension, lors de la lecture de ce dernier. Depuis C++ (dont Java s'inspire, je
+	      		vous rappelle), il existe deux formes de commentaires. Voici un petit exemple. 
+			</p>
+		
+		    <center><table class='JwtCodeColorer' border='0' cellspacing='0' cellpadding='0' id='__id_auto_363__'><tr>
+<td style='text-align: right; width: 1%;' valign='top'><pre class='JwtCodeColorerLineNumbers'>
+ 1 
+ 2 
+ 3 
+ 4 
+ 5 
+ 6 
+ 7 
+ 8 
+ 9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+</pre></td>
+<td valign='top'><pre class='JwtCodeColorerLines'>
+<span style='color:rgb(0,128,0)'>/*
+     Exemple d'utilisation d'un commentaire
+     sur plusieurs lignes. 
+ */</span>
+
+<span style='color:rgb(127,0,85); font-weight: bold'>public</span> <span style='color:rgb(127,0,85); font-weight: bold'>class</span> HelloWorld  {
+
+    <span style='color:rgb(127,0,85); font-weight: bold'>public</span> <span style='color:rgb(127,0,85); font-weight: bold'>static</span> <span style='color:rgb(127,0,85); font-weight: bold'>void</span> main( String [] args ) {
+        
+        <span style='color:rgb(0,128,0)'>// Ceci est un autre commentaire mais sur une seule ligne</span>
+        System.out.println( <span style='color:rgb(42,0,255)'>"Hello World"</span> );
+        
+    }
+
+}
+</pre></td>
+</tr>
+<caption align='bottom' class='JwtCodeColorerCaption'>Fichier "HelloWorld.java"</caption>
+</table></center>
+
+		
+		
+			<p>
+				La première méthode (lignes 01 à 04) permet de placer un commentaire sur plusieurs lignes. Il est donc nécessaire de placer un marqueur de début de commentaire ainsi qu'un
+				marqueur de fin. La syntaxe étant reprise sur le langage C, on a donc, pour le marqueur de début, les deux caractères /* et pour le marqueur de fin les
+				caractères */. 
+			</p>
+	
+			<p>
+				La seconde (ligne 10) permet de fixer la fin de la ligne en commentaire, et uniquement la fin de la ligne courante. Cette dernière solution est, en réalité,
+				issue du langage C++.
+			</p>
+			
+			<p>
+				Il existe une troisième forme de commentaires : on parle de commentaires Javadoc. Un commentaire Javadoc commence par /** et se termine par */. Il est
+				utilisé pour la génération automatique de documentation. Nous reviendrons ultérieurement sur cette possibilité très intéressante. Si vous n'utilisez pas
+				l'outil Javadoc, cette forme de commentaire sera traitée par le compilateur comme un commentaire multi-lignes.
+			</p>
+			
+			
+			<a name="Eclipse"><a name="anchor-5"></a><h2>Utilisation de l'atelier Eclipse</h2></a>
+			
+			<p>
+				Dans l'absolu, vous pouvez coder un programme Java avec un quelconque éditeur de code (Notepad pourquoi pas). Néanmoins, l'utilisation d'atelier de
+			    développement Java vous permettra d'être bien plus efficace. Il existe plusieurs ateliers de développement adaptés à Java. Parmi eux, citons-en notamment
+			    trois : NetBeans, IntelliJ IDEA et Eclipse. Dans les trois cas, il s'agit d'outils eux même développés en Java. Ils sont donc diffusés sur différentes
+			    plates-formes. Ils peuvent être enrichis par des fonctionnalités complémentaires par le biais de plugins. Ils ont tous les trois une très bonne finition.
+			</p>
+			
+			<ul>
+				<li><p>
+	 				<b>NetBeans</b> : c'est l'atelier d'Oracle (initialement Sun Microsystems). Il est gratuit, et vous pouvez le trouver à partir du site
+	 				<a href="http://www.netbeans.org" target="_blank">http://www.netbeans.org</a>. 
+				</p></li>
+				<li><p>
+					<b>IntelliJ IDEA</b> : il est développé par la société JetBrains. Il peut être téléchargé à l'adresse suivante :
+					<a href="https://www.jetbrains.com/idea" target="_blank">https://www.jetbrains.com/idea</a>.
+				</p></li>
+				<li><p>
+					<b>Eclipse</b> : projet open source, initialement mis en place par IBM. Cet outil est gratuit. Actuellement, c'est un atelier qui séduit un très grand
+					nombre de développeurs Java. Nous utiliserons cet outil dans ce tutoriel Java.
+				</p></li>
+			</ul>
+			
+			<p>
+				Commencez par demander la création d'un nouveau projet Java, en cliquant avec le bouton droit de la souris dans la vue Package Explorer (elle affiche le
+				contenu du workspace en cours - un workspace étant un regroupement de projets).
+			</p>
+			
+			<div style="text-align: center"><img border="0" src="Images/02_Eclipse01.png"></img></div>	
+			
+			<p>Sélectionnez "Java Project" et cliquez sur le bouton "Next &gt;".</p>
+	
+			<div style="text-align: center"><img border="0" src="Images/02_Eclipse02.png"></img></div>	
+	
+			<p>
+				Ensuite remplissez la boîte de dialogue qui vous est proposée ainsi (nom du projet, et sélectionnez la case "Create separate source and output folders"
+				(c'est ce qu'il y a de plus propre en terme de structuration d'un projet). Laissez le reste en l'état. Cliquez sur "Finish".
+			</p>
+	
+			<div style="text-align: center"><img border="0" src="Images/02_Eclipse03.png"></img></div>	
+	
+			<p>
+				Maintenant que le projet est créé, déroulez l'arborescence HelloWorld, et cliquez avec le bouton droit de la souris sur le nom du projet et demandez à y
+				ajouter une nouvelle classe.
+			</p>
+	
+			<div style="text-align: center"><img border="0" src="Images/02_Eclipse04.png"></img></div>	
+	
+			<p>
+				Renseigner la boîte de dialogue afficher en saisissant de nouveau "HelloWorld" pour le nom de la classe et en prenant soin de cocher la case "<i>public
+				static void main( String [] args)</i>". Cette option vous évitera de taper la définition de la méthode statique main. Puis cliquez sur "Finish".
+			</p>
+	
+			<div style="text-align: center"><img border="0" src="Images/02_Eclipse05.png"></img></div>	
+	
+			<p>
+				Petite astuce : si vous avez oublié de cocher la case pour la présence de la méthode <i>main</i>, tapez ensuite le mot main dans le code, à l'endroit ou
+				insérer la méthode, puis tapez simultanément les touches CTRL et ESPACE. Cela vous permettra de rectifier le tir. Sinon, vous pouvez aussi tout taper à la
+				 main.
+			</p>
+	
+			<p>
+				Enfin, finalisez le code de la méthode <i>main</i>. Une possibilité rapide consiste à utiliser un template Eclipse (un modèle de code que vous pouvez
+				auto-générer. Pour ce faire tapez le mot <i>syso</i> entre les accolades de la méthode main. Puis appuyez de nouveau et simultanément sur les touches
+				CTRL et ESPACE. Une bonne partie du code sera générée.
+			</p>
+	
+			<div style="text-align: center"><img border="0" src="Images/02_Eclipse06.png"></img></div>	
+	
+			<p>
+				Notez, comme le montre la capture d'écran ci-dessous, que vous avez pu saisir des erreurs. Si tel est le cas, une erreur est signalée par des coches rouges
+				sur différents cotés. Dans l'exemple, un s en minuscule a été tapé en première lettre du mot <i>System</i>.
+			</p>
+	
+			<div style="text-align: center"><img border="0" src="Images/02_Eclipse07.png"></img></div>	
+	
+			<p>
+				Une fois le document complètement édité, pensez à le sauvegarder : pour ce faire vous pouvez utiliser sur la séquence de touches CTRL+S.
+			</p>
+	
+            <br /><br />  
+        
+            <div style="text-align: center">
+                <a class="navigationButton" href="javascript: document.querySelector( 'header nav a' ).click();" style="float: left; margin-right: 10px; padding-left: 10px; padding-right: 0px;">
+                    <img src="/Images/hamburger.png" style="width: 32px;"></img>
+                </a>
+                <a class="navigationButton" href="Installation.wp" style="float: left;">
+                    <img src="/Images/leftArrow.png" style="width: 32px;"></img>
+                    Installation de Java  
+                </a>
+                <a class="navigationButton" href="Compilation.wp" style="float: right;">
+                    <img src="/Images/rightArrow.png" style="width: 32px;"></img>
+                    Compilation
+                </a>
+            </div> <br /> <br /> <br />
+
+            <div style="text-align: center" xmlns:web="corelib.services.web.components">
+
+    <script async="async" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!--  Code Samples Top Banner  -->
+    <ins class="adsbygoogle" data-ad-client="ca-pub-6351935933260946" data-ad-slot="1929322918" style="display:inline-block;width:728px;height:90px"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+
+            <br /> <br />
+
+            
+          
+        </div>
+        <footer xmlns:web="corelib.services.web.components">
+    <p style="text-align: center">
+        <span id='__id_auto_426_____id_auto_470__'>2020</span> © SARL Infini Software - Tous droits réservés 
+        <span style="float: right"><a href="/MentionsLegales.wp">Mentions légales</a></span>
+    </p>
+    
+    <hr style="background: white" />
+    
+    <p>
+        Les informations présentes dans ce site vous sont fournies dans le but de vous aider à acquérir les compétences nécessaires à 
+        l'utilisation des langages ou des technologies considérés. Infini Software ne pourra nullement être tenu responsable de l'utilisation
+        des informations présentes dans ce site. 
+    </p>
+    
+    <script type="text/javascript">
+        function gm( username ) {
+		    var m = username + "@infini-software.com";
+		    document.write( "\u003ca href='mai" + "lto:" + m + "'\u003e" + m + "\u003c/a\u003e" );
+		}
+    </script>
+    
+    <p>
+        De plus, si vous remarquez des erreurs ou des oublis dans ce document, n'hésitez surtout pas à nous le signaler en envoyant un mail
+        à l'adresse : <script type="text/javascript"> gm( "dominique.liard" );</script>.
+    </p>
+    
+    <p>
+        Les autres marques et les noms de produits cités dans ces documents sont la propriété de leurs éditeurs respectifs.
+    </p>
+    
+</footer>
+    </body>
+</html>

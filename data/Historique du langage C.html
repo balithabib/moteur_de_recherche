@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:og="http://ogp.me/ns#">
+<head>
+	<meta charset="iso-8859-1">
+	<title>Historique du langage C</title>
+	<link rel="canonical" href="https://c.developpez.com/cours/historique-langage-c/">
+	<meta name="generator" content="developpez-com">
+	<meta name="description" content="Historique du langage C">
+	<script type="text/javascript" src="/template/scripts/jquery-1.7.2.js"></script>
+	<script async type="text/javascript" src="https://www.developpez.com/ws/pageview/url/c,cours,historique-langage-c/"></script>
+<!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+<script type="text/javascript" async=true>
+(function() {
+  var host = window.location.hostname;
+  var element = document.createElement('script');
+  var firstScript = document.getElementsByTagName('script')[0];
+  var url = 'https://quantcast.mgr.consensu.org'
+    .concat('/choice/', 'rZ6Mx73PT_R7Q', '/', host, '/choice.js')
+  var uspTries = 0;
+  var uspTriesLimit = 3;
+  element.async = true;
+  element.type = 'text/javascript';
+  element.src = url;
+
+  firstScript.parentNode.insertBefore(element, firstScript);
+
+  function makeStub() {
+    var TCF_LOCATOR_NAME = '__tcfapiLocator';
+    var queue = [];
+    var win = window;
+    var cmpFrame;
+
+    function addFrame() {
+      var doc = win.document;
+      var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+      if (!otherCMP) {
+        if (doc.body) {
+          var iframe = doc.createElement('iframe');
+
+          iframe.style.cssText = 'display:none';
+          iframe.name = TCF_LOCATOR_NAME;
+          doc.body.appendChild(iframe);
+        } else {
+          setTimeout(addFrame, 5);
+        }
+      }
+      return !otherCMP;
+    }
+
+    function tcfAPIHandler() {
+      var gdprApplies;
+      var args = arguments;
+
+      if (!args.length) {
+        return queue;
+      } else if (args[0] === 'setGdprApplies') {
+        if (
+          args.length > 3 &&
+          args[2] === 2 &&
+          typeof args[3] === 'boolean'
+        ) {
+          gdprApplies = args[3];
+          if (typeof args[2] === 'function') {
+            args[2]('set', true);
+          }
+        }
+      } else if (args[0] === 'ping') {
+        var retr = {
+          gdprApplies: gdprApplies,
+          cmpLoaded: false,
+          cmpStatus: 'stub'
+        };
+
+        if (typeof args[2] === 'function') {
+          args[2](retr);
+        }
+      } else {
+        queue.push(args);
+      }
+    }
+
+    function postMessageEventHandler(event) {
+      var msgIsString = typeof event.data === 'string';
+      var json = {};
+
+      try {
+        if (msgIsString) {
+          json = JSON.parse(event.data);
+        } else {
+          json = event.data;
+        }
+      } catch (ignore) {}
+
+      var payload = json.__tcfapiCall;
+
+      if (payload) {
+        window.__tcfapi(
+          payload.command,
+          payload.version,
+          function(retValue, success) {
+            var returnMsg = {
+              __tcfapiReturn: {
+                returnValue: retValue,
+                success: success,
+                callId: payload.callId
+              }
+            };
+            if (msgIsString) {
+              returnMsg = JSON.stringify(returnMsg);
+            }
+            event.source.postMessage(returnMsg, '*');
+          },
+          payload.parameter
+        );
+      }
+    }
+
+    while (win) {
+      try {
+        if (win.frames[TCF_LOCATOR_NAME]) {
+          cmpFrame = win;
+          break;
+        }
+      } catch (ignore) {}
+
+      if (win === window.top) {
+        break;
+      }
+      win = win.parent;
+    }
+    if (!cmpFrame) {
+      addFrame();
+      win.__tcfapi = tcfAPIHandler;
+      win.addEventListener('message', postMessageEventHandler, false);
+    }
+  };
+
+  makeStub();
+
+  var uspStubFunction = function() {
+    var arg = arguments;
+    if (typeof window.__uspapi !== uspStubFunction) {
+      setTimeout(function() {
+        if (typeof window.__uspapi !== 'undefined') {
+          window.__uspapi.apply(window.__uspapi, arg);
+        }
+      }, 500);
+    }
+  };
+
+  var checkIfUspIsReady = function() {
+    uspTries++;
+    if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+      console.warn('USP is not accessible');
+    } else {
+      clearInterval(uspInterval);
+    }
+  };
+
+  if (typeof window.__uspapi === 'undefined') {
+    window.__uspapi = uspStubFunction;
+    var uspInterval = setInterval(checkIfUspIsReady, 6000);
+  }
+})();
+</script>
+<!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+
+	<script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+	<script>
+		var googletag = googletag || {};
+		googletag.cmd = googletag.cmd || [];
+	</script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="/template/favicon.ico" />
+	<link rel="image_src" href="https://www.developpez.com/facebook-icon.png" />
+	<link rel="stylesheet" type="text/css" href="/template/gabarit.css?1573548434" />
+	<link rel="stylesheet" type="text/css" media="print" href="/template/printer.css" />
+	<script type="text/javascript" src="/template/gabarit.js?1573548434"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://www.developpez.com/template/kit/developpez-kit-generation.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://www.developpez.com/template/kit/code.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://www.developpez.com/template/kit/lightbox.2.51.css" />
+	<script type="text/javascript" src="https://www.developpez.com/template/kit/developpez-kit-generation.js"></script>
+	<script type="text/javascript" src="https://www.developpez.com/template/kit/lightbox.2.51.js"></script>
+	<script type="text/javascript" src="/template/kit/fonctions-kit.js"></script>
+	<!--[if lt IE 7]>
+	<script src="/template/ie7/IE7.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie6.css" />
+	<![endif]-->
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie7.css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/template/kit/html5_ie.js"></script>
+	<![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie9.css" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie8.css" /><![endif]-->
+	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie7.css" /><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie6.css" /><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="http://www.developpez.com/template/kit/html5_ie.js"></script><![endif]-->
+
+</head>
+<body>
+<header>
+
+<div id="gabarit_b1">
+	<div id="gabarit-barreRecherche" style="display:none;"><form action="https://www.google.fr" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8110924381468607:6449306375" />
+    <input type="hidden" name="ie" value="ISO-8859-1" />
+    <input type="text" name="q" size="12" />
+    <input type="submit" name="sa" value="Rechercher" />
+  </div>
+</form></div>
+<div id="gabarit-new-logo" role="gabarit-accueil">
+	<a href="https://www.developpez.com"><img src="/template/images/logo-dvp-h55.png" width="48" height="55" /></a>
+	<a href="https://www.developpez.com"><span class="dvp"></span></a>
+	<span class="triangle"></span>
+</div>
+<div id="gabarit_recherche"><!--<div class="gabarit-btn-menu profil" role="gabarit-profil"></div>-->
+	<div class="gabarit-btn-menu contacts" role="gabarit-contacts"></div><div class="gabarit-btn-menu recherche" role="gabarit-recherche"></div>
+</div>
+
+<div id="gabarit_superieur">
+	<nav>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="https://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="https://general.developpez.com/faq/" title="">FAQ</a></li>
+		<li><a href="https://www.developpez.net/forums/blogs/" title="">Blogs</a></li>
+		<li><a href="https://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="https://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="https://etudes.developpez.com/">Études</a></li>
+		<li><a href="https://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="https://droit.developpez.com/" title="">Droit</a></li>
+		<li><a href="https://club.developpez.com/">Club</a></li>
+	</ul>
+	</nav>
+</div></div>
+
+<nav>
+
+<!-- CONNEXION -->
+<div id="gabarit_mobile_connexion"></div>
+<div id="connexionMobile">
+	<form>
+		<div id="connexionMobile_contenu">
+		
+			<i id="fermerConnexionMobile" class="glyphicon glyphicon-remove"></i>
+			<p class="alert alert-info headerBox"></p>
+			<div class="englobeForm connexion">
+			
+				<p>Vous devez avoir un compte Developpez.com et être connecté pour pouvoir participer aux discussions.</p>
+				
+				<div class="row">
+					<div id="identificationConnexionMobile" class="col-sm-6">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Identifiez-vous</h5>
+								
+								<div id="loginBoxConnexionMobile" class="card-text">
+									<div class="groupbox">
+										<div class="cat_content">
+											<table width="100%">
+												<tr class="formIdentite">
+													<td nowrap="nowrap" class="form_label">Identifiant</td>
+													<td><input type="text" class="form_input form-control" id="formloginConnexionMobile"/></td>
+												</tr>
+												<tr class="formIdentite">
+													<td nowrap="nowrap" class="form_label">Mot de passe</td>
+													<td><input type="password" class="form_input form-control" id="formpassConnexionMobile"/></td>
+												</tr>
+												<tr><td colspan="2"><div id="formmsgConnexionMobile" style="display: none;"/></td></tr>
+												<tr><td colspan="2" align="right" class="form_label"><a href="http://www.developpez.net/forums/login.php?do=lostpw">Mot de passe oublié ?</a></td></tr>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<div id="btnValidationConnexion">
+									<input type="button" value="Je me connecte !" id="formbuttonConnexionMobile" class="btn btn-primary" />
+									<div id="loadingConnexionMobile"><i class="glyphicon glyphicon-repeat gly-spin"></i></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="inscriptionConnexionMobile" class="col-sm-6">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Créer un compte</h5>
+								<p class="card-text">Vous n'avez pas encore de compte Developpez.com ? L'inscription est gratuite et ne vous prendra que quelques instants !</p>
+								<a href="https://www.developpez.net/forums/inscription/" class="btn btn-primary">Je m'inscris !</a>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			<div class="englobeForm actions"></div>
+		</div>
+	</form>
+</div>
+<!-- FIN CONNEXION -->
+
+<div id="gabarit_mobile">
+	<div><a href="https://www.developpez.com"><img src="/template/images/logo-mobile.png" alt="" height="60"></a></div>
+	<div>
+		<p>Developpez.com</p>
+		<p>C</p>
+	</div>
+
+	<div class="nav nav-pills nav-justified" style="white-space: nowrap; width: calc(100% - 40px);">
+					<a href="https://c.developpez.com" class="nav-item nav-link"> &nbsp;Rubrique C&nbsp; </a>
+			<a href="https://www.developpez.net/forums/f7/c-cpp/" class="nav-item nav-link"> &nbsp;Forum C&nbsp; </a>
+			
+	</div>
+	
+	<div class="nav nav-pills nav-justified" style="width: calc(100% - 40px); margin: 0 auto 6px;">
+		<a href="https://www.developpez.com/" class="nav-item nav-link"><i class="glyphicon glyphicon-home" style="top:0;"></i>&nbsp; Accueil</a>
+		<a href="https://www.developpez.net/forums/" class="nav-item nav-link"><i class="glyphicon glyphicon-comment" style="top:1px;"></i>&nbsp; Forums</a>
+			
+		<span class="nav-item nav-link" style="white-space:nowrap;" data-toggle="collapse" href="#gabarit_menu_mobile" role="button" aria-expanded="false"><i class="glyphicon glyphicon-th" style="top:0;"></i>&nbsp; Rubriques</span>
+	</div>
+</div>
+<div id="gabarit_mobile_fin"></div>
+
+<div class="collapse multi-collapse" id="gabarit_menu_mobile">
+	<p>Choisissez la catégorie, puis la rubrique :</p>
+	<ul>
+					<li>
+				<a href="https://www.developpez.com" data-idrub="1" data-niv="1">Accueil</a>
+							</li>
+					<li>
+				<a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="1">DI/DSI Solutions d&#039;entreprise</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;DI/DSI Solutions d&#039;entreprise
+							</a>
+						</li>
+													<li>
+								<a href="https://abbyy.developpez.com" data-idrub="147" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ABBYY
+								</a>
+							</li>
+													<li>
+								<a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Big Data
+								</a>
+							</li>
+													<li>
+								<a href="https://bpm.developpez.com" data-idrub="134" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;BPM
+								</a>
+							</li>
+													<li>
+								<a href="https://business-intelligence.developpez.com" data-idrub="61" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Business Intelligence
+								</a>
+							</li>
+													<li>
+								<a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ERP / PGI
+								</a>
+							</li>
+													<li>
+								<a href="https://crm.developpez.com" data-idrub="92" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;CRM
+								</a>
+							</li>
+													<li>
+								<a href="https://sas.developpez.com" data-idrub="93" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SAS
+								</a>
+							</li>
+													<li>
+								<a href="https://sap.developpez.com" data-idrub="106" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SAP
+								</a>
+							</li>
+													<li>
+								<a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft BizTalk Server
+								</a>
+							</li>
+													<li>
+								<a href="https://talend.developpez.com" data-idrub="118" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Talend
+								</a>
+							</li>
+													<li>
+								<a href="https://droit.developpez.com" data-idrub="132" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Droit informatique et entreprise
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="1">Cloud</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Cloud Computing
+							</a>
+						</li>
+													<li>
+								<a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Azure
+								</a>
+							</li>
+													<li>
+								<a href="https://ibmcloud.developpez.com" data-idrub="135" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;IBM Cloud
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="1">IA</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Intelligence artificielle
+							</a>
+						</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://alm.developpez.com" data-idrub="42" data-niv="1">ALM</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://alm.developpez.com" data-idrub="42" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ALM
+							</a>
+						</li>
+													<li>
+								<a href="https://merise.developpez.com" data-idrub="43" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Merise
+								</a>
+							</li>
+													<li>
+								<a href="https://uml.developpez.com" data-idrub="12" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;UML
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://dotnet.developpez.com" data-idrub="20" data-niv="1">Microsoft</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://dotnet.developpez.com" data-idrub="20" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft &amp; .NET
+							</a>
+						</li>
+													<li>
+								<a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Visual Studio
+								</a>
+							</li>
+													<li>
+								<a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ASP.NET
+								</a>
+							</li>
+													<li>
+								<a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;C#
+								</a>
+							</li>
+													<li>
+								<a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;VB.NET
+								</a>
+							</li>
+													<li>
+								<a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Azure
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://java.developpez.com" data-idrub="4" data-niv="1">Java</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://java.developpez.com" data-idrub="4" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Java
+							</a>
+						</li>
+													<li>
+								<a href="https://javaweb.developpez.com" data-idrub="97" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Java Web
+								</a>
+							</li>
+													<li>
+								<a href="https://spring.developpez.com" data-idrub="87" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Spring
+								</a>
+							</li>
+													<li>
+								<a href="https://android.developpez.com" data-idrub="95" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Android
+								</a>
+							</li>
+													<li>
+								<a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Eclipse
+								</a>
+							</li>
+													<li>
+								<a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NetBeans
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://web.developpez.com" data-idrub="8" data-niv="1">Dév. Web</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://web.developpez.com" data-idrub="8" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Développement et hébergement Web
+							</a>
+						</li>
+													<li>
+								<a href="https://ajax.developpez.com" data-idrub="85" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;AJAX
+								</a>
+							</li>
+													<li>
+								<a href="https://apache.developpez.com" data-idrub="71" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Apache
+								</a>
+							</li>
+													<li>
+								<a href="https://asp.developpez.com" data-idrub="10" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ASP
+								</a>
+							</li>
+													<li>
+								<a href="https://css.developpez.com" data-idrub="51" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;CSS
+								</a>
+							</li>
+													<li>
+								<a href="https://dart.developpez.com" data-idrub="125" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Dart
+								</a>
+							</li>
+													<li>
+								<a href="https://flash.developpez.com" data-idrub="41" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Flash / Flex
+								</a>
+							</li>
+													<li>
+								<a href="https://javascript.developpez.com" data-idrub="45" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;JavaScript
+								</a>
+							</li>
+													<li>
+								<a href="https://nodejs.developpez.com" data-idrub="141" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NodeJS
+								</a>
+							</li>
+													<li>
+								<a href="https://php.developpez.com" data-idrub="9" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;PHP
+								</a>
+							</li>
+													<li>
+								<a href="https://ruby.developpez.com" data-idrub="53" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Ruby &amp; Rails
+								</a>
+							</li>
+													<li>
+								<a href="https://typescript.developpez.com" data-idrub="127" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;TypeScript
+								</a>
+							</li>
+													<li>
+								<a href="https://web-semantique.developpez.com" data-idrub="111" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Web sémantique
+								</a>
+							</li>
+													<li>
+								<a href="https://webmarketing.developpez.com" data-idrub="80" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Webmarketing
+								</a>
+							</li>
+													<li>
+								<a href="https://xhtml.developpez.com" data-idrub="50" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;(X)HTML
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://edi.developpez.com" data-idrub="90" data-niv="1">EDI</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://edi.developpez.com" data-idrub="90" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;EDI
+							</a>
+						</li>
+													<li>
+								<a href="https://4d.developpez.com" data-idrub="39" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;4D
+								</a>
+							</li>
+													<li>
+								<a href="https://delphi.developpez.com" data-idrub="2" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Delphi
+								</a>
+							</li>
+													<li>
+								<a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Eclipse
+								</a>
+							</li>
+													<li>
+								<a href="https://jetbrains.developpez.com" data-idrub="144" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;JetBrains
+								</a>
+							</li>
+													<li>
+								<a href="https://labview.developpez.com" data-idrub="72" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;LabVIEW
+								</a>
+							</li>
+													<li>
+								<a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NetBeans
+								</a>
+							</li>
+													<li>
+								<a href="https://matlab.developpez.com" data-idrub="58" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;MATLAB
+								</a>
+							</li>
+													<li>
+								<a href="https://scilab.developpez.com" data-idrub="120" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Scilab
+								</a>
+							</li>
+													<li>
+								<a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Visual Studio
+								</a>
+							</li>
+													<li>
+								<a href="https://wind.developpez.com" data-idrub="74" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;WinDev
+								</a>
+							</li>
+													<li>
+								<a href="https://vb.developpez.com" data-idrub="5" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Visual Basic 6
+								</a>
+							</li>
+													<li>
+								<a href="https://lazarus.developpez.com" data-idrub="96" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Lazarus
+								</a>
+							</li>
+													<li>
+								<a href="https://qt-creator.developpez.com" data-idrub="109" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Qt Creator
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://programmation.developpez.com" data-idrub="119" data-niv="1">Programmation</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://programmation.developpez.com" data-idrub="119" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Programmation
+							</a>
+						</li>
+													<li>
+								<a href="https://algo.developpez.com" data-idrub="47" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Débuter - Algorithmique
+								</a>
+							</li>
+													<li>
+								<a href="https://jeux.developpez.com" data-idrub="38" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;2D - 3D - Jeux
+								</a>
+							</li>
+													<li>
+								<a href="https://asm.developpez.com" data-idrub="16" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Assembleur
+								</a>
+							</li>
+													<li>
+								<a href="https://c.developpez.com" data-idrub="3" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;C
+								</a>
+							</li>
+													<li>
+								<a href="https://cpp.developpez.com" data-idrub="59" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;C++
+								</a>
+							</li>
+													<li>
+								<a href="https://d.developpez.com" data-idrub="123" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;D
+								</a>
+							</li>
+													<li>
+								<a href="https://go.developpez.com" data-idrub="124" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Go
+								</a>
+							</li>
+													<li>
+								<a href="https://kotlin.developpez.com" data-idrub="145" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Kotlin
+								</a>
+							</li>
+													<li>
+								<a href="https://objective-c.developpez.com" data-idrub="117" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Objective C
+								</a>
+							</li>
+													<li>
+								<a href="https://pascal.developpez.com" data-idrub="7" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Pascal
+								</a>
+							</li>
+													<li>
+								<a href="https://perl.developpez.com" data-idrub="29" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Perl
+								</a>
+							</li>
+													<li>
+								<a href="https://python.developpez.com" data-idrub="27" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Python
+								</a>
+							</li>
+													<li>
+								<a href="https://rust.developpez.com" data-idrub="137" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Rust
+								</a>
+							</li>
+													<li>
+								<a href="https://swift.developpez.com" data-idrub="128" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Swift
+								</a>
+							</li>
+													<li>
+								<a href="https://qt.developpez.com" data-idrub="65" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Qt
+								</a>
+							</li>
+													<li>
+								<a href="https://xml.developpez.com" data-idrub="11" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;XML
+								</a>
+							</li>
+													<li>
+								<a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Autres
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://sgbd.developpez.com" data-idrub="13" data-niv="1">SGBD</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://sgbd.developpez.com" data-idrub="13" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SGBD &amp; SQL
+							</a>
+						</li>
+													<li>
+								<a href="https://4d.developpez.com" data-idrub="39" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;4D
+								</a>
+							</li>
+													<li>
+								<a href="https://access.developpez.com" data-idrub="19" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Access
+								</a>
+							</li>
+													<li>
+								<a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Big Data
+								</a>
+							</li>
+													<li>
+								<a href="https://db2.developpez.com" data-idrub="36" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;DB2
+								</a>
+							</li>
+													<li>
+								<a href="https://firebird.developpez.com" data-idrub="73" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Firebird
+								</a>
+							</li>
+													<li>
+								<a href="https://interbase.developpez.com" data-idrub="32" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;InterBase
+								</a>
+							</li>
+													<li>
+								<a href="https://mysql.developpez.com" data-idrub="31" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;MySQL
+								</a>
+							</li>
+													<li>
+								<a href="https://nosql.developpez.com" data-idrub="114" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NoSQL
+								</a>
+							</li>
+													<li>
+								<a href="https://postgresql.developpez.com" data-idrub="33" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;PostgreSQL
+								</a>
+							</li>
+													<li>
+								<a href="https://oracle.developpez.com" data-idrub="25" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Oracle
+								</a>
+							</li>
+													<li>
+								<a href="https://sybase.developpez.com" data-idrub="37" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Sybase
+								</a>
+							</li>
+													<li>
+								<a href="https://sqlserver.developpez.com" data-idrub="34" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SQL-Server
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://office.developpez.com" data-idrub="54" data-niv="1">Office</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://office.developpez.com" data-idrub="54" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Office
+							</a>
+						</li>
+													<li>
+								<a href="https://access.developpez.com" data-idrub="19" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Access
+								</a>
+							</li>
+													<li>
+								<a href="https://excel.developpez.com" data-idrub="75" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Excel
+								</a>
+							</li>
+													<li>
+								<a href="https://word.developpez.com" data-idrub="76" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Word
+								</a>
+							</li>
+													<li>
+								<a href="https://outlook.developpez.com" data-idrub="77" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Outlook
+								</a>
+							</li>
+													<li>
+								<a href="https://powerpoint.developpez.com" data-idrub="78" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;PowerPoint
+								</a>
+							</li>
+													<li>
+								<a href="https://sharepoint.developpez.com" data-idrub="79" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SharePoint
+								</a>
+							</li>
+													<li>
+								<a href="https://project.developpez.com" data-idrub="99" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Project
+								</a>
+							</li>
+													<li>
+								<a href="https://openoffice-libreoffice.developpez.com" data-idrub="116" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;OpenOffice &amp; LibreOffice
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://mobiles.developpez.com" data-idrub="94" data-niv="1">Mobiles</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://mobiles.developpez.com" data-idrub="94" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Mobiles
+							</a>
+						</li>
+													<li>
+								<a href="https://android.developpez.com" data-idrub="95" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Android
+								</a>
+							</li>
+													<li>
+								<a href="https://ios.developpez.com" data-idrub="101" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;iOS
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://systeme.developpez.com" data-idrub="30" data-niv="1">Systèmes</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://systeme.developpez.com" data-idrub="30" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Systèmes
+							</a>
+						</li>
+													<li>
+								<a href="https://windows.developpez.com" data-idrub="17" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Windows
+								</a>
+							</li>
+													<li>
+								<a href="https://linux.developpez.com" data-idrub="18" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Linux
+								</a>
+							</li>
+													<li>
+								<a href="https://arduino.developpez.com" data-idrub="142" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Arduino
+								</a>
+							</li>
+													<li>
+								<a href="https://securite.developpez.com" data-idrub="40" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Sécurité
+								</a>
+							</li>
+													<li>
+								<a href="https://hardware.developpez.com" data-idrub="64" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Hardware
+								</a>
+							</li>
+													<li>
+								<a href="https://hpc.developpez.com" data-idrub="139" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;HPC
+								</a>
+							</li>
+													<li>
+								<a href="https://mac.developpez.com" data-idrub="57" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Mac
+								</a>
+							</li>
+													<li>
+								<a href="https://raspberry-pi.developpez.com" data-idrub="131" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Raspberry Pi
+								</a>
+							</li>
+													<li>
+								<a href="https://reseau.developpez.com" data-idrub="70" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Réseau
+								</a>
+							</li>
+													<li>
+								<a href="https://green-it.developpez.com" data-idrub="104" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Green IT
+								</a>
+							</li>
+													<li>
+								<a href="https://embarque.developpez.com" data-idrub="110" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Systèmes embarqués
+								</a>
+							</li>
+													<li>
+								<a href="https://virtualisation.developpez.com" data-idrub="108" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Virtualisation
+								</a>
+							</li>
+											</ul>
+							</li>
+			</ul>
+</div>
+
+<ul id="gabarit_menu" style="padding-left:56px;">
+	<li><a href="https://www.developpez.com" data-idrub="1" data-niv="1" style="padding:0;"><div id="gabarit_home"></div></a>
+			</li>
+	<li><a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="1">DI/DSI Solutions d&#039;entreprise<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="2">DI/DSI Solutions d&#039;entreprise</a></li>
+				<li><a href="https://abbyy.developpez.com" data-idrub="147" data-niv="2">ABBYY</a></li>
+				<li><a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://bpm.developpez.com" data-idrub="134" data-niv="2">BPM</a></li>
+				<li><a href="https://business-intelligence.developpez.com" data-idrub="61" data-niv="2">Business Intelligence</a></li>
+				<li><a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">ERP / PGI</a></li>
+				<li><a href="https://crm.developpez.com" data-idrub="92" data-niv="2">CRM</a></li>
+				<li><a href="https://sas.developpez.com" data-idrub="93" data-niv="2">SAS</a></li>
+				<li><a href="https://sap.developpez.com" data-idrub="106" data-niv="2">SAP</a></li>
+				<li><a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">Microsoft BizTalk Server</a></li>
+				<li><a href="https://talend.developpez.com" data-idrub="118" data-niv="2">Talend</a></li>
+				<li><a href="https://droit.developpez.com" data-idrub="132" data-niv="2">Droit informatique et entreprise</a></li>
+			</ul></li>
+	<li><a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="1">Cloud<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="2">Cloud Computing</a></li>
+				<li><a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+				<li><a href="https://ibmcloud.developpez.com" data-idrub="135" data-niv="2">IBM Cloud</a></li>
+			</ul></li>
+	<li><a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="1">IA<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="2">Intelligence artificielle</a></li>
+			</ul></li>
+	<li><a href="https://alm.developpez.com" data-idrub="42" data-niv="1">ALM<!--<span class="gabarit_tooltip">Cycle de vie du logiciel</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://alm.developpez.com" data-idrub="42" data-niv="2">ALM</a></li>
+				<li><a href="https://merise.developpez.com" data-idrub="43" data-niv="2">Merise</a></li>
+				<li><a href="https://uml.developpez.com" data-idrub="12" data-niv="2">UML</a></li>
+			</ul></li>
+	<li><a href="https://dotnet.developpez.com" data-idrub="20" data-niv="1">Microsoft<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://dotnet.developpez.com" data-idrub="20" data-niv="2">Microsoft &amp; .NET</a></li>
+				<li><a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">ASP.NET</a></li>
+				<li><a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">C#</a></li>
+				<li><a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">VB.NET</a></li>
+				<li><a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+			</ul></li>
+	<li><a href="https://java.developpez.com" data-idrub="4" data-niv="1">Java<!--<span class="gabarit_tooltip">Plateforme et langage Java</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://java.developpez.com" data-idrub="4" data-niv="2">Java</a></li>
+				<li><a href="https://javaweb.developpez.com" data-idrub="97" data-niv="2">Java Web</a></li>
+				<li><a href="https://spring.developpez.com" data-idrub="87" data-niv="2">Spring</a></li>
+				<li><a href="https://android.developpez.com" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">NetBeans</a></li>
+			</ul></li>
+	<li><a href="https://web.developpez.com" data-idrub="8" data-niv="1">Dév. Web<!--<span class="gabarit_tooltip">Développement Web et Webmarketing</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://web.developpez.com" data-idrub="8" data-niv="2">Développement et hébergement Web</a></li>
+				<li><a href="https://ajax.developpez.com" data-idrub="85" data-niv="2">AJAX</a></li>
+				<li><a href="https://apache.developpez.com" data-idrub="71" data-niv="2">Apache</a></li>
+				<li><a href="https://asp.developpez.com" data-idrub="10" data-niv="2">ASP</a></li>
+				<li><a href="https://css.developpez.com" data-idrub="51" data-niv="2">CSS</a></li>
+				<li><a href="https://dart.developpez.com" data-idrub="125" data-niv="2">Dart</a></li>
+				<li><a href="https://flash.developpez.com" data-idrub="41" data-niv="2">Flash / Flex</a></li>
+				<li><a href="https://javascript.developpez.com" data-idrub="45" data-niv="2">JavaScript</a></li>
+				<li><a href="https://nodejs.developpez.com" data-idrub="141" data-niv="2">NodeJS</a></li>
+				<li><a href="https://php.developpez.com" data-idrub="9" data-niv="2">PHP</a></li>
+				<li><a href="https://ruby.developpez.com" data-idrub="53" data-niv="2">Ruby &amp; Rails</a></li>
+				<li><a href="https://typescript.developpez.com" data-idrub="127" data-niv="2">TypeScript</a></li>
+				<li><a href="https://web-semantique.developpez.com" data-idrub="111" data-niv="2">Web sémantique</a></li>
+				<li><a href="https://webmarketing.developpez.com" data-idrub="80" data-niv="2">Webmarketing</a></li>
+				<li><a href="https://xhtml.developpez.com" data-idrub="50" data-niv="2">(X)HTML</a></li>
+			</ul></li>
+	<li><a href="https://edi.developpez.com" data-idrub="90" data-niv="1">EDI<!--<span class="gabarit_tooltip">Environnements de Développement Intégré</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://edi.developpez.com" data-idrub="90" data-niv="2">EDI</a></li>
+				<li><a href="https://4d.developpez.com" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://delphi.developpez.com" data-idrub="2" data-niv="2">Delphi</a></li>
+				<li><a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://jetbrains.developpez.com" data-idrub="144" data-niv="2">JetBrains</a></li>
+				<li><a href="https://labview.developpez.com" data-idrub="72" data-niv="2">LabVIEW</a></li>
+				<li><a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">NetBeans</a></li>
+				<li><a href="https://matlab.developpez.com" data-idrub="58" data-niv="2">MATLAB</a></li>
+				<li><a href="https://scilab.developpez.com" data-idrub="120" data-niv="2">Scilab</a></li>
+				<li><a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://wind.developpez.com" data-idrub="74" data-niv="2">WinDev</a></li>
+				<li><a href="https://vb.developpez.com" data-idrub="5" data-niv="2">Visual Basic 6</a></li>
+				<li><a href="https://lazarus.developpez.com" data-idrub="96" data-niv="2">Lazarus</a></li>
+				<li><a href="https://qt-creator.developpez.com" data-idrub="109" data-niv="2">Qt Creator</a></li>
+			</ul></li>
+	<li><a href="https://programmation.developpez.com" data-idrub="119" data-niv="1" class="gabarit_selection">Programmation<!--<span class="gabarit_tooltip">Programmation et langages de programmation applicatifs</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://programmation.developpez.com" data-idrub="119" data-niv="2">Programmation</a></li>
+				<li><a href="https://algo.developpez.com" data-idrub="47" data-niv="2">Débuter - Algorithmique</a></li>
+				<li><a href="https://jeux.developpez.com" data-idrub="38" data-niv="2">2D - 3D - Jeux</a></li>
+				<li><a href="https://asm.developpez.com" data-idrub="16" data-niv="2">Assembleur</a></li>
+				<li><a href="https://c.developpez.com" data-idrub="3" data-niv="2">C</a></li>
+				<li><a href="https://cpp.developpez.com" data-idrub="59" data-niv="2">C++</a></li>
+				<li><a href="https://d.developpez.com" data-idrub="123" data-niv="2">D</a></li>
+				<li><a href="https://go.developpez.com" data-idrub="124" data-niv="2">Go</a></li>
+				<li><a href="https://kotlin.developpez.com" data-idrub="145" data-niv="2">Kotlin</a></li>
+				<li><a href="https://objective-c.developpez.com" data-idrub="117" data-niv="2">Objective C</a></li>
+				<li><a href="https://pascal.developpez.com" data-idrub="7" data-niv="2">Pascal</a></li>
+				<li><a href="https://perl.developpez.com" data-idrub="29" data-niv="2">Perl</a></li>
+				<li><a href="https://python.developpez.com" data-idrub="27" data-niv="2">Python</a></li>
+				<li><a href="https://rust.developpez.com" data-idrub="137" data-niv="2">Rust</a></li>
+				<li><a href="https://swift.developpez.com" data-idrub="128" data-niv="2">Swift</a></li>
+				<li><a href="https://qt.developpez.com" data-idrub="65" data-niv="2">Qt</a></li>
+				<li><a href="https://xml.developpez.com" data-idrub="11" data-niv="2">XML</a></li>
+				<li><a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">Autres</a></li>
+			</ul></li>
+	<li><a href="https://sgbd.developpez.com" data-idrub="13" data-niv="1">SGBD<!--<span class="gabarit_tooltip">Systèmes de Gestion de Bases de Données</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://sgbd.developpez.com" data-idrub="13" data-niv="2">SGBD &amp; SQL</a></li>
+				<li><a href="https://4d.developpez.com" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://access.developpez.com" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://db2.developpez.com" data-idrub="36" data-niv="2">DB2</a></li>
+				<li><a href="https://firebird.developpez.com" data-idrub="73" data-niv="2">Firebird</a></li>
+				<li><a href="https://interbase.developpez.com" data-idrub="32" data-niv="2">InterBase</a></li>
+				<li><a href="https://mysql.developpez.com" data-idrub="31" data-niv="2">MySQL</a></li>
+				<li><a href="https://nosql.developpez.com" data-idrub="114" data-niv="2">NoSQL</a></li>
+				<li><a href="https://postgresql.developpez.com" data-idrub="33" data-niv="2">PostgreSQL</a></li>
+				<li><a href="https://oracle.developpez.com" data-idrub="25" data-niv="2">Oracle</a></li>
+				<li><a href="https://sybase.developpez.com" data-idrub="37" data-niv="2">Sybase</a></li>
+				<li><a href="https://sqlserver.developpez.com" data-idrub="34" data-niv="2">SQL-Server</a></li>
+			</ul></li>
+	<li><a href="https://office.developpez.com" data-idrub="54" data-niv="1">Office<!--<span class="gabarit_tooltip">Bureautique pour l'entreprise</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://office.developpez.com" data-idrub="54" data-niv="2">Microsoft Office</a></li>
+				<li><a href="https://access.developpez.com" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://excel.developpez.com" data-idrub="75" data-niv="2">Excel</a></li>
+				<li><a href="https://word.developpez.com" data-idrub="76" data-niv="2">Word</a></li>
+				<li><a href="https://outlook.developpez.com" data-idrub="77" data-niv="2">Outlook</a></li>
+				<li><a href="https://powerpoint.developpez.com" data-idrub="78" data-niv="2">PowerPoint</a></li>
+				<li><a href="https://sharepoint.developpez.com" data-idrub="79" data-niv="2">SharePoint</a></li>
+				<li><a href="https://project.developpez.com" data-idrub="99" data-niv="2">Microsoft Project</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+			</ul></li>
+	<li><a href="https://mobiles.developpez.com" data-idrub="94" data-niv="1">Mobiles<!--<span class="gabarit_tooltip">Logiciels et matériels mobiles</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://mobiles.developpez.com" data-idrub="94" data-niv="2">Mobiles</a></li>
+				<li><a href="https://android.developpez.com" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://ios.developpez.com" data-idrub="101" data-niv="2">iOS</a></li>
+			</ul></li>
+	<li><a href="https://systeme.developpez.com" data-idrub="30" data-niv="1">Systèmes<!--<span class="gabarit_tooltip">Logiciels et matériels systèmes</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://systeme.developpez.com" data-idrub="30" data-niv="2">Systèmes</a></li>
+				<li><a href="https://windows.developpez.com" data-idrub="17" data-niv="2">Windows</a></li>
+				<li><a href="https://linux.developpez.com" data-idrub="18" data-niv="2">Linux</a></li>
+				<li><a href="https://arduino.developpez.com" data-idrub="142" data-niv="2">Arduino</a></li>
+				<li><a href="https://securite.developpez.com" data-idrub="40" data-niv="2">Sécurité</a></li>
+				<li><a href="https://hardware.developpez.com" data-idrub="64" data-niv="2">Hardware</a></li>
+				<li><a href="https://hpc.developpez.com" data-idrub="139" data-niv="2">HPC</a></li>
+				<li><a href="https://mac.developpez.com" data-idrub="57" data-niv="2">Mac</a></li>
+				<li><a href="https://raspberry-pi.developpez.com" data-idrub="131" data-niv="2">Raspberry Pi</a></li>
+				<li><a href="https://reseau.developpez.com" data-idrub="70" data-niv="2">Réseau</a></li>
+				<li><a href="https://green-it.developpez.com" data-idrub="104" data-niv="2">Green IT</a></li>
+				<li><a href="https://embarque.developpez.com" data-idrub="110" data-niv="2">Systèmes embarqués</a></li>
+				<li><a href="https://virtualisation.developpez.com" data-idrub="108" data-niv="2">Virtualisation</a></li>
+			</ul></li>
+</ul>
+
+<ul id="gabarit_barre1"><li><a href="https://programmation.developpez.com">Programmation</a></li><li><a href="https://algo.developpez.com">Algorithmique</a></li><li><a href="https://jeux.developpez.com">2D-3D-Jeux</a></li><li><a href="https://asm.developpez.com">Assembleur</a></li><li class="gabarit_selection"><a href="https://c.developpez.com">C</a></li><li><a href="https://cpp.developpez.com">C++</a></li><li><a href="https://d.developpez.com">D</a></li><li><a href="https://go.developpez.com">Go</a></li><li><a href="https://kotlin.developpez.com">Kotlin</a></li><li><a href="https://objective-c.developpez.com">Objective C</a></li><li><a href="https://pascal.developpez.com">Pascal</a></li><li><a href="https://perl.developpez.com">Perl</a></li><li><a href="https://python.developpez.com">Python</a></li><li><a href="https://rust.developpez.com">Rust</a></li><li><a href="https://swift.developpez.com">Swift</a></li><li><a href="https://qt.developpez.com">Qt</a></li><li><a href="https://xml.developpez.com">XML</a></li><li><a href="https://general.developpez.com/cours/">Autres</a></li></ul>
+
+<div id="gabarit_barre2">
+	<a class="gabarit_social gabarit_facebook" href="http://www.facebook.com/pages/C/108584359174497" target="_blank" title="Retrouver Developpez sur Facebook"></a>
+	<a class="gabarit_social gabarit_twitter" href="http://twitter.com/C_Developpez" target="_blank" title="Retrouver Developpez sur Twitter"></a>
+	<a class="gabarit_social gabarit_rss" href="http://c.developpez.com/index/rss" target="_blank" title="Flux RSS"></a>
+	<ul>
+<li><a href="https://c.developpez.com/">Accueil C</a></li><li><a href="https://www.developpez.net/forums/f7/c-cpp/">Forums C</a></li><li><a href="https://c.developpez.com/faq/">FAQ C</a></li><li><a href="https://c.developpez.com/cours/">Tutoriels C</a></li><li><a href="https://c.developpez.com/livres/">Livres C</a></li><li><a href="https://c.developpez.com/telecharger/index/categorie/30/Outils-C-C">Compilateurs et outils C</a></li><li><a href="https://c.developpez.com/telecharger/index/categorie/149/Sources-C">Sources C</a></li><li><a href="https://c.developpez.com/telecharger/index/categorie/451/Bibliotheques-C">Bibliothèques C</a></li><li><a href="http://gtk.developpez.com/">GTK+</a></li>	</ul>
+</div>
+
+</nav>
+</header>
+<section>
+
+<div id="gabarit_pubBB">
+<div id="gabarit_pub0"></div><div id="sv3xa0w" class="dvpb0" style="display: inline-block; width: 728px; height: 90px"></div>
+</div>
+
+<div class="contenuPage">    <article class="ArticleComplet" itemscope itemtype="http://schema.org/Article">
+<meta itemprop="genre" content="informatique"/>
+<meta itemprop="inLanguage" content="fr-FR"/>	
+		
+<header class="EnteteTitres">
+<h1 class="titre-article" itemprop="name">Historique du langage C</h1>
+
+</header><nav class="nav-sommaire">
+<header><h1 class="TitreHeader StopArrondi ToggleGecko">Table des mati&egrave;res<img class="ToggleImgPlier" title="Plier" alt="Plier" src="http://www.developpez.com/template/kit/fleche-haut-bleue.gif"/><img class="ToggleImgDeplier" title="Déplier" alt="Déplier" src="http://www.developpez.com/template/kit/fleche-bas-bleue.gif" style="display:none;"/></h1></header>
+<ul id="nav_sommaire_ul_principal" class="nav-sommaire-ul">
+    <li><a class="summaryIndent0" href="#LI">I. Origines</a><ul class="nav-sommaire-ul IndentationI">
+      
+      
+      <li><a class="summaryIndent1" href="#LI-A">I-A. Le CPL</a></li>
+      <li><a class="summaryIndent1" href="#LI-B">I-B. Le BCPL</a></li>
+      <li><a class="summaryIndent1" href="#LI-C">I-C. Le B</a></li>
+      <li><a class="summaryIndent1" href="#LI-D">I-D. Le C</a></li>
+    </ul></li>
+    <li><a class="summaryIndent0" href="#LII">II. Évolutions</a><ul class="nav-sommaire-ul IndentationII">
+      
+      
+      <li><a class="summaryIndent1" href="#LII-A">II-A. 1978 - K&amp;R C</a></li>
+      <li><a class="summaryIndent1" href="#LII-B">II-B. 1983 - C++</a></li>
+      <li><a class="summaryIndent1" href="#LII-C">II-C. 1983 - Objective-C</a></li>
+      <li><a class="summaryIndent1" href="#LII-D">II-D. 1989 - ANSI C</a></li>
+      <li><a class="summaryIndent1" href="#LII-E">II-E. 1998 - Standard C++</a></li>
+      <li><a class="summaryIndent1" href="#LII-F">II-F. 1999 - C99</a></li>
+    </ul></li>
+    <li><a class="summaryIndent0" href="#LIII">III. Héritage historique</a><ul class="nav-sommaire-ul IndentationIII">
+      
+      
+      <li><a class="summaryIndent1" href="#LIII-A">III-A. Pointeurs et tableaux</a><ul class="nav-sommaire-ul IndentationIII-A">
+        
+        <li><a class="summaryIndent2" href="#LIII-A-1">III-A-1. Déclaration avec []</a></li>
+        <li><a class="summaryIndent2" href="#LIII-A-2">III-A-2. Pointeur et premier élément de tableau</a></li>
+        <li><a class="summaryIndent2" href="#LIII-A-3">III-A-3. Opérateur []</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#LIII-B">III-B. Conversions de type</a></li>
+      <li><a class="summaryIndent1" href="#LIII-C">III-C. int implicite</a></li>
+      <li><a class="summaryIndent1" href="#LIII-D">III-D. Conversions arithmétiques</a></li>
+      <li><a class="summaryIndent1" href="#LIII-E">III-E. Paramètres de fonction</a><ul class="nav-sommaire-ul IndentationIII-E">
+        
+        
+        <li><a class="summaryIndent2" href="#LIII-E-1">III-E-1. Déclaration implicite de fonction</a></li>
+        <li><a class="summaryIndent2" href="#LIII-E-2">III-E-2. Déclaration de fonction</a></li>
+        <li><a class="summaryIndent2" href="#LIII-E-3">III-E-3. Style K&amp;R C de définition de fonction</a></li>
+        <li><a class="summaryIndent2" href="#LIII-E-4">III-E-4. Promotion des paramètres</a></li>
+        <li><a class="summaryIndent2" href="#LIII-E-5">III-E-5. Prototypes, void, procédure</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#LIII-F">III-F. Chaînes littérales de caractères</a></li>
+    </ul></li>
+    <li><a class="summaryIndent0" href="#LIV">IV. Remerciements</a></li>
+  </ul></nav>
+
+
+<div class="fixeMarge"><section itemprop="about" class="SectionSynopsis">
+    <p>
+      <b>Cet article est un bref historique du langage C ; de ses origines (CPL, BCPL, B) à ses évolutions (K&amp;R, ANSI, C++, ...) </b>
+    </p>
+    <p class="imgtext-idea"><b>Votre avis et vos suggestions nous intéressent ! <br />
+			De même que des informations complémentaires (citations, URL, images, codes, ...) ou des corrections. 
+<br /><br />
+			Alors après votre lecture, n'hésitez pas :</b> <a class="lienforum" href="https://www.developpez.net/forums/showthread.php?t=869304">Commentez</a> <img src="https://www.developpez.com/template/kit/kitstars-5-0.png" width="66" height="14" style="border: none" alt="Donner une note à l'article (5)"/></p>
+  </section></div><div class="InfoAuthArtBook">
+	<section class="SectionAuteurs">
+	<header><h1 class="TitreHeader">L'auteur</h1></header>
+<p class="auteur" itemprop="author" itemscope itemtype="http://schema.org/Person"><a itemprop="url" class="auteur" href=""><span itemprop="author">Marc Mongenet</span></a><a class="homepage" href="http://marc.mongenet.ch/"><img src="http://www.developpez.com/template/kit/kitbm-site-personnel.png" title="Site personnel" alt="Site personnel" style="vertical-align:middle;"/></a></p>
+</section>
+<section class="SectionInformationArticle">
+<header><h1 class="TitreHeader">L&acute;article</h1></header>
+
+<p class="InfoArticle"/><p>
+<span class="lientelechargementpdf"><a class="lientelechargement" href="http://c.developpez.com/cours/historique-langage-c/historique-langage-c.pdf" title="Télécharger la version PDF de cet article.">Version PDF</a></span>
+<span class="lientelechargementzip"><a class="lientelechargement" href="http://c.developpez.com/cours/historique-langage-c/historique-langage-c.zip" title="Télécharger la version HTML de cet article.">Version hors-ligne</a></span></p>
+<p><span class="lientelechargementebook"><a class="lientelechargement" href="http://c.developpez.com/cours/historique-langage-c/historique-langage-c.epub" title="Télécharger la version ePub de l'article compatible avec la plupart des liseuses non Kindle (Amazon).">ePub</a></span>, <span class="lientelechargementebook"><a class="lientelechargement" href="http://c.developpez.com/cours/historique-langage-c/historique-langage-c.azw" title="Télécharger la version Azw de l'article compatible avec les liseuses Kindle (Amazon).">Azw</a></span> et <span class="lientelechargementebook"><a class="lientelechargement" href="http://c.developpez.com/cours/historique-langage-c/historique-langage-c.mobi" title="Télécharger la version Mobi de l'article compatible avec certaines liseuses.">Mobi</a></span></p>
+</section>
+<section class="SectionBookmarks">
+<header><h1 class="TitreHeader">Liens&nbsp;sociaux</h1></header>
+<div class="InfoBookmarks"><a title="Viadeo" href="http://www.viadeo.com/shareit/share/?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fhistorique-langage-c%2F&amp;Title=Historique+du+langage+C" rel="nofollow"><img alt="Viadeo" src="https://www.developpez.com/template/kit/kitbm-viadeo.png"/></a>&nbsp;<a title="Twitter" href="http://twitter.com/timeline/home?status=http%3A%2F%2Fc.developpez.com%2Fcours%2Fhistorique-langage-c%2F" rel="nofollow"><img alt="Twitter" src="https://www.developpez.com/template/kit/kitbm-twitter.png"/></a>&nbsp;<a title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fc.developpez.com%2Fcours%2Fhistorique-langage-c%2F" rel="nofollow"><img alt="Facebook" src="https://www.developpez.com/template/kit/kitbm-facebook.png"/></a>&nbsp;<a title="Google +" href="https://plus.google.com/share?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fhistorique-langage-c%2F" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/></a>&nbsp;<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: fr_FR</script>
+			<script type="IN/Share" data-url="$url"></script>&nbsp;</div>
+</section></div><section itemprop="articleBody" class="articleBody">
+    
+    <h1 class="TitreSection0" id="LI">I. Origines<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Le langage C possède trois ancêtres : le CPL, le BCPL et le B.</p>
+      
+    <h2 class="TitreSection1" id="LI-A">I-A. Le CPL<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Le langage CPL (pour Combined Programming Language) a été conçu
+au début des années 1960 par les universités
+<a class="lienArticle simple" href="http://www.cl.cam.ac.uk/UoCCL/misc/EDSA/history.html">de
+Cambridge</a> et de Londres. C'était un grand projet académique consistant
+à créer un langage englobant beaucoup de concepts. Le CPL devait notamment être
+fortement typé, avec de nombreux types comme des nombres entiers, réels,
+booléens, caractères, tableaux, listes...
+</p>
+        <p>Le CPL était trop complexe pour l'époque et il semble que personne n'ait
+réussi à terminer l'écriture d'un compilateur. Ce langage a disparu sans
+laisser de trace quelque part dans les années 1970.
+</p>
+        <p>Réf. :
+<a class="lienArticle simple" href="http://foldoc.linuxguruz.org/foldoc.php?CPL">LinuxGuruz</a>,
+<a class="lienArticle simple" href="http://www.wikipedia.com/wiki/CPL">Wikipédia</a></p>
+      </div>
+      
+    <h2 class="TitreSection1" id="LI-B">I-B. Le BCPL<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Le langage BCPL (pour Basic CPL) a été conçu à Cambridge en 1966 par
+<a class="lienArticle simple" href="http://www.cl.cam.ac.uk/users/mr/">Martin Richards</a>. L'année
+suivante, il alla au <a class="lienArticle simple" href="http://web.mit.edu/">MIT</a> et écrivit un premier
+compilateur. Le BCPL est une version fortement simplifiée du langage CPL avec notamment
+un seul type de donnée, le mot machine, c'est-à-dire le nombre typique
+de bits que le processeur d'un ordinateur traite en une instruction-machine
+(addition, soustraction, multiplication, copie...). La notion est devenue
+un peu floue avec les processeurs actuels qui peuvent traiter des données de
+toutes sortes de tailles. Cependant, on peut raisonnablement classer les Pentium
+et PowerPC parmi les processeurs 32 bits, contre 64 bits pour les
+Alpha, Itanium ou Opteron. Du temps du BCPL, on trouvait des architectures
+à mots de 40 bits, 36 bits, 18 bits, 16 bits...
+</p>
+        <p>Le BCPL opère sur les mots de la machine. Il est donc à la fois portable et
+proche du matériel, donc efficace pour la programmation système.
+Le langage BCPL a servi à écrire divers systèmes d'exploitation de l'époque,
+dont un (TripOS) qui s'est retrouvé partiellement porté sur l'Amiga pour devenir la partie AmigaDOS du système.
+</p>
+        <p>Mais aujourd'hui, le BCPL ne semble plus être utilisé que par son inventeur.
+C'est sans doute dû au fait que le langage C a repris et étendu la plupart des qualités
+de BCPL.
+</p>
+        <p>Référence : <a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/who/dmr/bcpl.pdf">manuel BCPL</a></p>
+        <p>Exemple de code BCPL (tiré de
+<a class="lienArticle simple" href="http://www.lysator.liu.se/c/clive-on-history.html">Clive Feather on CPL and BCPL</a>) :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e167">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e167" onclick="selectionCode('contenuCoded0e167');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e167" class="contenuCode">MANIFEST ${ TOPFACT = 10 $} // Equivalent of "const int TOPFACT = 10"
+LET infact (n) = VALOF
+$(
+  LET f, j = 1., 0.
+
+  FOR i = 0 TO n             // Declares i for the next block only
+  $(
+    f #*:= j;                // := is assign, = is compare
+    fact!i := f;             // assignment doesn't return a value
+    j #+:= 1.
+  $)
+  RESULTIS f
+$)
+AND fact = VEC TOPFACT;      // As in B, allocates 0 to TOPFACT
+</code></pre></div>
+      </div>
+      
+    <h2 class="TitreSection1" id="LI-C">I-C. Le B<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Le langage B a été créé par <a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/who/ken/">Ken
+Thompson</a> vers 1970 dans les
+<a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/index.html">laboratoires Bell</a>
+d'<a class="lienArticle simple" href="http://www.att.com/">AT&amp;T</a>. L'année précédente, il avait
+écrit en assembleur la première version d'<a class="lienArticle simple" href="http://www.bell-labs.com/history/unix/">UNIX</a> sur un
+<a class="lienArticle simple" href="http://research.microsoft.com/~gbell/Digital/timeline/1964-3.htm">PDP-7</a>
+contenant 8 kilo mots de 18 bits. Lorsqu'il voulut proposer un langage sur
+ce nouveau système d'exploitation, il semble qu'il ait d'abord pensé à porter
+<a class="lienArticle simple" href="http://fortran.developpez.com/">Fortran</a>, mais que très
+vite (en une semaine) il conçut son propre langage : B.
+</p>
+        <p>Le B est une simplification de BCPL, un peu forcée par les limitations du
+<a class="lienArticle simple" href="http://research.microsoft.com/~gbell/Digital/timeline/1964-3.htm">PDP-7</a>.
+Mais la syntaxe très sobre du B (et des commandes
+<a class="lienArticle simple" href="http://www.bell-labs.com/history/unix/">UNIX</a>)
+toute en lettres minuscules correspond surtout aux goûts de
+<a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/who/ken/">Thompson</a>.
+Le langage C a repris la syntaxe du B avec un minimum de changements.
+</p>
+        <p>Le langage B a été porté et utilisé sur quelques autres systèmes.
+Mais cette même année 1970, le succès du projet
+<a class="lienArticle simple" href="http://www.bell-labs.com/history/unix/">UNIX</a> justifia l'achat d'un
+<a class="lienArticle simple" href="http://research.microsoft.com/~gbell/Digital/timeline/1970-2.htm">PDP-11</a>.
+Celui-ci avait des mots machine de 16 bits, mais il était aussi capable de
+traiter des octets (24 ko de mémoire vive en tout) dans chacun desquels
+pouvait être stocké un caractère. Le B ne traitait que des mots machine,
+donc le passage de 18 à 16 bits n'était pas problématique,
+mais il était impossible de traiter efficacement les caractères de 8 bits.
+Pour bien exploiter les capacités de la machine, le B a donc commencé à être
+étendu en ajoutant un type pour les caractères...
+</p>
+        <p>Référence : <a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/who/dmr/kbman.html">Thompson's BManual</a></p>
+        <p>Exemple de code B identique au code BCPL ci-dessus (tiré de
+<a class="lienArticle simple" href="http://www.lysator.liu.se/c/clive-on-history.html">Clive Feather on CPL and BCPL</a>) :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e229">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e229" onclick="selectionCode('contenuCoded0e229');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e229" class="contenuCode">infact (n)
+{
+  auto f, i, j;   /* no initialization for auto variables */
+  extrn fact;     /* "What would I do differently if designing
+                   *  UNIX today?  I'd spell creat() with an e."
+                   *  -- Ken Thompson, approx. wording */
+
+  f = 1.;         /* floating point constant */
+  j = 0.;
+  for (i = 0; i &lt;= n; ++i) {
+    fact[i] = f =#* j;      /* note spelling =#* not #*= */
+    j =#+ 1.;               /* #+ for floating add */
+  }
+
+  return (f);     /* at least, I think the () were required */
+}
+
+TOPFACT = 10;   /* equivalent of #define, allows numeric values only */
+fact[TOPFACT];
+</code></pre></div>
+      </div>
+      
+    <h2 class="TitreSection1" id="LI-D">I-D. Le C<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Le langage C a été développé par un collègue de
+<a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/who/ken/">Ken Thompson</a>,
+<a class="lienArticle simple" href="http://www.cs.bell-labs.com/who/dmr/">Dennis Ritchie</a> qui pensait
+d'abord faire uniquement un New B ou NB. Mais en plus des
+caractères, Ritchie ajouta les tableaux, les pointeurs, les nombres à
+virgule flottante, les structures... 1972 fut l'année de développement la
+plus productive et sans doute l'année de baptême de C. En 1973,
+le langage C fut suffisamment au point pour que 90 % d'<a class="lienArticle simple" href="http://www.bell-labs.com/history/unix/">UNIX</a> puisse être récrit
+avec. En 1974, les
+<a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/index.html">laboratoires Bell</a>
+ont accordé des licences
+<a class="lienArticle simple" href="http://www.bell-labs.com/history/unix/">UNIX</a> aux universités
+et c'est ainsi que le langage C a commencé à être distribué.
+</p>
+        <p>Références : <a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/who/dmr/chist.html">The
+Development of the C Language</a>, <a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/who/dmr/primevalC.html">Very
+early C compilers and language</a></p>
+        <p>Exemple de code C identique aux codes BCPL et B ci-dessus (tiré de
+<a class="lienArticle simple" href="http://www.lysator.liu.se/c/clive-on-history.html">Clive Feather on CPL and BCPL</a>) :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e270">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e270" onclick="selectionCode('contenuCoded0e270');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e270" class="contenuCode"><code class="c_keyword3">float</code> infact (n) <code class="c_keyword3">int</code> n;
+<code class="c_operator">{</code>
+  <code class="c_keyword3">float</code> f <code class="c_operator">=</code> <code class="c_digit">1</code>;
+  <code class="c_keyword3">int</code> i;
+  <code class="c_keyword1">extern</code> <code class="c_keyword3">float</code> fact[];
+
+  <code class="c_keyword1">for</code> (i <code class="c_operator">=</code> <code class="c_digit">0</code>; i <code class="c_operator">&lt;=</code> n; <code class="c_operator">+</code><code class="c_operator">+</code>i)
+    fact[i] <code class="c_operator">=</code> f <code class="c_operator">*</code><code class="c_operator">=</code> i;
+
+    <code class="c_keyword1">return</code> d;
+  <code class="c_operator">}</code>
+
+<code class="c_keyword2">#</code><code class="c_markup">define</code><code class="c_keyword2"> </code><code class="c_keyword2">TOPFACT</code><code class="c_keyword2"> </code><code class="c_digit">10</code>
+<code class="c_keyword3">float</code> fact[TOPFACT<code class="c_operator">+</code><code class="c_digit">1</code>];
+</code></pre></div>
+        <p><a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/who/dmr/kd14.jpg">Voir </a>
+Ken Thompson (assis) et Dennis Ritchie devant un PDP-11 fonctionnant avec
+<a class="lienArticle simple" href="http://www.bell-labs.com/history/unix/">UNIX</a> vers 1972.
+</p>
+      </div>
+    </div>
+    
+    <h1 class="TitreSection0" id="LII">II. Évolutions<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Une fois rendu public, le langage C a peu changé.
+Pratiquement toutes les extensions se sont faites dans
+<a class="lienArticle simple" href="http://cpp.developpez.com/">C++</a>,
+qui est une gigantesque extension du C. Une autre évolution du C est
+<a class="lienArticle simple" href="http://mac.developpez.com/cours/#developpement">Objective-C</a>,
+qui se concentre sur l'orientation objet. De nombreux autres langages comme
+<a class="lienArticle simple" href="http://java.developpez.com/">Java</a>,
+<a class="lienArticle simple" href="http://javascript.developpez.com/">JavaScript</a> ou
+<a class="lienArticle simple" href="http://dotnet.developpez.com/csharp/">C#</a>
+ont largement repris la syntaxe du C, mais sans être compatibles. 
+</p>
+      
+    <h2 class="TitreSection1" id="LII-A">II-A. 1978 - K&amp;R C<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e389">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e389" onclick="selectionCode('contenuCoded0e389');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e389" class="contenuCode"><code class="c_keyword2">#</code><code class="c_markup">include</code><code class="c_keyword2"> </code><code class="c_keyword2">&lt;stdio.h&gt;</code>
+<code class="c_function">main</code>(argc,
+     argv)
+<code class="c_keyword3">int</code> argc;
+<code class="c_keyword3">char</code> <code class="c_operator">*</code><code class="c_operator">*</code> argv;
+<code class="c_operator">{</code>
+ <code class="c_function">printf</code>(<code class="c_literal1">"</code><code class="c_literal1">hello,</code><code class="c_literal1"> </code><code class="c_literal1">world\n</code><code class="c_literal1">"</code>);
+<code class="c_operator">}</code>
+</code></pre></div>
+        <p>La plus ancienne version du langage C encore en usage a été formalisée en 1978
+lorsque <a class="lienArticle simple" href="http://cm.bell-labs.com/who/bwk/">Brian Kernighan</a>
+et <a class="lienArticle simple" href="http://www.cs.bell-labs.com/who/dmr/">Dennis Ritchie</a> ont
+publié la première édition du livre <a class="lienArticle simple" href="http://c.developpez.com/livres/#L2100487345">Le langage C</a>.
+Ce livre décrit ce qu'on appelle actuellement le K&amp;R C,
+le C traditionnel, voire le vieux C. Peu après sa publication,
+de très nombreux compilateurs C ont commencé à apparaître.
+</p>
+        <p>Les programmes portables écrits dans les années 1980 sont donc en
+K&amp;R C. De fait, quelques programmes très portables sont encore en
+K&amp;R C (par exemple
+<a class="lienArticle simple" href="http://www.gnu.org/software/make/make.html">GNU Make</a>).
+En effet, de nombreux systèmes commerciaux ne proposent qu'un compilateur
+K&amp;R C en standard, le compilateur ANSI C devant être acheté
+séparément. Heureusement, la disponibilité presque universelle de
+<a class="lienArticle simple" href="http://gcc.gnu.org/">GCC</a> résout pratiquement ce problème.
+</p>
+      </div>
+      
+    <h2 class="TitreSection1" id="LII-B">II-B. 1983 - C++<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e461">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e461" onclick="selectionCode('contenuCoded0e461');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e461" class="contenuCode"><code class="cpp_keyword2">#</code><code class="cpp_markup">include</code><code class="cpp_keyword2"> </code><code class="cpp_keyword2">&lt;iostream.h&gt;</code>
+<code class="cpp_keyword3">int</code> <code class="cpp_function">main</code>(<code class="cpp_keyword3">int</code> argc,
+         <code class="cpp_keyword3">char</code> <code class="cpp_operator">*</code> argv[])
+<code class="cpp_operator">{</code>
+ cout <code class="cpp_operator">&lt;</code><code class="cpp_operator">&lt;</code> <code class="cpp_literal1">"</code><code class="cpp_literal1">hello,</code><code class="cpp_literal1"> </code><code class="cpp_literal1">world</code><code class="cpp_literal1">"</code>
+      <code class="cpp_operator">&lt;</code><code class="cpp_operator">&lt;</code> endl;
+ <code class="cpp_keyword1">return</code> <code class="cpp_digit">0</code>;
+<code class="cpp_operator">}</code>
+</code></pre></div>
+        <p>À partir de 1980,
+<a class="lienArticle simple" href="http://www.research.att.com/~bs/homepage.html">Bjarne Stroustrup</a>
+a étendu le langage C avec le concept de classe. Ce langage étendu a d'abord été appelé
+C with Classes, puis le C++ en 1983. Le langage C++ a énormément évolué
+(surcharge d'opérateurs, héritage, références, types génériques, exceptions...),
+mais en restant le plus compatible possible avec C. Il est souvent possible de
+compiler un programme en C avec un compilateur C++. 
+</p>
+      </div>
+      
+    <h2 class="TitreSection1" id="LII-C">II-C. 1983 - Objective-C<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e532">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e532" onclick="selectionCode('contenuCoded0e532');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e532" class="contenuCode"><code class="c_keyword3">void</code> <code class="c_function">main</code>()
+<code class="c_operator">{</code>
+ <code class="c_function">printf</code>(<code class="c_literal1">"</code><code class="c_literal1">hello,</code><code class="c_literal1"> </code><code class="c_literal1">world\n</code><code class="c_literal1">"</code>);
+<code class="c_operator">}</code>
+</code></pre></div>
+        <p>Le langage Objective-C a été créé par Brad Cox. C'est un strict
+sur ensemble de C. Il lui apporte un support de la programmation orientée objet
+inspiré de <a class="lienArticle simple" href="http://www.wikipedia.org/wiki/Smalltalk">Smalltalk</a>.
+Ce langage est à la base de
+<a class="lienArticle simple" href="http://www.wikipedia.org/wiki/NeXT">NeXTSTEP</a>.
+Avec le rachat de <a class="lienArticle simple" href="http://www.wikipedia.org/wiki/NeXT">NeXT</a> par
+<a class="lienArticle simple" href="http://www.apple.com/">Apple</a>, l'Objective-C s'est retrouvé à
+la base de l'interface graphique
+<a class="lienArticle simple" href="http://www.wikipedia.org/wiki/Mac_OS_X/Cocoa">Cocoa</a>
+de <a class="lienArticle simple" href="http://www.wikipedia.org/wiki/Mac_OS_X">Mac OS X</a>.
+</p>
+      </div>
+      
+    <h2 class="TitreSection1" id="LII-D">II-D. 1989 - ANSI C<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e587">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e587" onclick="selectionCode('contenuCoded0e587');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e587" class="contenuCode"><code class="c_keyword2">#</code><code class="c_markup">include</code><code class="c_keyword2"> </code><code class="c_keyword2">&lt;stdio.h&gt;</code>
+<code class="c_function">main</code>(<code class="c_keyword3">int</code> argc,
+     <code class="c_keyword3">char</code> <code class="c_operator">*</code> argv[])
+<code class="c_operator">{</code>
+ <code class="c_function">printf</code>(<code class="c_literal1">"</code><code class="c_literal1">hello,</code><code class="c_literal1"> </code><code class="c_literal1">world\n</code><code class="c_literal1">"</code>);
+ <code class="c_keyword1">return</code> <code class="c_digit">0</code>;
+<code class="c_operator">}</code>
+</code></pre></div>
+        <p>Un comité de standardisation a été créé en 1983 pour éviter que les
+quelques ambiguïtés et insuffisances du K&amp;R C ne conduisent à des
+divergences importantes entre les compilateurs. Il a publié en 1989
+le standard appelé ANSI C. Il a repris quelques bonnes idées
+du C++ comme les prototypes de fonction, tout en restant très compatible
+avec K&amp;R C.
+</p>
+        <p>Le degré de compatibilité atteint est suffisant pour que
+<a class="lienArticle simple" href="http://cm.bell-labs.com/who/bwk/">Kernighan</a> et
+<a class="lienArticle simple" href="http://www.cs.bell-labs.com/who/dmr/">Ritchie</a>
+n'aient eu qu'à adapter légèrement la seconde édition du livre
+<a class="lienArticle simple" href="http://c.developpez.com/livres/#L2100487345">Le langage C</a> pour qu'il décrive ANSI C.
+En plus, selon
+<a class="lienArticle simple" href="http://www.research.att.com/~bs/homepage.html">Stroustrup</a>, 
+tous les exemples de cette seconde édition sont aussi des programmes C++.
+</p>
+        <p>Le standard ANSI C est devenu l'évolution la plus utilisée du C.
+</p>
+      </div>
+      
+    <h2 class="TitreSection1" id="LII-E">II-E. 1998 - Standard C++<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e663">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e663" onclick="selectionCode('contenuCoded0e663');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e663" class="contenuCode"><code class="cpp_keyword2">#</code><code class="cpp_markup">include</code><code class="cpp_keyword2"> </code><code class="cpp_keyword2">&lt;iostream&gt;</code>
+<code class="cpp_keyword3">int</code> <code class="cpp_function">main</code>(<code class="cpp_keyword3">int</code> argc,
+         <code class="cpp_keyword3">char</code> <code class="cpp_operator">*</code> argv[])
+<code class="cpp_operator">{</code>
+ <code class="cpp_function">std::</code>cout <code class="cpp_operator">&lt;</code><code class="cpp_operator">&lt;</code> <code class="cpp_literal1">"</code><code class="cpp_literal1">hello,</code><code class="cpp_literal1"> </code><code class="cpp_literal1">world</code><code class="cpp_literal1">"</code>
+           <code class="cpp_operator">&lt;</code><code class="cpp_operator">&lt;</code> <code class="cpp_function">std::</code>endl;
+<code class="cpp_operator">}</code>
+</code></pre></div>
+        <p>Le C++ a évolué très longtemps. Ce n'est qu'en 1998, 8 ans après la création
+d'un comité, que le standard ISO C++ a été officiellement publié.
+Ce standard est tellement complexe (et légèrement incohérent), qu'en 2003,
+<a class="lienArticle simple" href="http://gcc.gnu.org/">le compilateur GCC</a> ne le met pas
+complètement en &#339;uvre, et ce n'est pas le seul. Les syntaxes obsolètes
+et problématiques de K&amp;R C ont été abandonnées ; pour le reste,
+la compatibilité avec le C reste excellente.
+</p>
+      </div>
+      
+    <h2 class="TitreSection1" id="LII-F">II-F. 1999 - C99<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e734">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e734" onclick="selectionCode('contenuCoded0e734');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e734" class="contenuCode"><code class="c_keyword2">#</code><code class="c_markup">include</code><code class="c_keyword2"> </code><code class="c_keyword2">&lt;stdio.h&gt;</code>
+<code class="c_keyword3">int</code> <code class="c_function">main</code>(<code class="c_keyword3">int</code> argc,
+         <code class="c_keyword3">char</code> <code class="c_operator">*</code> argv[])
+<code class="c_operator">{</code>
+ <code class="c_function">printf</code>(<code class="c_literal1">"</code><code class="c_literal1">hello,</code><code class="c_literal1"> </code><code class="c_literal1">world\n</code><code class="c_literal1">"</code>);
+<code class="c_operator">}</code>
+</code></pre></div>
+        <p>Le dernier-né de l'histoire est le C99 (standard ISO de 1999) qui
+est une petite évolution de l'ANSI C de 1989.
+Les évolutions ne sont pas compatibles avec le C++ et n'ont pas attiré
+beaucoup d'intérêt.
+</p>
+        <p><a class="lienArticle simple" href="http://gcc.gnu.org/">GCC</a> supporte le C99 et le
+<a class="lienArticle simple" href="http://www.kernel.org/">noyau Linux</a> en tire profit.
+Côté compatibilité, le support des syntaxes obsolètes de K&amp;R C
+a été abandonné.
+</p>
+      </div>
+    </div>
+    
+    <h1 class="TitreSection0" id="LIII">III. Héritage historique<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>De nombreuses propriétés étranges du langage C s'expliquent par l'évolution
+historique du langage.
+</p>
+      
+    <h2 class="TitreSection1" id="LIII-A">III-A. Pointeurs et tableaux<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        
+    <h3 class="TitreSection2" id="LIII-A-1">III-A-1. Déclaration avec []<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Les toutes premières versions du langage C ne permettaient pas d'utiliser
+<span class="codeinline">*</span> pour déclarer un pointeur, il fallait utiliser <span class="codeinline">[]</span>.
+Les <a class="lienArticle simple" href="http://cm.bell-labs.com/cm/cs/who/dmr/primevalC.html">sources
+du premier compilateur C</a> montrent cependant qu'une variable déclarée
+avec <span class="codeinline">[]</span> était un pointeur, déréférençable avec l'opérateur
+<span class="codeinline">*</span> et incrémentable avec l'opérateur <span class="codeinline">++</span> :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e832">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e832" onclick="selectionCode('contenuCoded0e832');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e832" class="contenuCode"><code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Exemple</code><code class="c_comment1"> </code><code class="c_comment1">des</code><code class="c_comment1"> </code><code class="c_comment1">premières</code><code class="c_comment1"> </code><code class="c_comment1">versions</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">C,</code><code class="c_comment1"> </code><code class="c_comment1">désormais</code><code class="c_comment1"> </code><code class="c_comment1">illégal</code><code class="c_comment1"> </code><code class="c_comment1">!</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_keyword3">int</code> np[];   <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Ceci</code><code class="c_comment1"> </code><code class="c_comment1">déclarait</code><code class="c_comment1"> </code><code class="c_comment1">en</code><code class="c_comment1"> </code><code class="c_comment1">fait</code><code class="c_comment1"> </code><code class="c_comment1">un</code><code class="c_comment1"> </code><code class="c_comment1">pointeur</code><code class="c_comment1"> </code><code class="c_comment1">sur</code><code class="c_comment1"> </code><code class="c_comment1">un</code><code class="c_comment1"> </code><code class="c_comment1">entier</code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_comment1">/*</code><code class="c_comment1">...</code><code class="c_comment1">*/</code>
+<code class="c_operator">*</code>np<code class="c_operator">+</code><code class="c_operator">+</code> <code class="c_operator">=</code> <code class="c_digit">1</code>;  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">qui</code><code class="c_comment1"> </code><code class="c_comment1">était</code><code class="c_comment1"> </code><code class="c_comment1">utilisable</code><code class="c_comment1"> </code><code class="c_comment1">comme</code><code class="c_comment1"> </code><code class="c_comment1">les</code><code class="c_comment1"> </code><code class="c_comment1">pointeurs</code><code class="c_comment1"> </code><code class="c_comment1">actuels.</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+</code></pre></div>
+          <p>Les premières versions du C n'avaient donc en fait que des pointeurs.
+La trace la plus visible de cet héritage se retrouve dans la déclaration
+classique de la fonction <span class="codeinline">main</span> :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e987">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e987" onclick="selectionCode('contenuCoded0e987');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e987" class="contenuCode"><code class="c_keyword3">int</code> <code class="c_function">main</code>(<code class="c_keyword3">int</code> argc, <code class="c_keyword3">char</code><code class="c_operator">*</code> argv[]);
+</code></pre></div>
+          <p>Encore aujourd'hui, l'opérateur <span class="codeinline">[]</span> dans un paramètre formel
+de fonction déclare un pointeur. Cet usage trompeur est inusité,
+sauf pour <span class="codeinline">main</span>. La déclaration précédente est donc tout à fait
+équivalente à :</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1012">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1012" onclick="selectionCode('contenuCoded0e1012');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1012" class="contenuCode"><code class="c_keyword3">int</code> <code class="c_function">main</code>(<code class="c_keyword3">int</code> argc, <code class="c_keyword3">char</code><code class="c_operator">*</code><code class="c_operator">*</code> argv);
+</code></pre></div>
+          <p>Il est impossible de déclarer un paramètre formel de type tableau.
+En revanche, il est possible de déclarer un pointeur sur un tableau.
+Les déclarations suivantes sont équivalentes, car <span class="codeinline">f</span>
+reçoit en fait un pointeur de tableau de 13 <span class="codeinline">int</span> :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1039">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1039" onclick="selectionCode('contenuCoded0e1039');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1039" class="contenuCode"><code class="c_keyword3">void</code> <code class="c_function">f</code>(<code class="c_keyword3">int</code> tab[<code class="c_digit">2</code>][<code class="c_digit">13</code>]);  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Le</code><code class="c_comment1"> </code><code class="c_comment1">2</code><code class="c_comment1"> </code><code class="c_comment1">est</code><code class="c_comment1"> </code><code class="c_comment1">ignoré</code><code class="c_comment1"> </code><code class="c_comment1">!</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_keyword3">void</code> <code class="c_function">f</code>(<code class="c_keyword3">int</code> tab[][<code class="c_digit">13</code>]);
+<code class="c_keyword3">void</code> <code class="c_function">f</code>(<code class="c_keyword3">int</code> (<code class="c_operator">*</code>tab)[<code class="c_digit">13</code>]);  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Usage</code><code class="c_comment1"> </code><code class="c_comment1">le</code><code class="c_comment1"> </code><code class="c_comment1">plus</code><code class="c_comment1"> </code><code class="c_comment1">clair</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+</code></pre></div>
+        </div>
+        
+    <h3 class="TitreSection2" id="LIII-A-2">III-A-2. Pointeur et premier élément de tableau<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Le fait que <span class="codeinline">int t[];</span> déclarait un pointeur explique les liens
+très étroits entre pointeurs et tableaux. En effet, si <span class="codeinline">t</span>
+pointait sur un <span class="codeinline">int</span> et si ce dernier était suivi en mémoire
+d'autres <span class="codeinline">int</span>, alors <span class="codeinline">t</span> pointait sur le premier
+élément d'un tableau d'<span class="codeinline">int</span>.
+</p>
+          <p>Aujourd'hui <span class="codeinline">int t[];</span> déclare un tableau de nom <span class="codeinline">t</span>.
+Mais un nom de tableau est automatiquement utilisé comme un pointeur sur son
+premier élément dans un contexte ou un pointeur est attendu, c'est-à-dire pour
+initialiser un pointeur ou comme opérande de <span class="codeinline">+</span>, <span class="codeinline">-</span>,
+<span class="codeinline">*</span>, <span class="codeinline">[]</span>, <span class="codeinline">==</span>, <span class="codeinline">!=</span>,
+<span class="codeinline">&lt;</span>, <span class="codeinline">&lt;=</span>, <span class="codeinline">&gt;</span>, <span class="codeinline">&gt;=</span>,
+<span class="codeinline">!</span>... En revanche, un nom de tableau ne se comporte pas comme un
+pointeur avec les opérateurs unaires <span class="codeinline">&amp;</span>, <span class="codeinline">++</span>,
+<span class="codeinline">--</span>, <span class="codeinline">sizeof</span> ou à gauche de <span class="codeinline">=</span>.
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1217">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1217" onclick="selectionCode('contenuCoded0e1217');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1217" class="contenuCode"><code class="c_keyword3">void</code> <code class="c_function">f</code>(<code class="c_keyword3">int</code><code class="c_operator">*</code> q)  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">la</code><code class="c_comment1"> </code><code class="c_comment1">fonction</code><code class="c_comment1"> </code><code class="c_comment1">f</code><code class="c_comment1"> </code><code class="c_comment1">prend</code><code class="c_comment1"> </code><code class="c_comment1">un</code><code class="c_comment1"> </code><code class="c_comment1">pointeur</code><code class="c_comment1"> </code><code class="c_comment1">d'entier</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_operator">{</code>
+  <code class="c_keyword3">int</code> <code class="c_operator">*</code>p, t[<code class="c_digit">4</code>]; <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">p</code><code class="c_comment1"> </code><code class="c_comment1">est</code><code class="c_comment1"> </code><code class="c_comment1">un</code><code class="c_comment1"> </code><code class="c_comment1">pointeur</code><code class="c_comment1"> </code><code class="c_comment1">d'entier,</code><code class="c_comment1"> </code><code class="c_comment1">t</code><code class="c_comment1"> </code><code class="c_comment1">un</code><code class="c_comment1"> </code><code class="c_comment1">tableau</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">4</code><code class="c_comment1"> </code><code class="c_comment1">entiers</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  p <code class="c_operator">=</code> t;        <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">assigne</code><code class="c_comment1"> </code><code class="c_comment1">&amp;t[0]</code><code class="c_comment1"> </code><code class="c_comment1">(adresse</code><code class="c_comment1"> </code><code class="c_comment1">du</code><code class="c_comment1"> </code><code class="c_comment1">premier</code><code class="c_comment1"> </code><code class="c_comment1">élément</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">t)</code><code class="c_comment1"> </code><code class="c_comment1">à</code><code class="c_comment1"> </code><code class="c_comment1">p</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_operator">*</code>t <code class="c_operator">=</code> <code class="c_digit">6</code>;       <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">assigne</code><code class="c_comment1"> </code><code class="c_comment1">6</code><code class="c_comment1"> </code><code class="c_comment1">au</code><code class="c_comment1"> </code><code class="c_comment1">premier</code><code class="c_comment1"> </code><code class="c_comment1">élément</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">t</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  p[<code class="c_digit">1</code>] <code class="c_operator">=</code> <code class="c_digit">6</code>;     <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">assigne</code><code class="c_comment1"> </code><code class="c_comment1">6</code><code class="c_comment1"> </code><code class="c_comment1">au</code><code class="c_comment1"> </code><code class="c_comment1">second</code><code class="c_comment1"> </code><code class="c_comment1">élément</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">t</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_operator">*</code>(t<code class="c_operator">+</code><code class="c_digit">2</code>) <code class="c_operator">=</code> <code class="c_digit">6</code>;   <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">assigne</code><code class="c_comment1"> </code><code class="c_comment1">6</code><code class="c_comment1"> </code><code class="c_comment1">au</code><code class="c_comment1"> </code><code class="c_comment1">troisième</code><code class="c_comment1"> </code><code class="c_comment1">élément</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">t</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  t[<code class="c_digit">3</code>] <code class="c_operator">=</code> <code class="c_digit">6</code>;     <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">assigne</code><code class="c_comment1"> </code><code class="c_comment1">6</code><code class="c_comment1"> </code><code class="c_comment1">au</code><code class="c_comment1"> </code><code class="c_comment1">quatrième</code><code class="c_comment1"> </code><code class="c_comment1">élément</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">t</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_function">f</code>(t);         <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">initialise</code><code class="c_comment1"> </code><code class="c_comment1">q</code><code class="c_comment1"> </code><code class="c_comment1">avec</code><code class="c_comment1"> </code><code class="c_comment1">&amp;t[0]</code><code class="c_comment1"> </code><code class="c_comment1">(adresse</code><code class="c_comment1"> </code><code class="c_comment1">du</code><code class="c_comment1"> </code><code class="c_comment1">premier</code><code class="c_comment1"> </code><code class="c_comment1">élément</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">t)</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_operator">}</code>
+</code></pre></div>
+        </div>
+        
+    <h3 class="TitreSection2" id="LIII-A-3">III-A-3. Opérateur []<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Alors que les tableaux n'existaient pas encore, l'opérateur d'indexation
+<span class="codeinline">[]</span> existait déjà. Ses opérandes sont donc un pointeur et un
+entier : l'expression <span class="codeinline">E1[E2]</span>
+est équivalente à <span class="codeinline">*((E1)+(E2))</span> et une des
+deux expressions doit être de type pointeur et l'autre de type entier.
+Si une des deux expressions est un nom de tableau, elle sera alors
+automatiquement convertie en un pointeur sur le premier élément.
+Le résultat de l'addition est un pointeur sur l'élément voulu,
+déréférencé par <span class="codeinline">*</span>.
+</p>
+          <p>À noter que <span class="codeinline">E1[E2]</span> est équivalent à
+<span class="codeinline">*((E1)+(E2))</span> qui est équivalent à
+<span class="codeinline">*((E2)+(E1))</span> qui est équivalent à
+<span class="codeinline">E2[E1]</span>. Les deux expressions
+suivantes sont donc équivalentes :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1681">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1681" onclick="selectionCode('contenuCoded0e1681');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1681" class="contenuCode">t[<code class="c_digit">3</code>] <code class="c_operator">=</code> <code class="c_digit">6</code>;  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">*(t+3)</code><code class="c_comment1"> </code><code class="c_comment1">=</code><code class="c_comment1"> </code><code class="c_comment1">6;</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_digit">3</code>[t] <code class="c_operator">=</code> <code class="c_digit">6</code>;  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">*(3+t)</code><code class="c_comment1"> </code><code class="c_comment1">=</code><code class="c_comment1"> </code><code class="c_comment1">6;</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+</code></pre></div>
+        </div>
+      </div>
+      
+    <h2 class="TitreSection1" id="LIII-B">III-B. Conversions de type<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Le C a tendance à convertir automatiquement les valeurs entre des types
+qui ne partagent aucune sémantique :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1750">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1750" onclick="selectionCode('contenuCoded0e1750');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1750" class="contenuCode"><code class="c_keyword3">char</code> c <code class="c_operator">=</code> <code class="c_digit">133333</code>.<code class="c_digit">14</code>;  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">conversion</code><code class="c_comment1"> </code><code class="c_comment1">double</code><code class="c_comment1"> </code><code class="c_comment1">-&gt;</code><code class="c_comment1"> </code><code class="c_comment1">char</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_keyword3">float</code> x <code class="c_operator">=</code> <code class="c_literal1">'</code><code class="c_literal1">a</code><code class="c_literal1">'</code>;       <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">conversion</code><code class="c_comment1"> </code><code class="c_comment1">int</code><code class="c_comment1"> </code><code class="c_comment1">-&gt;</code><code class="c_comment1"> </code><code class="c_comment1">float</code><code class="c_comment1"> </code><code class="c_comment1">(char</code><code class="c_comment1"> </code><code class="c_comment1">-&gt;</code><code class="c_comment1"> </code><code class="c_comment1">float</code><code class="c_comment1"> </code><code class="c_comment1">en</code><code class="c_comment1"> </code><code class="c_comment1">C++)</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_keyword3">char</code> <code class="c_operator">*</code> p <code class="c_operator">=</code> <code class="c_digit">123</code>;      <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">conversion</code><code class="c_comment1"> </code><code class="c_comment1">int</code><code class="c_comment1"> </code><code class="c_comment1">-&gt;</code><code class="c_comment1"> </code><code class="c_comment1">char*</code><code class="c_comment1"> </code><code class="c_comment1">possible</code><code class="c_comment1"> </code><code class="c_comment1">en</code><code class="c_comment1"> </code><code class="c_comment1">vieux</code><code class="c_comment1"> </code><code class="c_comment1">C</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+</code></pre></div>
+        <p>Cela vient du fait que les types n'ont pas été ajoutés au langage C pour
+permettre au compilateur de faire des vérifications sémantiques.
+À l'origine, les types ont été ajoutés simplement pour traiter des variables de
+différentes tailles, notamment des caractères de 8 bits lorsque les mots
+machine mesurent 16 bits. Les conversions automatiques de type étaient alors
+une puissante fonctionnalité.
+</p>
+        <p>À mesure que le C a été utilisé pour de grands projets, le besoin de
+vérifications de type s'est plus fait sentir. Les compilateurs ont commencé à
+signaler les conversions entre pointeur et entier ou entre pointeurs
+incompatibles. Les conversions automatiques impliquant des pointeurs ont
+finalement été retirées de C++. En effet, la vérification statique des
+types est un des points forts de C++.
+</p>
+      </div>
+      
+    <h2 class="TitreSection1" id="LIII-C">III-C. int implicite<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Le type <span class="codeinline">char</span> a été créé pour représenter les caractères,
+les autres variables tenant dans un mot machine.
+Le type <span class="codeinline">int</span> a été donné au mot machine, mais le nom du type
+est resté optionnel pour déclarer une variable <span class="codeinline">int</span>.
+Ainsi, le fait d'ajouter les types n'a pas rendu les sources existantes
+incompatibles.
+</p>
+        <p>La règle du <span class="codeinline">int</span> implicite est même restée couramment utilisée
+jusqu'au K&amp;R C. Elle est encore admise dans ANSI C et C++,
+mais a disparu du C++ standard et de C99. On peut noter que la déclaration
+d'une variable automatique locale sans donner son type requiert l'usage du
+mot clé <span class="codeinline">auto</span>, devenu totalement obsolète en C moderne :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1927">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1927" onclick="selectionCode('contenuCoded0e1927');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1927" class="contenuCode"><code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Exemple</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">int</code><code class="c_comment1"> </code><code class="c_comment1">implicite</code><code class="c_comment1"> </code><code class="c_comment1">en</code><code class="c_comment1"> </code><code class="c_comment1">K&amp;R</code><code class="c_comment1"> </code><code class="c_comment1">C</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_comment1">/*</code><code class="c_comment1">int</code><code class="c_comment1">*/</code> <code class="c_operator">*</code>g;
+<code class="c_comment1">/*</code><code class="c_comment1">int</code><code class="c_comment1">*/</code> <code class="c_function">main</code>()
+<code class="c_operator">{</code>
+  <code class="c_keyword1">auto</code> <code class="c_comment1">/*</code><code class="c_comment1">int</code><code class="c_comment1">*/</code> i;
+  g <code class="c_operator">=</code> <code class="c_operator">&amp;</code>i;
+  <code class="c_operator">*</code>g <code class="c_operator">=</code> <code class="c_digit">0</code>;
+  <code class="c_keyword1">return</code> i;
+<code class="c_operator">}</code>
+</code></pre></div>
+      </div>
+      
+    <h2 class="TitreSection1" id="LIII-D">III-D. Conversions arithmétiques<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Lorsqu'une opération arithmétique implique des valeurs de différents types,
+les opérandes sont d'abord automatiquement convertis vers un type commun.
+Ces conversions sont naturelles et donnent des résultats intuitifs (sauf lors
+d'un mélange entre types signé et non signé).
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2027">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2027" onclick="selectionCode('contenuCoded0e2027');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2027" class="contenuCode"><code class="c_keyword3">int</code> <code class="c_function">func</code>() <code class="c_operator">{</code>
+  <code class="c_keyword3">short</code> s <code class="c_operator">=</code> <code class="c_digit">2</code>;
+  <code class="c_keyword3">long</code> l <code class="c_operator">=</code> <code class="c_digit">1</code>;
+  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Valeur</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">s</code><code class="c_comment1"> </code><code class="c_comment1">convertie</code><code class="c_comment1"> </code><code class="c_comment1">en</code><code class="c_comment1"> </code><code class="c_comment1">long,</code><code class="c_comment1"> </code><code class="c_comment1">puis</code><code class="c_comment1"> </code><code class="c_comment1">addition</code><code class="c_comment1"> </code><code class="c_comment1">en</code><code class="c_comment1"> </code><code class="c_comment1">long,</code><code class="c_comment1"> </code><code class="c_comment1">puis</code><code class="c_comment1"> </code><code class="c_comment1">résultat</code><code class="c_comment1"> </code><code class="c_comment1">long</code>
+<code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">converti</code><code class="c_comment1"> </code><code class="c_comment1">en</code><code class="c_comment1"> </code><code class="c_comment1">float</code><code class="c_comment1"> </code><code class="c_comment1">pour</code><code class="c_comment1"> </code><code class="c_comment1">être</code><code class="c_comment1"> </code><code class="c_comment1">assigné</code><code class="c_comment1"> </code><code class="c_comment1">à</code><code class="c_comment1"> </code><code class="c_comment1">f.</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_keyword3">float</code> f <code class="c_operator">=</code> l <code class="c_operator">+</code> s;
+<code class="c_operator">}</code>
+</code></pre></div>
+        <p>Une particularité est qu'aucune opération ne s'effectue avec une précision
+inférieure à <span class="codeinline">int</span>. Autrement dit, si l'on additionne deux
+<span class="codeinline">short</span>, ils seront chacun convertis en <span class="codeinline">int</span> avant que
+l'opération ait lieu. C'est encore un héritage de l'importance du mot
+machine :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2180">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2180" onclick="selectionCode('contenuCoded0e2180');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2180" class="contenuCode"><code class="c_keyword3">short</code> <code class="c_function">f</code>(<code class="c_keyword3">short</code> a, <code class="c_keyword3">short</code> b) <code class="c_operator">{</code>
+  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Valeurs</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">a</code><code class="c_comment1"> </code><code class="c_comment1">et</code><code class="c_comment1"> </code><code class="c_comment1">b</code><code class="c_comment1"> </code><code class="c_comment1">converties</code><code class="c_comment1"> </code><code class="c_comment1">en</code><code class="c_comment1"> </code><code class="c_comment1">int</code><code class="c_comment1"> </code><code class="c_comment1">avant</code><code class="c_comment1"> </code><code class="c_comment1">l'addition.</code>
+<code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">Le</code><code class="c_comment1"> </code><code class="c_comment1">résultat</code><code class="c_comment1"> </code><code class="c_comment1">int</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">l'addition</code><code class="c_comment1"> </code><code class="c_comment1">est</code><code class="c_comment1"> </code><code class="c_comment1">converti</code><code class="c_comment1"> </code><code class="c_comment1">en</code><code class="c_comment1"> </code><code class="c_comment1">short</code><code class="c_comment1"> </code><code class="c_comment1">pour</code><code class="c_comment1"> </code><code class="c_comment1">être</code>
+<code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">retourné,</code><code class="c_comment1"> </code><code class="c_comment1">d'où</code><code class="c_comment1"> </code><code class="c_comment1">possibilité</code><code class="c_comment1"> </code><code class="c_comment1">d'avertissement</code><code class="c_comment1"> </code><code class="c_comment1">du</code><code class="c_comment1"> </code><code class="c_comment1">compilateur</code><code class="c_comment1"> </code><code class="c_comment1">!</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_keyword1">return</code> a <code class="c_operator">+</code> b;
+<code class="c_operator">}</code>
+</code></pre></div>
+      </div>
+      
+    <h2 class="TitreSection1" id="LIII-E">III-E. Paramètres de fonction<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Les vérifications de type des paramètres de fonction ont été ajoutées
+progressivement au langage. Mais seuls le C++ et le C99 rendent les vérifications
+obligatoires.
+</p>
+        
+    <h3 class="TitreSection2" id="LIII-E-1">III-E-1. Déclaration implicite de fonction<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>En C, il est possible d'appeler une fonction déclarée nulle part.
+Dans ce cas, le compilateur se crée une déclaration implicite de la fonction
+d'après l'appel. Bien sûr, un exécutable peut être produit uniquement si
+l'éditeur de liens trouve la fonction appelée dans un fichier objet.
+Cependant, si la déclaration implicite du compilateur n'est pas compatible avec
+la fonction trouvée, alors l'éditeur de lien ne le verra pas, et l'exécution
+du programme sera erronée.
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2360">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2360" onclick="selectionCode('contenuCoded0e2360');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2360" class="contenuCode"><code class="c_keyword3">int</code> <code class="c_function">main</code>(<code class="c_keyword3">void</code>)
+<code class="c_operator">{</code>
+  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">La</code><code class="c_comment1"> </code><code class="c_comment1">fonction</code><code class="c_comment1"> </code><code class="c_comment1">printf</code><code class="c_comment1"> </code><code class="c_comment1">n'est</code><code class="c_comment1"> </code><code class="c_comment1">déclarée</code><code class="c_comment1"> </code><code class="c_comment1">nulle</code><code class="c_comment1"> </code><code class="c_comment1">part,</code><code class="c_comment1"> </code><code class="c_comment1">mais</code><code class="c_comment1"> </code><code class="c_comment1">présente</code><code class="c_comment1"> </code><code class="c_comment1">dans</code><code class="c_comment1"> </code><code class="c_comment1">la</code><code class="c_comment1"> </code><code class="c_comment1">libc,</code>
+<code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">donc</code><code class="c_comment1"> </code><code class="c_comment1">un</code><code class="c_comment1"> </code><code class="c_comment1">exécutable</code><code class="c_comment1"> </code><code class="c_comment1">peut</code><code class="c_comment1"> </code><code class="c_comment1">être</code><code class="c_comment1"> </code><code class="c_comment1">produit</code><code class="c_comment1"> </code><code class="c_comment1">par</code><code class="c_comment1"> </code><code class="c_comment1">un</code><code class="c_comment1"> </code><code class="c_comment1">compilateur</code><code class="c_comment1"> </code><code class="c_comment1">C.</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_function">printf</code>(<code class="c_literal1">"</code><code class="c_literal1">hello\n</code><code class="c_literal1">"</code>);  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Appel</code><code class="c_comment1"> </code><code class="c_comment1">compatible</code><code class="c_comment1"> </code><code class="c_comment1">avec</code><code class="c_comment1"> </code><code class="c_comment1">printf,</code><code class="c_comment1"> </code><code class="c_comment1">affichera</code><code class="c_comment1"> </code><code class="c_comment1">"hello".</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_function">printf</code>(<code class="c_digit">123</code>);   <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Appel</code><code class="c_comment1"> </code><code class="c_comment1">non</code><code class="c_comment1"> </code><code class="c_comment1">compatible,</code><code class="c_comment1"> </code><code class="c_comment1">causera</code><code class="c_comment1"> </code><code class="c_comment1">une</code><code class="c_comment1"> </code><code class="c_comment1">erreur</code><code class="c_comment1"> </code><code class="c_comment1">d'exécution.</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_keyword1">return</code> <code class="c_digit">0</code>;
+<code class="c_operator">}</code>
+</code></pre></div>
+        </div>
+        
+    <h3 class="TitreSection2" id="LIII-E-2">III-E-2. Déclaration de fonction<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>En C, une déclaration de fonction ne donne pas son prototype, c'est-à-dire
+qu'une déclaration de fonction ne donne ni le nombre ni le type des
+paramètres et ne permet donc pas de vérifications :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2578">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2578" onclick="selectionCode('contenuCoded0e2578');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2578" class="contenuCode"><code class="c_keyword3">int</code> <code class="c_function">main</code>(<code class="c_keyword3">void</code>)
+<code class="c_operator">{</code>
+  <code class="c_keyword3">int</code> <code class="c_function">printf</code>();  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Déclaration</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">la</code><code class="c_comment1"> </code><code class="c_comment1">fonction</code><code class="c_comment1"> </code><code class="c_comment1">printf,</code><code class="c_comment1"> </code><code class="c_comment1">ne</code><code class="c_comment1"> </code><code class="c_comment1">précise</code><code class="c_comment1"> </code><code class="c_comment1">pas</code>
+<code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">les</code><code class="c_comment1"> </code><code class="c_comment1">paramètres</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">printf.</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_function">printf</code>(<code class="c_digit">123</code>);   <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Appel</code><code class="c_comment1"> </code><code class="c_comment1">non</code><code class="c_comment1"> </code><code class="c_comment1">compatible,</code><code class="c_comment1"> </code><code class="c_comment1">causera</code><code class="c_comment1"> </code><code class="c_comment1">une</code><code class="c_comment1"> </code><code class="c_comment1">erreur,</code><code class="c_comment1"> </code><code class="c_comment1">mais</code>
+<code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">seulement</code><code class="c_comment1"> </code><code class="c_comment1">à</code><code class="c_comment1"> </code><code class="c_comment1">l'exécution</code><code class="c_comment1"> </code><code class="c_comment1">!</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_keyword1">return</code> <code class="c_digit">0</code>;
+<code class="c_operator">}</code>
+</code></pre></div>
+        </div>
+        
+    <h3 class="TitreSection2" id="LIII-E-3">III-E-3. Style K&amp;R C de définition de fonction<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Les définitions de fonction de style K&amp;R C ne sont pas utilisées
+pour vérifier le type, ni même le nombre des paramètres :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2806">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2806" onclick="selectionCode('contenuCoded0e2806');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2806" class="contenuCode"><code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">Style</code><code class="c_comment1"> </code><code class="c_comment1">de</code><code class="c_comment1"> </code><code class="c_comment1">programmation</code><code class="c_comment1"> </code><code class="c_comment1">K&amp;R</code><code class="c_comment1"> </code><code class="c_comment1">C</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_keyword3">void</code> <code class="c_function">repeter</code>(c, s, n)  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">3</code><code class="c_comment1"> </code><code class="c_comment1">paramètres</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_keyword3">char</code> c, <code class="c_operator">*</code>s;            <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">n</code><code class="c_comment1"> </code><code class="c_comment1">implicitement</code><code class="c_comment1"> </code><code class="c_comment1">int</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_operator">{</code>
+  <code class="c_keyword1">while</code> (n<code class="c_operator">-</code><code class="c_operator">-</code>) s[n] <code class="c_operator">=</code> c;
+<code class="c_operator">}</code>
+
+<code class="c_function">main</code>()
+<code class="c_operator">{</code>
+   <code class="c_keyword3">char</code> t[<code class="c_digit">10</code><code class="c_operator">+</code><code class="c_digit">1</code>];
+   t[<code class="c_digit">10</code>] <code class="c_operator">=</code> <code class="c_digit">0</code>;
+   <code class="c_function">repeter</code>(<code class="c_literal1">'</code><code class="c_literal1">a</code><code class="c_literal1">'</code>, t, <code class="c_digit">10</code>);  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">écrit</code><code class="c_comment1"> </code><code class="c_comment1">aaaaaaaaaa</code><code class="c_comment1"> </code><code class="c_comment1">dans</code><code class="c_comment1"> </code><code class="c_comment1">t</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+   <code class="c_function">repeter</code>(<code class="c_digit">123</code>);         <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">erreur,</code><code class="c_comment1"> </code><code class="c_comment1">mais</code><code class="c_comment1"> </code><code class="c_comment1">seulement</code><code class="c_comment1"> </code><code class="c_comment1">à</code><code class="c_comment1"> </code><code class="c_comment1">l'exécution</code><code class="c_comment1"> </code><code class="c_comment1">!</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+   <code class="c_function">printf</code>(<code class="c_literal1">"</code><code class="c_literal1">%s\n</code><code class="c_literal1">"</code>, t);
+<code class="c_operator">}</code>
+</code></pre></div>
+        </div>
+        
+    <h3 class="TitreSection2" id="LIII-E-4">III-E-4. Promotion des paramètres<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Avec les fonctions de style K&amp;R C, les compilateurs ne connaissent
+le type des paramètres des fonctions appelées. Ils promeuvent donc les
+entiers (<span class="codeinline">short</span>, <span class="codeinline">char</span>... en <span class="codeinline">int</span> ou
+<span class="codeinline">unsigned</span>) et les <span class="codeinline">float</span> en <span class="codeinline">double</span>,
+avant de les passer à la fonction. La promotion en <span class="codeinline">int</span> laisse
+des traces dans plusieurs prototypes de fonction de la bibliothèque standard
+qui traitent des caractères :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3039">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3039" onclick="selectionCode('contenuCoded0e3039');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3039" class="contenuCode"><code class="c_keyword3">int</code> <code class="c_function">putchar</code>(<code class="c_keyword3">int</code> c);
+<code class="c_keyword3">int</code> <code class="c_function">isalnum</code>(<code class="c_keyword3">int</code> c);
+<code class="c_keyword3">int</code> <code class="c_function">tolower</code>(<code class="c_keyword3">int</code> c);
+<code class="c_keyword3">int</code> <code class="c_function">toupper</code>(<code class="c_keyword3">int</code> c);
+<code class="c_keyword3">void</code> <code class="c_operator">*</code> <code class="c_function">memset</code>(<code class="c_keyword3">void</code> <code class="c_operator">*</code> s, <code class="c_keyword3">int</code> c, size_t n);
+</code></pre></div>
+          <p>Malgré l'introduction des prototypes, on trouve encore une trace de cela
+avec les fonctions à nombre variable de paramètres, comme
+<span class="codeinline">int printf(const char*,...);</span>. Pour afficher un
+<span class="codeinline">short</span>, on utilise le formatage <span class="codeinline">%d</span> comme pour un
+<span class="codeinline">int</span>. En effet, le <span class="codeinline">short</span> est promu en <span class="codeinline">int</span>
+avant d'être passé à <span class="codeinline">printf</span> :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3119">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3119" onclick="selectionCode('contenuCoded0e3119');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3119" class="contenuCode"><code class="c_keyword2">#</code><code class="c_markup">include</code><code class="c_keyword2"> </code><code class="c_keyword2">&lt;stdio.h&gt;</code>
+<code class="c_keyword3">int</code> <code class="c_function">main</code>()
+<code class="c_operator">{</code>
+  <code class="c_keyword3">int</code> i <code class="c_operator">=</code> <code class="c_digit">1</code>; <code class="c_keyword3">short</code> s <code class="c_operator">=</code> <code class="c_digit">2</code>;
+  <code class="c_function">printf</code>(<code class="c_literal1">"</code><code class="c_literal1">%d</code><code class="c_literal1"> </code><code class="c_literal1">%d\n</code><code class="c_literal1">"</code>, i, s);  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">affiche</code><code class="c_comment1"> </code><code class="c_comment1">1</code><code class="c_comment1"> </code><code class="c_comment1">2</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+  <code class="c_keyword1">return</code> <code class="c_digit">0</code>;
+<code class="c_operator">}</code>
+</code></pre></div>
+        </div>
+        
+    <h3 class="TitreSection2" id="LIII-E-5">III-E-5. Prototypes, void, procédure<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>Les prototypes ont été introduits en C sous l'impulsion de C++.
+En C++, le prototype de toute fonction appelée doit être connu. En outre,
+en C++, <span class="codeinline">int f();</span> est un prototype qui indique que la fonction
+<span class="codeinline">f</span> n'a pas de paramètres. En C, <span class="codeinline">int f();</span> est une
+déclaration et ne précise rien sur les paramètres. En C, le prototype d'une
+fonction <span class="codeinline">f</span> sans paramètres est <span class="codeinline">int f(void);</span>.
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3223">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3223" onclick="selectionCode('contenuCoded0e3223');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3223" class="contenuCode">              <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">En</code><code class="c_comment1"> </code><code class="c_comment1">C</code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">*/</code>    <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">En</code><code class="c_comment1"> </code><code class="c_comment1">C++</code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_keyword3">int</code> <code class="c_function">f</code>();      <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">déclaration</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>    <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">prototype</code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_keyword3">int</code> <code class="c_function">f</code>(<code class="c_keyword3">int</code>);   <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">prototype</code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">*/</code>    <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">prototype</code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_keyword3">int</code> <code class="c_function">f</code>(<code class="c_keyword3">int</code> i)  <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">définition</code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">*/</code>    <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">définition</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+<code class="c_operator">{</code> <code class="c_keyword1">return</code> i; <code class="c_operator">}</code>
+<code class="c_keyword3">int</code> <code class="c_function">f</code>() <code class="c_operator">{</code><code class="c_operator">}</code>    <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">erreurs</code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1"> </code><code class="c_comment1">*/</code>    <code class="c_comment1">/*</code><code class="c_comment1"> </code><code class="c_comment1">définition</code><code class="c_comment1"> </code><code class="c_comment1">*/</code>
+</code></pre></div>
+          <p>La dernière ligne est une erreur en C à deux titres. D'abord, la redéfinition
+de fonction est interdite (et la surcharge n'existe pas). Ensuite, la
+définition n'est pas compatible avec le prototype. En revanche, on remarque
+que le prototype est compatible avec la déclaration.
+</p>
+          <p>Pour C++, il y a simplement deux prototypes et deux définitions, pour deux 
+fonctions surchargées.
+</p>
+          <p>L'introduction du type <span class="codeinline">void</span> rend également possible la
+création de procédures en C, c'est-à-dire des fonctions ne retournant rien.
+</p>
+        </div>
+      </div>
+      
+    <h2 class="TitreSection1" id="LIII-F">III-F. Chaînes littérales de caractères<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>À l'origine de C, les chaînes littérales de caractères étaient des
+tableaux statiques anonymes de caractères, initialisés avec les caractères.
+Lors de la standardisation de C, le mot clé <span class="codeinline">const</span> a été introduit
+et les chaînes littérales ont été rendues constantes pour pouvoir être
+partagées ou mises en mémoire morte. Il aurait donc été logique de donner
+aux chaînes littérales le type « tableau de caractères constants.»
+Cependant, l'usage suivant était extrêmement répandu :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3453">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3453" onclick="selectionCode('contenuCoded0e3453');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3453" class="contenuCode"><code class="c_keyword3">char</code> t[] <code class="c_operator">=</code> <code class="c_literal1">"</code><code class="c_literal1">hello</code><code class="c_literal1">"</code>;
+<code class="c_keyword3">char</code> <code class="c_operator">*</code> p <code class="c_operator">=</code> <code class="c_literal1">"</code><code class="c_literal1">hello</code><code class="c_literal1">"</code>;
+</code></pre></div>
+        <p>Or, cet usage aurait causé un avertissement du compilateur à cause de
+la conversion de <span class="codeinline">const char[]</span> en <span class="codeinline">char[]</span>.
+Dans le standard ANSI C, les chaînes littérales gardent donc le type
+<span class="codeinline">char[]</span>, bien qu'elles soient considérées comme constantes.
+</p>
+        <p>Référence :
+<a class="lienArticle simple" href="http://groups.google.com/groups?q=string+literal+type&amp;hl=en&amp;lr=&amp;ie=UTF-8&amp;oe=UTF-8&amp;selm=378ED51A.5180%40bell-labs.com&amp;rnum=3">explication
+de Dennis Ritchie</a>.
+</p>
+        <p>Lors de la standardisation de C++, le type des chaînes littérales a tout
+de même été changé en « tableau de caractères constants ».
+Cela est nécessaire pour choisir la bonne fonction parmi deux fonctions
+surchargées dont seule la constance du pointeur change. Toutefois la
+construction <span class="codeinline">char*p="texte";</span> reste permise, mais dépréciée.
+</p>
+      </div>
+    </div>
+    
+    <h1 class="TitreSection0" id="LIV">IV. Remerciements<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p><a class="lienArticle simple" href="http://c.developpez.com/equipe/">L'équipe C de Developpez.com</a> tient à remercier <a class="lienArticle simple" href="http://www.developpez.net/forums/member.php?u=263471">Wachter</a> pour la relecture orthographique de cet article
+	</p>
+    </div>
+  </section><footer class="licence">
+		© <a class="lienArticle simple" href="http://marc.mongenet.ch/">Marc Mongenet</a> <img src="./images/somerights20.png" class="image_verticale"/>
+		 Ce cours est disponible selon les termes de la <a class="lienArticle simple" href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution 2.5 License</a>. 
+	</footer>
+</article>
+		<div class="clear">&nbsp;&nbsp;</div>
+<script type="text/javascript">
+$(function() {
+	if ($("#gabarit_pubBB").is(":hidden"))
+		$('.contenuPage').css('padding-top', '30px');
+	$("#gabarit_voiraussi").load("https://www.developpez.com/voiraussi/index/rubrique/3/");
+	$("#gabarit_encartemploi").load("https://www.developpez.com/ws/offres?alt=3&utf8=1");
+});
+</script>
+<img src="https://compteur.developpez.com/compter-3" alt="" width="1" height="1" style="position: absolute; left: 1px; top: 1px">
+<script type="text/javascript" src="https://altsysimg.developpez.com/show_i.php?testjs=1"></script><script type="text/javascript" src="https://sysimg.developpez.com/show_i.php?testjs=2"></script><script type="text/javascript">var Tw=0;if(!document.getElementById("RLISlqbpEKnU")){Tw=1;var c=document.createElement("img");c.src="https://compteur.developpez.com/spe-1";c.style="position: absolute; left: 3px; top: 2px";document.body.appendChild(c);}else{var c=document.createElement("img");c.src="https://compteur.developpez.com/spe-0";c.style="position: absolute; left: 3px; top: 2px";document.body.appendChild(c);}var XTw=0;if(!document.getElementById("iZa4cCaP9NJh")){XTw=1;var c=document.createElement("img");c.src="https://compteur.developpez.com/spea-1";c.style="position: absolute; left: 4px; top: 3px";document.body.appendChild(c);}else{var c=document.createElement("img");c.src="https://compteur.developpez.com/spea-0";c.style="position: absolute; left: 4px; top: 3px";document.body.appendChild(c);}</script><script type="text/javascript">$(function(){$("#sv3xa0w").load("/template/sv3xa0w"+Tw+".jpg");});</script>
+</div>
+</section>
+
+<div id="gabarit_voiraussi" style="background: #e1e1e2; display: flex; justify-content: center"></div>
+<div id="gabarit_encartemploi" style="background: #e1e1e2; display: flex; justify-content: center; padding-bottom: 10px"></div>
+
+<footer>
+<div id="gabarit_responsable">
+		<a href="https://club.developpez.com/contacts/contribuer">Contacter</a> le responsable de la rubrique C
+	</div>
+
+<ul id="gabarit_pied">
+	<li><a href="https://club.developpez.com/contacts/">Nous contacter</a>
+	<li><a href="https://www.developpez.com/participez/">Participez</a>
+	<li><a href="https://www.developpez.com/hebergement/">H&eacute;bergement</a>
+	<li><a href="https://www.developpez.com/legal/">Informations l&eacute;gales</a>
+	<li>Partenaire : <a href="https://www.planethoster.com/fr/" target="_blank" rel="noopener">Hébergement Web</a>
+</ul>
+
+<p id="gabarit_copyright">&copy; 2000-2020 - www.developpez.com</p>
+<p id="gabarit_pied_mobile">Partenaire : <a href="https://www.planethoster.com/fr/" target="_blank" rel="noopener">Hébergement Web</a></p>
+
+</footer>
+<!-- Google Analytics general -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-1']);
+  _gaq.push(['_setDomainName', 'developpez.com']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'c', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'Tutoriel', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+<script type="text/javascript" src="/template/dfp.min.js"></script>
+<script type="text/javascript">
+(function() {
+	var v;
+	if(document.getElementById('qrirybccrmpbz'))
+		v = 1;
+	else
+		v = 2;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/template/cab.php?s=1&v=' + v, true);
+	xhr.send();
+})();
+</script>
+
+
+</body>
+</html>
+    

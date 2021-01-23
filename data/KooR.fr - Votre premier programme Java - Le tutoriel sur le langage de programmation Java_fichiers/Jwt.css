@@ -1,0 +1,720 @@
+/*/////////////////////////////////////////////////////////////////////////////////////////
+///																						///
+/// 						  JWT (Javascript Widget Toolkit)							///
+///							 JWT is a part of Ellipse Framework							///
+///																						///
+///   Authors : Dominique LIARD	 		         dominique.liard@infini-software.com    ///
+///   Copyright (c) 2007..2009 Infini Software.       http://www.infini-software.com    ///
+///	  All rights reserved.																///
+///																						///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+@import url('css/Accordion.css');
+@import url('css/CodeColorers.css');
+@import url('css/DataTable.css');
+@import url('css/TabbedPane.css');
+@import url('css/ToolBar.css');
+@import url('css/Slider.css');
+@import url('css/TableStyle.css');
+@import url('css/MailingLists.css');
+
+html {
+	height: 100%;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// ColorChooser & ColorPicker                                                          ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtColorChooser {
+    background: black;
+    border-spacing: 1px;
+    width: 187px;
+}
+
+.JwtColorChooser TH {
+    width: 22px;
+	height: 22px;
+}
+
+.JwtColorChooser TD {
+    width: 40px;
+	height: 22px;
+	font-size: 10px;
+    text-align: center;
+    background: white;
+}
+
+.JwtColorChooser input {
+    margin: 0px;
+    padding: 0px;
+    height: 12px;
+    font-size: 10px;
+}
+
+.JwtColorChooser input[type='button'] {
+    vertical-align: top;
+    height: 20px;
+    line-height: 10px;
+    width: 100%;
+    font-size: 11px;
+}
+
+.JwtColorPicker{
+    width: 16px;
+    height: 16px;
+    padding: 2px;   
+    border: 1px solid transparent;
+}
+
+.JwtColorPickerHover {
+    border: 1px solid rgb(153,187,232);
+    background-image: url('images/TabTop.png');
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// DataGrid                                                                            ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtDataGrid {
+	margin: auto;
+	border-spacing: 1px;
+	background: #4974AD;
+	text-align: center;
+	width: 100%;
+}
+	
+.JwtDataGrid th {
+	background: #DCE6F2;
+	color: #4974AD;
+	padding: 8px;
+}
+
+.JwtDataGrid td {
+	padding: 5px;
+	vertical-align: middle;
+}
+
+.JwtDataGridTrEven:HOVER, .JwtDataGridTrOdd:HOVER {
+	background: #7f9bc1;
+	color: white;
+}
+
+.JwtDataGridTrEven {
+	background: white;
+}
+
+.JwtDataGridTrOdd {
+	background: #f4f7fb;
+}
+
+.JwtDataGridPaging {
+	margin: auto;
+	margin-top: 15px;
+	width: 100%;
+	text-align: center;
+}
+
+.JwtDataGridPaging input[type='text'] {
+	width: 40px;
+	text-align: right;
+}
+
+.JwtDataGridTdButtons {
+	width: 100px;
+}
+
+.JwtDataGrid .JwtDataGridDisplayButton, .JwtDataGrid .JwtDataGridEditButton, .JwtDataGrid .JwtDataGridDeleteButton, input.JwtDataGridInsertButton[type='submit'], input.JwtDataGridInsertButton[type='button'] {
+	border: none;
+	background: none;
+	background-repeat: no-repeat;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.JwtDataGrid .JwtDataGridDisplayButton {
+	background-image: url('images/view.png');
+}
+
+.JwtDataGrid .JwtDataGridEditButton {
+	background-image: url('images/edit.png');
+}
+
+.JwtDataGrid .JwtDataGridDeleteButton {
+	background-image: url('images/delete.png');
+}
+
+input.JwtDataGridInsertButton[type='submit'], input.JwtDataGridInsertButton[type='button'] {
+	background-image: url('images/add.png');
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// DropDownMenu                                                                        ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtDropDownMenu {
+    border: 2px solid blue;
+    border-top: 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 2px 5px gray;
+}
+
+.JwtDownDownItems .JwtMenuItem, .JwtDownDownItems .JwtSelectedMenuItem  {
+    text-align: center;
+    padding: 3px;
+}
+
+.JwtDownDownTitle {
+    padding: 3px;
+    text-align: center;
+    font-family: arial;
+    background: lightblue;
+    border-top: 2px solid blue;
+    cursor: pointer;
+    -moz-user-select: none;                /* prochainement user-select */
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// Login form                                                           				///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.WebLoginForm {
+	margin:auto;
+}
+
+.WebLoginForm tr {
+	line-height: 20px;
+}
+
+.WebLoginForm td {
+	white-space: nowrap;
+}
+
+.WebLoginForm input {
+	margin-bottom: 3px;
+}
+
+.WebLoginForm .errorClass {
+	color:red;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// Menu bars and popup menus                                                           ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+.JwtMenu, .JwtSelectedMenu, .JwtMenuItem, .JwtSelectedMenuItem {
+	font-family: verdana, arial;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.JwtMenuBar {
+	background: rgb(174,201,236);
+	background-image: url('images/MenuBackground.png');
+	
+	border: 1px solid rgb(153,187,232);
+	margin: 0px; padding: 0px;
+	text-align: left;
+}
+
+.JwtMenu, .JwtSelectedMenu, .JwtMenuBar > .JwtMenuItem, .JwtMenuBar > .JwtSelectedMenuItem {
+	color: rgb(60,70,100);
+	cursor: pointer;
+	padding-left: 10px;		padding-right: 10px;		padding-top: 0px;		padding-bottom: 0px;
+	height: 25px;
+	line-height: 2;
+}
+
+.JwtPopupMenu {
+	background: rgb(174,201,236);
+	border: 1px solid rgb(153,187,232);
+	text-align: left;
+}
+
+.JwtPopupMenuSeparator {
+	background: rgb(153,187,232);
+}
+
+.JwtMenuItem, .JwtSelectedMenuItem {
+	color: rgb(60,70,100);
+	margin: 0px;
+	/*padding-top : 1px;*/    padding-bottom: 1px; 
+	padding-left: 10px;   padding-right: 5px;
+	text-decoration: none;	
+	cursor: pointer;
+}
+
+.JwtPopupMenu a, .JwtPopupMenu a:visited {
+	color: rgb(60,70,100);
+}
+
+.JwtMenuItemIcon {
+	float: left;
+	margin-right: 6px;
+	margin-top: 4px;
+}
+
+/*.JwtSelectedMenuItem a {
+	text-decoration: none;
+}*/
+
+.JwtSelectedMenuItem, .JwtSelectedMenu {
+	background: rgb(153,187,232);
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// Calendar                                                                            ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtCalendar {
+	border: 1px solid #718bb7;
+	border-radius: 2px;
+	background: #FFFFFF;
+    font-size: 8pt;
+    
+    width: 300px;
+    height: 200px;
+    
+    box-shadow: 5px 5px 10px rgba(128,128,128,0.5);
+}
+
+.JwtCalendarHeader, .JwtCalendarQuickButton {
+	color: white;
+    font-size: 10pt;
+    font-weight: bold;
+	text-shadow: 1px 1px 1px black;
+	
+	background: rgb(103,167,234); /* Old browsers */
+	background: linear-gradient(to bottom, rgba(103,167,234,1) 0%,rgba(89,156,226,1) 50%,rgba(74,144,216,1) 51%,rgba(86,154,225,1) 100%); /* W3C */
+}
+	
+.JwtCalendar .JwtCalendarDayNames>th, .JwtCalendar .JwtCalendarSelectedDay {
+    background: #c7d8ed; /* Old browsers */
+    background: linear-gradient(to bottom, #dee8f5 0%,#d1dff0 50%,#c7d8ed 51%,#cbdaee 100%); /* W3C */
+}
+
+.JwtCalendarQuickButton {
+    padding-left: 2px;
+    padding-right: 2px;
+    -height: 140px;
+}
+
+.JwtCalendar tr {
+	line-height: normal;
+}
+
+.JwtCalendar th {
+	font-family: arial;
+	font-weight: normal;
+	background: #cbdaee;
+}
+
+.JwtCalendar .JwtCalendarDay {
+    border-bottom: 1px solid #718bb7;    
+}
+
+.JwtCalendar .JwtCalendarWeekNumber {
+    border-right: 1px solid #718bb7;	
+}
+
+.JwtCalendar .emptyCell {
+    border-bottom: 1px solid #718bb7;
+    border-right: 1px solid #718bb7;
+}
+
+.JwtCalendar td {
+	font-family: arial;
+}
+
+.JwtCalendar #tdDisplayedMonth td.JwtCalendarSelectedDay {
+    border: 1px solid #718bb7;
+}
+
+.JwtCalendar #tdDisplayedMonth td.JwtCalendarCurrentDay {
+    background: #E0E0E0;
+}
+
+.JwtCalendar #tdDisplayedMonth td {
+	text-align: right;
+	border: 1px solid white;
+}
+
+.JwtCalendar a {
+	color: black;
+	text-decoration: none;	
+}
+
+.JwtCalendar a:hover {
+	color: black;
+	text-decoration: underline;	
+}
+
+.JwtCalendar .JwtCalendarQuickYear {
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-top: 4px;
+	margin-bottom: 4px; 
+	font-size: 10pt;
+}
+
+.JwtCalendarSelectedDate {
+	text-align: right;
+    font-weight: bold;
+    padding-right: 5px;
+
+    background: #c7d8ed; /* Old browsers */
+    background: linear-gradient(to bottom, #dee8f5 0%,#d1dff0 50%,#c7d8ed 51%,#cbdaee 100%); /* W3C */
+}
+
+.JwtCalendarPreviousButton, .JwtCalendarNextButton {
+	cursor: pointer;
+	text-align: center;
+	width: 10%;
+}
+
+.JwtDatePicker {
+	display: inline-block;
+	width: 300px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// Diagram & DiagramView                                                               ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtDiagram {
+	text-align: center;
+}
+
+.JwtDiagramView {
+	border: 1px solid black;
+}
+
+.JwtDiagramCaption {
+	text-align: center;
+	font-family: calibri, verdana, arial;	
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// ExpandablePanel                                                                     ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtExpandablePanel {
+	border: 1px solid black;
+	
+	border-radius: 5px;
+	
+	transition: height 1s;
+	-webkit-transition: height 1s;
+	-moz-transition: height 1s;
+	-o-transition: height 1s;
+	-ms-transition: height 1s; 
+}
+
+.JwtExpandablePanelTitleBar {
+	background: gray;
+    cursor: pointer;
+    padding-left: 40px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-weight: bold;
+}
+
+.JwtExpandablePanelClosed {
+    background: lightgray;
+}
+
+.JwtExpandablePanelContent {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// HtmlTextEditor                                                                      ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtHtmlTextEditor {
+	font-family: verdana, arial;
+	font-size: 12px;
+	width: 100%;
+	height: 100%;
+	border: 1px solid rgb(153,187,232);
+}
+
+.JwtHtmlTextArea {
+	font-family: verdana, arial;
+	font-size: 12px;
+	overflow: auto;
+	border: 1px solid transparent;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// LightBox                                                                            ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtLightBox {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity:0.5;
+	z-index: 10000;
+	position: fixed;		
+}
+
+.JwtLightBoxContentPane {
+	z-index: 10001;
+	position: fixed;		
+}
+
+.JwtPleaseWaitLightBoxContent {
+    background-color:  white;
+    background-image: url("images/PleaseWait.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    vertical-align: middle;
+    width: 200px;
+    height: 200px;
+    
+    vertical-align: middle;
+    text-align: center;
+    font-family: verdana, arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 200px;
+    
+    border: 1px solid #E8E8E8;
+    border-radius: 25px; 
+    box-shadow: 5px 5px 5px #404040;
+}
+
+.JwtConfirmLightBoxMessage {
+	vertical-align: middle;
+	
+	padding: 8px;
+	
+	text-align: center;
+	font-family: verdana;
+	font-size: 12px;
+}
+
+.JwtConfirmLightBoxButton {
+	margin: 8px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// ProgressBar                                                                         ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+.JwtProgressBar {
+	border: 1px solid black;
+	text-align: left;
+	width: 100%;
+}
+
+
+.JwtProgressBar div {
+	border: 2px solid white;
+	background: gray;
+}
+
+
+.JwtProgressBar div div {
+	background: rgb(174,201,236);
+	border: 2px solid #0040A0;
+	height: 20px;
+}
+
+.JwtProgressBarCaption {
+	height: 26px;
+	
+	text-align: center;
+	font-family: verdana, arial;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// RssStreamViewer                                                                     ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtRssStreamViewer {
+	border: 1px solid black;
+	height: 100%;
+	cursor: pointer;
+}
+
+.JwtRssStreamTitle {
+	background: rgb( 125, 144, 238 );
+	font-family: verdana, arial;
+	font-weight: bold;
+	font-size: 10pt;
+	padding: 3pt;
+	height: 10%;
+}
+
+
+.JwtRssStreamContent {
+	overflow: auto;
+	height: 90%;
+}
+
+
+.JwtRssStreamTitle a, .JwtRssStreamItem a {
+	color: black;
+	text-decoration: none;
+}
+
+.JwtRssStreamTitle a:hover, .JwtRssStreamItem a:hover {
+	text-decoration: underline;
+}
+
+
+.JwtRssStreamItem {
+	background: rgb( 188, 198, 247 );
+	font-family: verdana, arial;
+	font-size: 9pt;
+	border-top: 1px solid black;
+	padding: 2px  4px;
+	cursor: pointer;
+	/*height: 30pt;
+	overflow: hidden;*/
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// StripContainter                                                                     ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtStripContainer {
+	width: 100%;
+	height: 100px;
+}
+         
+.JwtStripItem {
+	width: 80px;
+	height: 80px;
+	border: 1px solid black;
+	margin: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+	display: inline-block;
+}            
+         
+.JWTStripArrowLeft, .JWTStripArrowRight {
+	width: 20px;
+	height: 100px;
+	position: relative;
+}
+
+.CSS_FF .JWTStripArrowLeft, .CSS_FF .JWTStripArrowRight {
+	top: -46px;
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// ToolTips                                                                            ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtToolTip {
+	background: rgb( 188, 198, 247 );
+	font-family: verdana, arial;
+	font-size: 9pt;
+	
+	border: 1px solid #718bb7;
+	border-radius: 2px;
+	
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// Internal Frame                                                                      ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtInternalFrame {
+	background: #e0e0e0;
+}
+
+.JwtInternalFrameTitle {
+	font-size: 14px; font-weight: bold; font-family: verdana, arial; cursor: default;
+}
+
+.JwtInternalFrame .JwtInternalFrameBtnClose {
+	float: right; 
+	cursor: pointer;
+	background-image: url('images/Close.png');    
+	height: 25px;
+    width: 18px;
+}
+
+.JwtInternalFrame .JwtInternalFrameBtnClose:hover {
+	background-image: url('images/CloseActivated.png');
+}
+
+.JwtInternalFrame .borderTopLeft {
+	width: 6px;
+	background-image: url("images/BorderTopLeft.png");
+}
+
+.JwtInternalFrame .borderLeft {
+	width: 6px;
+	background-image: url("images/BorderLeft.png");
+}
+
+.JwtInternalFrame .borderBottomLeft {
+	width: 6px;
+	background-image: url("images/BorderBottomLeft.png");
+}
+
+
+.JwtInternalFrame .borderTop {
+	background-image: url("images/BorderTop.png");
+	vertical-align: middle;
+}
+
+.JwtInternalFrame .borderBottom {
+	background-repeat: repeat-x;
+	background-image: url("images/BorderBottom.png");
+	background-position: bottom;
+}
+
+.JwtInternalFrame .borderTopRight {
+	width: 6px;
+	background-image: url("images/BorderTopRight.png");
+}
+
+.JwtInternalFrame .borderBottomRight {
+	width: 6px;
+	background-image: url("images/BorderBottomRight.png");
+}
+
+.JwtInternalFrame .borderRight {
+	width: 6px;
+	background-image: url("images/BorderRight.png");
+}
+
+.JwtInternalFrame .JwtInternalFrameCloseWindow {
+	width: 18px; height: 25px;
+}
+.JwtInternalFrame .borderRight {
+	width: 6px;
+	background-image: url("images/BorderRight.png");
+}
+
+.JwtInternalFrame .JwtInternalFrameCloseWindow {
+	width: 18px; height: 25px;
+}

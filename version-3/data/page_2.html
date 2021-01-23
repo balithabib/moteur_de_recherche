@@ -1,0 +1,1474 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"05099bba55",applicationID:"236519519"};window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var i=t[n]={exports:{}};e[n][0].call(i.exports,function(t){var i=e[n][1][t];return r(i||t)},i,i.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(e,t,n){function r(){}function i(e,t,n){return function(){return o(e,[u.now()].concat(c(arguments)),t?null:this,n),t?void 0:this}}var o=e("handle"),a=e(6),c=e(7),f=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(e,t){s[t]=i(p+t,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,i="function"==typeof t;return o(l+"tracer",[u.now(),e,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return t.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],n),e}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=i(l+t)}),newrelic.noticeError=function(e,t){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,t])}},{}],2:[function(e,t,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=e(8);t.exports=r,t.exports.offset=a,t.exports.getLastTimestamp=i},{}],3:[function(e,t,n){function r(e,t){var n=e.getEntries();n.forEach(function(e){"first-paint"===e.name?d("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&d("timing",["fcp",Math.floor(e.startTime)])})}function i(e,t){var n=e.getEntries();n.length>0&&d("lcp",[n[n.length-1]])}function o(e){e.getEntries().forEach(function(e){e.hadRecentInput||d("cls",[e])})}function a(e){if(e instanceof m&&!g){var t=Math.round(e.timeStamp),n={type:e.type};t<=p.now()?n.fid=p.now()-t:t>p.offset&&t<=Date.now()?(t-=p.offset,n.fid=p.now()-t):t=p.now(),g=!0,d("timing",["fi",t,n])}}function c(e){d("pageHide",[p.now(),e])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d=e("handle"),p=e("loader"),l=e(5),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){f=new PerformanceObserver(r);try{f.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,y=["click","keydown","mousedown","pointerdown","touchstart"];y.forEach(function(e){document.addEventListener(e,a,!1)})}l(c)}},{}],4:[function(e,t,n){function r(e,t){if(!i)return!1;if(e!==i)return!1;if(!t)return!0;if(!o)return!1;for(var n=o.split("."),r=t.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}t.exports={agent:i,version:o,match:r}},{}],5:[function(e,t,n){function r(e){function t(){e(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,t,!1)}t.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],6:[function(e,t,n){function r(e,t){var n=[],r="",o=0;for(r in e)i.call(e,r)&&(n[o]=t(r,e[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;t.exports=r},{}],7:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,i=n-t||0,o=Array(i<0?0:i);++r<i;)o[r]=e[t+r];return o}t.exports=r},{}],8:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function i(e){function t(e){return e&&e instanceof r?e:e?f(e,c,o):o()}function n(n,r,i,o){if(!p.aborted||o){e&&e(n,r,i);for(var a=t(i),c=v(n),f=c.length,u=0;u<f;u++)c[u].apply(a,r);var d=s[w[n]];return d&&d.push([b,n,r,a]),a}}function l(e,t){h[e]=v(e).concat(t)}function m(e,t){var n=h[e];if(n)for(var r=0;r<n.length;r++)n[r]===t&&n.splice(r,1)}function v(e){return h[e]||[]}function g(e){return d[e]=d[e]||i(n)}function y(e,t){u(e,function(e,n){t=t||"feature",w[n]=t,t in s||(s[t]=[])})}var h={},w={},b={on:l,addEventListener:l,removeEventListener:m,emit:n,get:g,listeners:v,context:t,buffer:y,abort:a,aborted:!1};return b}function o(){return new r}function a(){(s.api||s.feature)&&(p.aborted=!0,s=p.backlog={})}var c="nr@context",f=e("gos"),u=e(6),s={},d={},p=t.exports=i();p.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(i.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[t]=r,r}var i=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){i.buffer([e],r),i.emit(e,t,n)}var i=e("ee").get("handle");t.exports=r,r.ee=i},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!E++){var e=b.info=NREUM.info,t=p.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return u.abort();f(h,function(t,n){e[t]||(e[t]=n)});var n=a();c("mark",["onload",n+b.offset],null,"api"),c("timing",["load",n]);var r=p.createElement("script");r.src="https://"+e.agent,t.parentNode.insertBefore(r,t)}}function i(){"complete"===p.readyState&&o()}function o(){c("mark",["domContent",a()+b.offset],null,"api")}var a=e(2),c=e("handle"),f=e(6),u=e("ee"),s=e(4),d=window,p=d.document,l="addEventListener",m="attachEvent",v=d.XMLHttpRequest,g=v&&v.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:v,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var y=""+location,h={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1184.min.js"},w=v&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),b=t.exports={offset:a.getLastTimestamp(),now:a,origin:y,features:{},xhrWrappable:w,userAgent:s};e(1),e(3),p[l]?(p[l]("DOMContentLoaded",o,!1),d[l]("load",r,!1)):(p[m]("onreadystatechange",i),d[m]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var E=0},{}],"wrap-function":[function(e,t,n){function r(e){return!(e&&e instanceof Function&&e.apply&&!e[a])}var i=e("ee"),o=e(7),a="nr@original",c=Object.prototype.hasOwnProperty,f=!1;t.exports=function(e,t){function n(e,t,n,i){function nrWrapper(){var r,a,c,f;try{a=this,r=o(arguments),c="function"==typeof n?n(r,a):n||{}}catch(u){p([u,"",[r,a,i],c])}s(t+"start",[r,a,i],c);try{return f=e.apply(a,r)}catch(d){throw s(t+"err",[r,a,d],c),d}finally{s(t+"end",[r,a,f],c)}}return r(e)?e:(t||(t=""),nrWrapper[a]=e,d(e,nrWrapper),nrWrapper)}function u(e,t,i,o){i||(i="");var a,c,f,u="-"===i.charAt(0);for(f=0;f<t.length;f++)c=t[f],a=e[c],r(a)||(e[c]=n(a,u?c+i:i,o,c))}function s(n,r,i){if(!f||t){var o=f;f=!0;try{e.emit(n,r,i,t)}catch(a){p([a,n,r,i])}f=o}}function d(e,t){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(e);return n.forEach(function(n){Object.defineProperty(t,n,{get:function(){return e[n]},set:function(t){return e[n]=t,t}})}),t}catch(r){p([r])}for(var i in e)c.call(e,i)&&(t[i]=e[i]);return t}function p(t){try{e.emit("internal-error",t)}catch(n){}}return e||(e=i),n.inPlace=u,n.flag=a,n}},{}]},{},["loader"]);</script>
+    <script>var _sf_startpt=(new Date()).getTime()</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/snp-assets/images/apple-touchicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/snp-assets/images/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/snp-assets/images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="72x72" href="/snp-assets/images/favicon-72.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/snp-assets/images/favicon-192.png">
+    <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="/snp-assets/images/favicon-32.ico" /><![endif]-->
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="googlebot" content="max-snippet:300, max-image-preview:large,max-video-preview:3">
+
+  <script type="text/javascript">
+    window.gdprAppliesGlobally = true;(function () {function a(e) {if (!window.frames[e]) {if (document.body && document.body.firstChild) {var t = document.body;var n = document.createElement("iframe");n.style.display = "none";n.name = e;n.title = e;t.insertBefore(n, t.firstChild)} else {setTimeout(function () {a(e)}, 5)}}}function e(n, r, o, c, s) {function e(e, t, n, a) {if (typeof n !== "function") {return}if (!window[r]) {window[r] = []}var i = false;if (s) {i = s(e, t, n)}if (! i) {window[r].push({command: e, parameter: t, callback: n, version: a})}}e.stub = true;function t(a) {if (!window[n] || window[n].stub !== true) {return}
+    if (! a.data) {return}var i = typeof a.data === "string";var e;try {e = i ? JSON.parse(a.data) : a.data} catch (t) {return}if (e[o]) {var r = e[o];window[n](r.command, r.parameter, function (e, t) {var n = {};n[c] = {returnValue: e,success: t,callId: r.callId};a.source.postMessage(i ? JSON.stringify(n) : n, "*")}, r.version)}}if (typeof window[n] !== "function") {window[n] = e;if (window.addEventListener) {window.addEventListener("message", t, false)} else {window.attachEvent("onmessage", t)}}}e("__tcfapi", "__tcfapiBuffer", "__tcfapiCall", "__tcfapiReturn");a("__tcfapiLocator");(function (e) {var t = document.createElement("script");t.id = "spcloader";t.type = "text/javascript";t.async = true;t.src = "https://sdk.privacy-center.org/" + e + "/loader.js?target=" + document.location.hostname;t.charset = "utf-8";var n = document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t, n)})("fedf8125-d890-4ef1-a017-6700106a71f1")})();
+  </script>
+
+        <title>Ligue 1 : Bousculé, Lyon renverse Saint-Etienne et s'offre le 121e derby</title>
+        <meta property="og:title" content="Ligue 1 : Bousculé, Lyon renverse Saint-Etienne et s'offre le 121e derby" />
+        <meta name="twitter:title" content="Ligue 1 : Bousculé, Lyon renverse Saint-Etienne et s'offre le 121e derby" />
+    <meta name="description" content="actualité Si le public lyonnais ne connaissait pas encore Tino Kadewere, il n'oubliera plus jamais son nom. Et pour cause : entré en jeu en seconde période, l'attaquant zimbabwéen a inscrit un doublé…" />
+        <meta property="og:description" content="Si le public lyonnais ne connaissait pas encore Tino Kadewere, il n'oubliera plus jamais son nom. Et pour cause : entré en jeu en seconde période, l'attaquant zimbabwéen a inscrit un doublé…" />
+        <meta name="twitter:description" content="Si le public lyonnais ne connaissait pas encore Tino Kadewere, il n'oubliera plus jamais son nom. Et pour cause : entré en jeu en seconde période, l'attaquant zimbabwéen a inscrit un doublé…" />
+
+  <link rel="image_src" href="https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2020-11/000_8uv48u.jpg?h=d1c21b0e&amp;itok=dMxIj62z" />
+  <meta property="og:image" content="https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2020-11/000_8uv48u.jpg?h=d1c21b0e&amp;itok=dMxIj62z" />
+  <meta name="twitter:image:src" content="https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2020-11/000_8uv48u.jpg?h=d1c21b0e&amp;itok=dMxIj62z" />
+
+      <link rel="canonical" href="https://sport.francetvinfo.fr/football/ligue-1/ligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby" />
+    <meta property="og:url" content="https://sport.francetvinfo.fr/football/ligue-1/ligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby" />
+    <meta name="twitter:url" content="https://sport.francetvinfo.fr/football/ligue-1/ligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby" />
+  
+  <link rel="amphtml" href="https://sport.francetvinfo.fr/football/ligue-1/ligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby.amp">
+
+    <meta property="fb:app_id" content="156013974533192" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Francetvsport" />
+  <meta property="og:type" content="article" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:account_id" content="140062928"/>
+  <meta property="twitter:site" content="@francetvsport"/>
+  <meta property="twitter:creator" content="@francetvsport"/>
+
+    <meta property="twitter:app:id:iphone" content="id545290458"/>
+  <meta name="twitter:app:url:iphone" content="https://itunes.apple.com/fr/app/francetv-sport-actu-video/id545290458?mt=8"/>
+  <meta name="twitter:app:name:iphone" content="francetv sport"/>
+  <meta name="twitter:app:id:ipad" content="id545290458"/>
+  <meta name="twitter:app:url:ipad" content="https://itunes.apple.com/fr/app/francetv-sport-actu-video/id545290458?mt=8"/>
+  <meta name="twitter:app:name:ipad" content="francetv sport"/>
+  <meta property="twitter:app:id:googleplay" content="fr.francetv.francetvsport"/>
+  <meta name="twitter:app:url:googleplay" content="https://play.google.com/store/apps/details?id=fr.francetv.francetvsport&hl=fr"/>
+  <meta name="twitter:app:name:googleplay" content="francetv sport"/>
+
+                    <meta name="google-play-app" content="app-id=fr.francetv.francetvsport">
+        <meta name="apple-itunes-app" content="app-id=545290458">
+    
+            <link rel="stylesheet" href="https://sport.francetvinfo.fr/snp-assets/styles/main-f5e2866d5d.css" />
+                    <link rel="stylesheet" href="https://sport.francetvinfo.fr/snp-assets/styles/smart-app-banner.087351.css" media="screen">
+            
+    
+      <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org/",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": "https://sport.francetvinfo.fr/football/ligue-1/ligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby",
+        "headline": "Ligue 1 : Bousculé, Lyon renverse Saint-Etienne et s&#039;offre le 121e derby",
+        "datePublished": "08/11/2020 22:56",
+                  "dateModified": "08/11/2020 23:35",
+                "image": {
+          "@type": "ImageObject",
+          "url": "https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2020-11/000_8uv48u.jpg?h=d1c21b0e&amp;itok=dMxIj62z",
+          "height": "920",
+          "width": "518"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "francetv sport",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://sport.francetvinfo.fr/snp-assets/images/logo-ftv-sport-amp.png",
+            "width": "372",
+            "height": "60"
+          }
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "francetv sport"
+        },
+                  "description": "Si le public lyonnais ne connaissait pas encore Tino Kadewere, il n&#039;oubliera plus jamais son nom. Et pour cause : entré en jeu en seconde période, l&#039;attaquant zimbabwéen a inscrit un doublé qui a permis à l&#039;OL de renverser Saint-Etienne dans le 121e derby du Rhône (2-1). Une victoire précieuse et acquise dans la douleur par des Lyonnais qui grimpent ainsi à la cinquième place de Ligue 1, juste avant la trêve internationale. Côté stéphanois, il s&#039;agit d&#039;une sixième défaite consécutive. "
+              },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                      {
+            "@type": "ListItem", 
+            "position": 1,
+            "item": {
+                "@id": "https://sport.francetvinfo.fr/",
+                "name": "Home"
+            }
+        },            {
+            "@type": "ListItem", 
+            "position": 2,
+            "item": {
+                "@id": "https://sport.francetvinfo.fr/football/",
+                "name": "Football"
+            }
+        },            {
+            "@type": "ListItem", 
+            "position": 3,
+            "item": {
+                "@id": "https://sport.francetvinfo.fr/football/ligue-1/",
+                "name": "Ligue 1"
+            }
+        },            {
+            "@type": "ListItem", 
+            "position": 4,
+            "item": {
+                "@id": "https://sport.francetvinfo.fr/football/ligue-1/ligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby",
+                "name": "Ligue 1 : Bousculé, Lyon renverse Saint-Etienne et s&#039;offre le 121e derby"
+            }
+        }    
+        ]
+      }
+    ]
+  </script>
+
+    <script>
+    var nAgt = navigator.userAgent;
+    var browserName = navigator.appName;
+    var nameOffset, verOffset;
+
+    // In Opera 15+, the true version is after "OPR/"
+    if ((verOffset = nAgt.indexOf("OPR/")) != -1) {
+        browserName = "Opera";
+    }
+    // In older Opera, the true version is after "Opera" or after "Version"
+    else if ((verOffset = nAgt.indexOf("Opera")) != -1) {
+        browserName = "Opera";
+    }
+    // In MSIE, the true version is after "MSIE" in userAgent
+    else if ((verOffset = nAgt.indexOf("MSIE")) != -1) {
+        browserName = "Microsoft Internet Explorer";
+    }
+    // In Chrome, the true version is after "Chrome"
+    else if ((verOffset = nAgt.indexOf("Chrome")) != -1) {
+        browserName = "Chrome";
+    }
+    // In Safari, the true version is after "Safari" or after "Version"
+    else if ((verOffset = nAgt.indexOf("Safari")) != -1) {
+        browserName = "Safari";
+    }
+    // In Firefox, the true version is after "Firefox"
+    else if ((verOffset = nAgt.indexOf("Firefox")) != -1) {
+        browserName = "Firefox";
+    }
+    // In most other browsers, "name/version" is at the end of userAgent
+    else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) <
+            (verOffset = nAgt.lastIndexOf('/'))) {
+        browserName = nAgt.substring(nameOffset, verOffset);
+        if (browserName.toLowerCase() == browserName.toUpperCase()) {
+            browserName = navigator.appName;
+        }
+    }
+
+    // system
+    var os = 'Unknown';
+    var clientStrings = [
+        {s: 'Windows 10', r: /(Windows 10.0|Windows NT 10.0)/},
+        {s: 'Windows 8.1', r: /(Windows 8.1|Windows NT 6.3)/},
+        {s: 'Windows 8', r: /(Windows 8|Windows NT 6.2)/},
+        {s: 'Windows 7', r: /(Windows 7|Windows NT 6.1)/},
+        {s: 'Windows Vista', r: /Windows NT 6.0/},
+        {s: 'Windows Server 2003', r: /Windows NT 5.2/},
+        {s: 'Windows XP', r: /(Windows NT 5.1|Windows XP)/},
+        {s: 'Windows 2000', r: /(Windows NT 5.0|Windows 2000)/},
+        {s: 'Windows ME', r: /(Win 9x 4.90|Windows ME)/},
+        {s: 'Windows 98', r: /(Windows 98|Win98)/},
+        {s: 'Windows 95', r: /(Windows 95|Win95|Windows_95)/},
+        {s: 'Windows NT 4.0', r: /(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/},
+        {s: 'Windows CE', r: /Windows CE/},
+        {s: 'Windows 3.11', r: /Win16/},
+        {s: 'Android', r: /Android/},
+        {s: 'Open BSD', r: /OpenBSD/},
+        {s: 'Sun OS', r: /SunOS/},
+        {s: 'Linux', r: /(Linux|X11)/},
+        {s: 'iOS', r: /(iPhone|iPad|iPod)/},
+        {s: 'Mac OS X', r: /Mac OS X/},
+        {s: 'Mac OS', r: /(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
+        {s: 'QNX', r: /QNX/},
+        {s: 'UNIX', r: /UNIX/},
+        {s: 'BeOS', r: /BeOS/},
+        {s: 'OS/2', r: /OS\/2/},
+        {s: 'Search Bot', r: /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
+    ];
+    for (var id in clientStrings) {
+        var cs = clientStrings[id];
+        if (cs.r.test(nAgt)) {
+            os = cs.s;
+            break;
+        }
+    }
+
+    var osVersion = 'Unknown';
+
+    if (/Windows/.test(os)) {
+        osVersion = /Windows (.*)/.exec(os)[1];
+        os = 'Windows';
+    }
+
+    switch (os) {
+        case 'Mac OS X':
+            osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
+            break;
+
+        case 'Android':
+            osVersion = /Android ([\.\_\d]+)/.exec(nAgt)[1];
+            break;
+
+        case 'iOS':
+            osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nAgt);
+            osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
+            break;
+    }
+
+    var reURLInformation = new RegExp([
+        '^(https?:)//', // protocol
+        '(([^:/?#]*)(?::([0-9]+))?)', // host (hostname and port)
+        '(/{0,1}[^?#]*)', // pathname
+        '(\\?[^#]*|)', // search
+        '(#.*|)$' // hash
+    ].join(''));
+    var match = window.location.href.match(reURLInformation);
+    var arguments = match[5].split('/');
+    arguments = arguments.filter(Boolean);
+
+    var urls_vars_1 = '';
+    var urls_vars_2 = '';
+    var urls_vars_3 = '';
+
+    if (typeof arguments[0] !== 'undefined') {
+        urls_vars_1 = '/' + arguments[0];
+    }
+
+    if (typeof arguments[1] !== 'undefined') {
+        urls_vars_2 = '/' + arguments[1];
+    }
+
+    if (typeof arguments[2] !== 'undefined') {
+        urls_vars_3 = '/' + arguments[2];
+    }
+
+    var kuid = '';
+    if (typeof localStorage.kxkuid !== 'undefined'){
+        kuid = localStorage.kxkuid;
+    }
+
+    var kxsegs = '';
+    if (typeof localStorage.kxsegs !== 'undefined'){
+        kxsegs = localStorage.kxsegs;
+    }
+
+    var support = 'web';
+    var root = 'www.francetvsport.fr';
+    if (screen.width < 963){
+        support = 'web-mobile';
+        root = 'm.francetvsport.fr';
+    }
+
+    var source_campagne = '';
+    var my_hash = window.location.hash;
+    if (typeof my_hash.search("#xtor") === "function") {
+        if (my_hash.search("#xtor") > -1 ){
+            source_campagne = my_hash.replace("#xtor=", "");
+        }
+    }
+
+</script>    <script>
+
+    var adsPosition = '';
+        if ( window.innerWidth >= 1000 ) {
+       adsPosition = [["top", [[1,1],[1000,90],[728,90],[970,250],[1000,250],[1000,300]]], ["middle",  [[1,1],[300,250]]], ["interstitiel", null]];
+    }
+    else if ( window.innerWidth < 1000 && window.innerWidth >= 970 ){
+      adsPosition = [["top", [[1,1],[728,90],[970,250]]], ["middle",  [[1,1],[300,250]]], ["interstitiel", null]]
+    }
+    else if ( window.innerWidth >= 728 && window.innerWidth < 970 ) {
+      adsPosition = [["top", [[1,1],[728,90]]], ["middle",   [[1,1],[300,250]]], ["interstitiel", null]];
+    }
+    else if ( window.innerWidth < 728 ) {
+      adsPosition = [["top", [320,50]], ["middle", [300,250]], ["interstitiel", null]];
+    }
+    
+</script>
+            <script>
+            var opta_settings = {
+                subscription_id: 'bca603da4dd88cdb1b925d151857c5ba',
+                language: 'fr_FR',
+                timezone: 'Europe/Paris'
+            };
+        </script>
+    
+            <script>
+            var player_env = 'prod';
+        </script>
+    
+            <style>
+	.card-aside-title:before {
+		background: #003459; /* Theme color */
+	}
+	.header-bottom:before {
+		background: #003459; /* Theme color */
+	}
+	@media all and (min-width: 700px) {
+		.header-bottom {
+			background: #003459; /* Theme color */
+		}
+	}
+	.menu-item.is-open .menu-link {
+	  color: #525252; /* Theme color is a dark grey */
+	}
+	.menu-item.is-open.is-thematic .menu-link {
+	  color: #003459;
+	  /* If we are on the theme page, it will have its own color */
+	}
+	@media all and (min-width: 700px) {
+		.header-bottom .header-wrapper:after {
+			background-image: linear-gradient(90deg, transparent, #003459 100%);
+		}
+	}
+
+	/** Pins color **/
+	.card-aside .card-aside-btn {
+		background: #003459 none repeat scroll 0 0;
+		border-color: #003459;
+	}
+
+	.card-aside .card-aside-title::before{
+		background: #003459 none repeat scroll 0 0;
+	}
+
+	.external-link__btn {
+		background: #003459 none repeat scroll 0 0;
+		border-color: #003459;
+	}
+
+	.external-link__badge  {
+		background: #003459 none repeat scroll 0 0;
+		border-color: #003459;
+	}
+
+	/* News list page */
+	.block-intro .intro-title:after {
+		background: #003459; /* Theme color */
+	}
+
+	/* List of lives */
+	
+	/* Detail Video */
+	
+	.tpl-direct-list .page-aside .card-timeline:before {
+		background: #003459; /* Theme color */
+	}
+
+	.article-detail-block .article-title::after{
+		background: #003459 none repeat scroll 0 0;
+	}
+	.card-recall .recall-title {
+		background: #003459;
+	}
+	.card-recall .recall-title:after {
+		border-top-color: #003459;
+	}
+
+	
+	</style>
+
+    </head>
+
+<body>
+<script>
+    var utag_data = {
+        "root_tag": root,
+        "positions_pub": adsPosition,
+        "navigateur": browserName,
+        "langue_navigateur": (navigator.language || navigator.userLanguage),
+        "systeme_exploitation": os + " " + osVersion,
+        "offre": "FTV SPORT",
+        "URL_1": urls_vars_1,
+        "URL_2": urls_vars_2,
+        "URL_3": urls_vars_3,
+
+              "type_page": "contenu",
+  "nom_page": "ligue-1--bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby-173025fe-ccdf-41d8-ac4c-968a79daeb8e",
+  "est_homepage": "non",
+  "type_contenu": "article_sans_video",
+  "id_contenu": "173025fe-ccdf-41d8-ac4c-968a79daeb8e",
+
+        "categorie": "sport",
+                                    "evenement": "ligue1",
+                "id_evenement": "e2716e90-9c31-4327-8a41-0901ebe67673",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        "sous_categorie": "football",
+        "rubrique": "ligue-1",
+                "domaine": "sport.francetvinfo.fr",
+        "KUID": kuid,
+        "segments": kxsegs,
+        "source_campagne": source_campagne,
+        "support": support,
+                                                
+                                                                                                                                                                                                                "contient_bloc_a_voir_aussi": "0"
+            }
+</script>
+
+<script>
+    (function (a, b, c, d) {
+                    a = '//tags.tiqcdn.com/utag/francetv/ftv-sport/prod/utag.js';
+                b = document;
+        c = 'script';
+        d = b.createElement(c);
+        d.src = a;
+        d.type = 'text/java' + c;
+        d.async = true;
+        a = b.getElementsByTagName(c)[0];
+        a.parentNode.insertBefore(d, a);
+    })();
+</script>
+
+    
+  <header class="page-header">
+
+    <div class="header-top">
+      <div class="header-wrap">
+        <div class="page-wrapper">
+          <div class="header-wrap-btn">
+            <button class="nav-icon-container js-open-nav" data-menu="ouverture">
+                            <span id="nav-icon">
+                                <span aria-hidden="true"></span>
+                                <span aria-hidden="true"></span>
+                                <span aria-hidden="true"></span>
+                                <span aria-hidden="true"></span>
+                            </span>
+              <span class="nav-icon__text">Menu</span>
+            </button>
+            <a href="/" title="France tv sport" class="header-logo-link"><img src="https://sport.francetvinfo.fr/snp-assets/images/logo-ftvsport-lg.svg" alt="France tv sport"/></a>          </div>
+
+                      <div class="menu-highlight">
+              <ul class="menu-highlight__list">
+                                                        <li class="menu-highlight__list-item ">
+        <a href="/voile/vendee-globe/" title="Vendée Globe" class="menu-highlight__list-link" data-dark-chips-header="Vendée Globe"><span class="nav-global__chip">Vendée Globe</span></a>
+    </li>
+
+                                                        <li class="menu-highlight__list-item ">
+        <a href="/cyclisme/vuelta/" title="Vuelta" class="menu-highlight__list-link" data-dark-chips-header="Vuelta"><span class="nav-global__chip">Vuelta</span></a>
+    </li>
+
+                              </ul>
+            </div>
+          
+          <ul class="nav-global" data-api="https://api-sport-events.webservices.francetelevisions.fr/directs">
+                                            <li class="nav-global-item ">
+        <a href="/resultats/" title="Résultats" class="nav-global-link" data-red-chips-header="Résultats"><span class="nav__chip nav-global__chip">Résultats</span></a>
+    </li>
+
+                                            <li class="nav-global-item ">
+        <a href="https://www.france.tv/sport/tous-les-directs/" title="Directs" class="nav-global-link" data-red-chips-header="Directs"><span class="nav__chip nav-global__chip">Directs</span></a>
+    </li>
+
+                      </ul>
+        </div>
+      </div>
+
+      
+<span class="js-close-nav"></span>
+
+<nav class="nav-main">
+    <div class="nav-main-header">
+        <a href="/" title="" class="nav-main-logo"></a>
+        <button class="nav-main-close js-close-nav"></button>
+    </div>
+    <div class="nav-all">
+        <div class="nav-all-wrapper">
+            <div class="nav-all-inner">
+                <div class="menu-chips">
+                    <ul class="menu-chips__list">
+                                                        <li class="menu-chips__list-item ">
+        <a href="/live-sport" title="Live sport" class="menu-chips__list-link" data-white-chips-menu="Live sport"><span class="nav__chip menu-chips__list__chip">Live sport</span></a>
+    </li>
+
+                                                        <li class="menu-chips__list-item ">
+        <a href="/part-ca/" title="A part ça" class="menu-chips__list-link" data-white-chips-menu="A part ça"><span class="nav__chip menu-chips__list__chip">A part ça</span></a>
+    </li>
+
+                                                        <li class="menu-chips__list-item ">
+        <a href="https://www.france.tv/france-3/stade-2/" title="Stade 2" class="menu-chips__list-link" data-white-chips-menu="Stade 2"><span class="nav__chip menu-chips__list__chip">Stade 2</span></a>
+    </li>
+
+                                                        <li class="menu-chips__list-item ">
+        <a href="https://www.france.tv/france-3/tout-le-sport/" title="Tout le Sport" class="menu-chips__list-link" data-white-chips-menu="Tout le Sport"><span class="nav__chip menu-chips__list__chip">Tout le Sport</span></a>
+    </li>
+
+                                            </ul>
+                </div>
+                                    <div class="menu-highlight">
+                        <h3 class="menu-title">En ce moment</h3>
+                        <ul class="menu-highlight__list">
+                                                                <li class="menu-sidebar__highlight menu-highlight__list-item ">
+        <a href="/voile/vendee-globe/" title="Vendée Globe" class="menu-sidebar__highlight menu-highlight__list-link" data-dark-chips-menu="Vendée Globe"><span class="nav-global__chip">Vendée Globe</span></a>
+    </li>
+
+                                                                <li class="menu-sidebar__highlight menu-highlight__list-item ">
+        <a href="/cyclisme/vuelta/" title="Vuelta" class="menu-sidebar__highlight menu-highlight__list-link" data-dark-chips-menu="Vuelta"><span class="nav-global__chip">Vuelta</span></a>
+    </li>
+
+                                                    </ul>
+                    </div>
+                                <div class="nav-menu nav-menu--sports">
+                        <h3 class="menu-title">Les sports</h3>
+                    <ul class="menu-list">
+                                                                                                                                                                                                                                                                        <li class="menu-item has-children">
+        <a class="menu-link" href="/football/" title="Football" data-sport-menu="Football">Football</a>
+                    <button class="menu-btn" data-chevron-menu="Football"><span class="menu-btn__ico"></span></button>
+            <ul class="menu-subcat-list page-wrapper">
+                                    <li class="menu-subcat-item">
+                        <a href="/euro/" title="Euro" class="menu-subcat-link">Euro</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/ligue-1/" title="Ligue 1" class="menu-subcat-link">Ligue 1</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/ligue-2/" title="Ligue 2" class="menu-subcat-link">Ligue 2</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/d1-feminine/" title="D1 Féminine" class="menu-subcat-link">D1 Féminine</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/coupe-de-france/" title="Coupe de France" class="menu-subcat-link">Coupe de France</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/coupe-de-la-ligue/" title="Coupe de la Ligue" class="menu-subcat-link">Coupe de la Ligue</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/ligue-des-champions/" title="Ligue des champions" class="menu-subcat-link">Ligue des champions</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/ligue-europa/" title="Ligue Europa" class="menu-subcat-link">Ligue Europa</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/equipe-de-france/" title="Equipe de France de football" class="menu-subcat-link">Equipe de France de football</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/angleterre/" title="Angleterre" class="menu-subcat-link">Angleterre</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/allemagne/" title="Allemagne" class="menu-subcat-link">Allemagne</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/espagne/" title="Espagne" class="menu-subcat-link">Espagne</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/italie/" title="Italie" class="menu-subcat-link">Italie</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/coupe-du-monde-de-football/" title="Coupe du Monde de Football" class="menu-subcat-link">Coupe du Monde de Football</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/coupe-du-monde-de-football-feminin/" title="Coupe du Monde de Football Féminin" class="menu-subcat-link">Coupe du Monde de Football Féminin</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/euro-feminin/" title="Euro Féminin" class="menu-subcat-link">Euro Féminin</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/copa-america/" title="Copa America" class="menu-subcat-link">Copa America</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/can/" title="CAN" class="menu-subcat-link">CAN</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/ligue-des-nations/" title="Ligue des Nations" class="menu-subcat-link">Ligue des Nations</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/football/mercato/" title="Mercato" class="menu-subcat-link">Mercato</a>
+                    </li>
+                            </ul>
+            </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-item has-children">
+        <a class="menu-link" href="/rugby/" title="Rugby" data-sport-menu="Rugby">Rugby</a>
+                    <button class="menu-btn" data-chevron-menu="Rugby"><span class="menu-btn__ico"></span></button>
+            <ul class="menu-subcat-list page-wrapper">
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/coupe-dautomne-des-nations/" title="Coupe d’Automne des Nations" class="menu-subcat-link">Coupe d’Automne des Nations</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/six-nations/" title="Six Nations" class="menu-subcat-link">Six Nations</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/er-challenge-cup/" title="ER Challenge Cup" class="menu-subcat-link">ER Challenge Cup</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/er-champions-cup/" title="ER Champions Cup" class="menu-subcat-link">ER Champions Cup</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/top-14/" title="Top 14" class="menu-subcat-link">Top 14</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/pro-d2/" title="Pro D2" class="menu-subcat-link">Pro D2</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/coupe-du-monde-de-rugby/" title="Coupe du Monde de Rugby" class="menu-subcat-link">Coupe du Monde de Rugby</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/mondial-u20/" title="Mondial U20" class="menu-subcat-link">Mondial U20</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/test-match/" title="Test-matchs" class="menu-subcat-link">Test-matchs</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/rugby/tournoi-quatre-nations/" title="Tournoi des Quatre Nations" class="menu-subcat-link">Tournoi des Quatre Nations</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/francetv-sport/coupe-du-monde-feminine-de-rugby/" title="Coupe du Monde Féminine de Rugby" class="menu-subcat-link">Coupe du Monde Féminine de Rugby</a>
+                    </li>
+                            </ul>
+            </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-item has-children">
+        <a class="menu-link" href="/tennis/" title="Tennis" data-sport-menu="Tennis">Tennis</a>
+                    <button class="menu-btn" data-chevron-menu="Tennis"><span class="menu-btn__ico"></span></button>
+            <ul class="menu-subcat-list page-wrapper">
+                                    <li class="menu-subcat-item">
+                        <a href="/tennis/atp/" title="ATP" class="menu-subcat-link">ATP</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/tennis/wta/" title="WTA" class="menu-subcat-link">WTA</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/tennis/coupe-davis/" title="Coupe Davis" class="menu-subcat-link">Coupe Davis</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/roland-garros/" title="Roland-Garros" class="menu-subcat-link">Roland-Garros</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/tennis/fed-cup/" title="Fed Cup" class="menu-subcat-link">Fed Cup</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/tennis/wimbledon/" title="Wimbledon" class="menu-subcat-link">Wimbledon</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/tennis/us-open/" title="US Open" class="menu-subcat-link">US Open</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/tennis/open-daustralie/" title="Open d&#039;Australie" class="menu-subcat-link">Open d&#039;Australie</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/tennis/masters-1000/" title="Masters 1000" class="menu-subcat-link">Masters 1000</a>
+                    </li>
+                            </ul>
+            </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-item has-children">
+        <a class="menu-link" href="/cyclisme/" title="Cyclisme" data-sport-menu="Cyclisme">Cyclisme</a>
+                    <button class="menu-btn" data-chevron-menu="Cyclisme"><span class="menu-btn__ico"></span></button>
+            <ul class="menu-subcat-list page-wrapper">
+                                    <li class="menu-subcat-item">
+                        <a href="/cyclisme/criterium-du-dauphine/" title="Critérium du Dauphiné" class="menu-subcat-link">Critérium du Dauphiné</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/cyclisme/paris-nice/" title="Paris Nice" class="menu-subcat-link">Paris Nice</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/cyclisme/championnats-deurope-de-cyclisme/" title="Championnats d&#039;Europe de Cyclisme" class="menu-subcat-link">Championnats d&#039;Europe de Cyclisme</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/cyclisme/mondiaux/" title="Mondiaux de cyclisme sur route 2020" class="menu-subcat-link">Mondiaux de cyclisme sur route 2020</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/cyclisme/uci-world-tour/" title="UCI World Tour" class="menu-subcat-link">UCI World Tour</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/tour-de-france/" title="Tour de France" class="menu-subcat-link">Tour de France</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/cyclisme/giro/" title="Giro" class="menu-subcat-link">Giro</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/cyclisme/vuelta/" title="Vuelta" class="menu-subcat-link">Vuelta</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/cyclisme/vtt/" title="VTT" class="menu-subcat-link">VTT</a>
+                    </li>
+                            </ul>
+            </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-item has-children">
+        <a class="menu-link" href="/auto-moto/" title="Auto-Moto" data-sport-menu="Auto-Moto">Auto-Moto</a>
+                    <button class="menu-btn" data-chevron-menu="Auto-Moto"><span class="menu-btn__ico"></span></button>
+            <ul class="menu-subcat-list page-wrapper">
+                                    <li class="menu-subcat-item">
+                        <a href="/auto-moto/24h-du-mans/" title="24h du Mans" class="menu-subcat-link">24h du Mans</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/auto-moto/f1/" title="F1" class="menu-subcat-link">F1</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/auto-moto/moto/" title="Moto" class="menu-subcat-link">Moto</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/dakar/" title="Dakar" class="menu-subcat-link">Dakar</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/auto-moto/endurance/" title="Endurance" class="menu-subcat-link">Endurance</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/auto-moto/rallye/" title="Rallye" class="menu-subcat-link">Rallye</a>
+                    </li>
+                            </ul>
+            </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-item has-children">
+        <a class="menu-link" href="/les-jeux-olympiques/" title="Tokyo 2020" data-sport-menu="Tokyo 2020">Tokyo 2020</a>
+                    <button class="menu-btn" data-chevron-menu="Tokyo 2020"><span class="menu-btn__ico"></span></button>
+            <ul class="menu-subcat-list page-wrapper">
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/athletisme/" title="Athlétisme" class="menu-subcat-link">Athlétisme</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/aviron/" title="Aviron" class="menu-subcat-link">Aviron</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/badminton/" title="Badminton" class="menu-subcat-link">Badminton</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/baseball-softball/" title="Baseball / Softball" class="menu-subcat-link">Baseball / Softball</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/basketball/" title="Basketball" class="menu-subcat-link">Basketball</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/bmx/" title="BMX" class="menu-subcat-link">BMX</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/boxe/" title="Boxe" class="menu-subcat-link">Boxe</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/canoe/" title="Canoë" class="menu-subcat-link">Canoë</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/cyclisme/" title="Cyclisme" class="menu-subcat-link">Cyclisme</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/equitation/" title="Équitation" class="menu-subcat-link">Équitation</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/escalade/" title="Escalade" class="menu-subcat-link">Escalade</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/escrime/" title="Escrime" class="menu-subcat-link">Escrime</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/football/" title="Football" class="menu-subcat-link">Football</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/golf/" title="Golf" class="menu-subcat-link">Golf</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/gymnastique/" title="Gymnastique" class="menu-subcat-link">Gymnastique</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/halterophilie/" title="Haltérophilie" class="menu-subcat-link">Haltérophilie</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/handball/" title="Handball" class="menu-subcat-link">Handball</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/hockey/" title="Hockey" class="menu-subcat-link">Hockey</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/judo/" title="Judo" class="menu-subcat-link">Judo</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/karate/" title="Karaté" class="menu-subcat-link">Karaté</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/lutte/" title="Lutte" class="menu-subcat-link">Lutte</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/natation/" title="Natation" class="menu-subcat-link">Natation</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/paris-2024/" title="Paris 2024" class="menu-subcat-link">Paris 2024</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/pentathlon-moderne/" title="Pentathlon moderne" class="menu-subcat-link">Pentathlon moderne</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/plongeon/" title="Plongeon" class="menu-subcat-link">Plongeon</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/podcast/" title="Podcast Entre-Deux" class="menu-subcat-link">Podcast Entre-Deux</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/rugby-7/" title="Rugby à 7" class="menu-subcat-link">Rugby à 7</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/skateboard/" title="Skateboard" class="menu-subcat-link">Skateboard</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/surf/" title="Surf" class="menu-subcat-link">Surf</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/taekwondo/" title="Taekwondo" class="menu-subcat-link">Taekwondo</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/tennis/" title="Tennis" class="menu-subcat-link">Tennis</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/tennis-de-table/" title="Tennis de table" class="menu-subcat-link">Tennis de table</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/tir/" title="Tir" class="menu-subcat-link">Tir</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/tir-larc/" title="Tir à l&#039;arc" class="menu-subcat-link">Tir à l&#039;arc</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/triathlon/" title="Triathlon" class="menu-subcat-link">Triathlon</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/voile/" title="Voile" class="menu-subcat-link">Voile</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/volleyball/" title="Volleyball" class="menu-subcat-link">Volleyball</a>
+                    </li>
+                                    <li class="menu-subcat-item">
+                        <a href="/les-jeux-olympiques/water-polo/" title="Water-polo" class="menu-subcat-link">Water-polo</a>
+                    </li>
+                            </ul>
+            </li>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="menu-item menu-alpha">
+                            <button class="nav-all-trigger menu-btn" data-sport-menu="Tous les sports de A à Z">Tous les sports de A à Z</button>
+                            <div class="menu-subcat-list">
+                                <ul class="page-wrapper">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <li class="menu-alpha__list-item ">
+        <a href="/part-ca/" title="A part ça" class="menu-alpha__list-link">A part ça</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/athletisme/" title="Athlétisme" class="menu-alpha__list-link">Athlétisme</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/aviron/" title="Aviron" class="menu-alpha__list-link">Aviron</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/badminton/" title="Badminton" class="menu-alpha__list-link">Badminton</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/baseball/" title="Baseball" class="menu-alpha__list-link">Baseball</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/basket/" title="Basket" class="menu-alpha__list-link">Basket</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/ski/biathlon/" title="Biathlon" class="menu-alpha__list-link">Biathlon</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/boxe/" title="Boxe" class="menu-alpha__list-link">Boxe</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/canoe-kayak/" title="Canoë-Kayak" class="menu-alpha__list-link">Canoë-Kayak</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/championnats-du-monde-de-ski-nautique/" title="Championnats du Monde de Ski Nautique" class="menu-alpha__list-link">Championnats du Monde de Ski Nautique</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/equitation/" title="Equitation" class="menu-alpha__list-link">Equitation</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/escrime/" title="Escrime" class="menu-alpha__list-link">Escrime</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/e-sport/" title="esport" class="menu-alpha__list-link">esport</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/football-americain/" title="Football Américain" class="menu-alpha__list-link">Football Américain</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/golf/" title="Golf" class="menu-alpha__list-link">Golf</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/grands-formats/" title="Grands formats" class="menu-alpha__list-link">Grands formats</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/gymnastique/" title="Gymnastique" class="menu-alpha__list-link">Gymnastique</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/halterophilie/" title="Haltérophilie" class="menu-alpha__list-link">Haltérophilie</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/handball/" title="Handball" class="menu-alpha__list-link">Handball</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/handisport/" title="Handisport" class="menu-alpha__list-link">Handisport</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/hockey/" title="Hockey" class="menu-alpha__list-link">Hockey</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/jeux-de-la-francophonie/" title="Jeux de la Francophonie" class="menu-alpha__list-link">Jeux de la Francophonie</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/jeux-olympiques-de-la-jeunesse/" title="Jeux Olympiques de la Jeunesse" class="menu-alpha__list-link">Jeux Olympiques de la Jeunesse</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/judo/" title="Judo" class="menu-alpha__list-link">Judo</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/les-championnats-europeens/" title="Les Championnats Européens" class="menu-alpha__list-link">Les Championnats Européens</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/les-jeux-paralympiques/" title="Les Jeux Paralympiques" class="menu-alpha__list-link">Les Jeux Paralympiques</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/lutte/" title="Lutte" class="menu-alpha__list-link">Lutte</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/natation/" title="Natation" class="menu-alpha__list-link">Natation</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/omnisport/" title="Omnisport" class="menu-alpha__list-link">Omnisport</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/patinage/" title="Patinage" class="menu-alpha__list-link">Patinage</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/pentathlon/" title="Pentathlon" class="menu-alpha__list-link">Pentathlon</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/petanque/" title="Pétanque" class="menu-alpha__list-link">Pétanque</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/riding-zone/" title="Riding Zone" class="menu-alpha__list-link">Riding Zone</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/ski/ski-alpin/" title="Ski Alpin" class="menu-alpha__list-link">Ski Alpin</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/ski-nordique/" title="Ski Nordique" class="menu-alpha__list-link">Ski Nordique</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/sport-feminin/" title="Sport féminin" class="menu-alpha__list-link">Sport féminin</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/squash/" title="Squash" class="menu-alpha__list-link">Squash</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/stade-2/" title="Stade 2" class="menu-alpha__list-link">Stade 2</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/taekwondo/" title="Taekwondo" class="menu-alpha__list-link">Taekwondo</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/temps-additionnel/" title="Temps additionnel" class="menu-alpha__list-link">Temps additionnel</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/tennis-de-table/" title="Tennis de Table" class="menu-alpha__list-link">Tennis de Table</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/tir/" title="Tir" class="menu-alpha__list-link">Tir</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/tir-larc/" title="Tir à l&#039;arc" class="menu-alpha__list-link">Tir à l&#039;arc</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/tout-le-sport/" title="Tout le Sport" class="menu-alpha__list-link">Tout le Sport</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/trail/" title="Trail" class="menu-alpha__list-link">Trail</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/triathlon/" title="Triathlon" class="menu-alpha__list-link">Triathlon</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/voile/" title="Voile" class="menu-alpha__list-link">Voile</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/volley/" title="Volley" class="menu-alpha__list-link">Volley</a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                    <li class="menu-alpha__list-item ">
+        <a href="/waterpolo/" title="Waterpolo" class="menu-alpha__list-link">Waterpolo</a>
+    </li>
+
+                                                                                                            </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-menu nav-menu--ftv">
+                    <ul class="menu-list">
+                                                                                                                                                <li class="menu-item ">
+        <a href="https://www.france.tv/sport/" title="Vidéos" class="menu-link" data-menu-link="Vidéos">Vidéos</a>
+    </li>
+
+                                                                                                                                                <li class="menu-item ">
+        <a href="/grands-formats/" title="Grands Formats" class="menu-link" data-menu-link="Grands Formats">Grands Formats</a>
+    </li>
+
+                                                                                                                                                <li class="menu-item ">
+        <a href="/mobile" title="App mobile" class="menu-link" data-menu-link="App mobile">App mobile</a>
+    </li>
+
+                                                                                                                                                <li class="menu-item ">
+        <a href="/redaction" title="Rédaction" class="menu-link" data-menu-link="Rédaction">Rédaction</a>
+    </li>
+
+                                                                                                                                                <li class="menu-item ">
+        <a href="https://sport.francetvinfo.fr/archives/" title="Archives" class="menu-link" data-menu-link="Archives">Archives</a>
+    </li>
+
+                                                                                                                                                <li class="menu-item ">
+        <a href="https://sport.francetvinfo.fr/plan-du-site.html" title="Plan du site" class="menu-link" data-menu-link="Plan du site">Plan du site</a>
+    </li>
+
+                                                                        <li class="menu-item"><span id="gestion-cookies" class="menu-link">Paramétrer les cookies</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    </div>
+
+          <div class="header-bottom hdr-bttm" style="background:linear-gradient(90deg, #003459 0%, #003459 50%, #fff 50%, #fff 100%);">
+        <div class="hdr-bttm__wrppr">
+          
+          <div class="hdr-bttm__ttl">
+            <a href="/football/ligue-1/" title="Ligue 1" class="hdr-bttm__ttl__lnk" style="background-color: #003459;">Ligue 1</a>
+          </div>
+
+          <div class="hdr-bttm__mn--scnd mn--scnd">
+            <ul class="hdr-bttm__mn--scnd__lst mn--scnd__lst">
+                                                                                    <li class="nav-secondary-item ">
+        <a href="https://www.france.tv/sport/football/toutes-les-videos/" title="Vidéos" class="nav-secondary-link">Vidéos</a>
+    </li>
+
+                                                                                    <li class="nav-secondary-item ">
+        <a href="/football/ligue-1/calendrier-resultats" title="Calendrier Résultats" class="nav-secondary-link">Calendrier Résultats</a>
+    </li>
+
+                                                                                    <li class="nav-secondary-item ">
+        <a href="/football/ligue-1/classements" title="Classement" class="nav-secondary-link">Classement</a>
+    </li>
+
+                          </ul>
+
+            <a class="hdr-bttm__vid__lnk" href="https://www.france.tv/sport/" target="_blank" title="vidéos •tv">
+              vidéos<span class="pict-ftv"> •tv</span>
+            </a>
+          </div>
+        </div>       </div>       </header>
+
+  
+<div id="dfp_top"></div>
+
+<main class="page-main">
+        <a class="promo-app-banner" href="/mobile"></a>
+    
+            
+	<div class="pg__art art page-wrapper page-wrapper-full tpl-article-detail" data-lastNews="https://api-sport-events.webservices.francetelevisions.fr/snp_api/suggestion/news?theme=e2716e90-9c31-4327-8a41-0901ebe67673">
+    
+    <div class="art__main">
+      <article class="art__wrppr article-detail-block">
+                              <div class="art__brdcrmb block-breadcrumb  block-breadcrumb--light">
+    <ul class="breadcrumb-list">
+                                                        <li class="breadcrumb-item breadcrumb-item--light  breadcrumb-item--light">
+                        <a href="/" title="Home" class="breadcrumb-link">Home</a>
+                    </li>
+                                                                                    <li class="breadcrumb-item breadcrumb-item--light  breadcrumb-item--light">
+                        <a href="/football/" title="Football" class="breadcrumb-link">Football</a>
+                    </li>
+                                                                                    <li class="breadcrumb-item breadcrumb-item--light  breadcrumb-item--light">
+                        <a href="/football/ligue-1/" title="Ligue 1" class="breadcrumb-link">Ligue 1</a>
+                    </li>
+                                                                                        </ul>
+</div>
+                  
+                          <h1 class="art__ttl">Ligue 1 : Bousculé, Lyon renverse Saint-Etienne et s&#039;offre le 121e derby</h1>
+        
+        <div class="art__inf">
+                                <div class="art__pub-date">
+              <p class="published-txt">
+                Publié le
+                <time itemprop="datePublished" datetime="2020-11-08">08/11/2020 à 22:56</time>
+                                  , modifié le
+                  <time itemprop="dateModified" datetime="2020-11-08">08/11/2020 à 23:35</time>
+                              </p>
+            </div>
+          
+                                <div class="art__auth">
+                              <span>Auteur&middot;e&nbsp;:</span>
+                                            <a href="/redaction/adrien-hemard" title="Adrien Hemard"><span class="author-name">Adrien Hemard</span></a>
+                          </div>
+          
+                    <div class="art__inf__shr block-share-bis ">
+    <ul class="share-bis-list">
+        <li class="share-bis-item">
+            <a target="_blank" href="https://www.facebook.com/dialog/feed?app_id=156013974533192&amp;display=popup&amp;picture=https%3A%2F%2Fassets.sport.francetvinfo.fr%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Flarge_16_9%2Fpublic%2F2020-11%2F000_8uv48u.jpg%3Fh%3Dd1c21b0e%26itok%3DdMxIj62z&amp;name=Ligue%201%20%3A%20Ligue%201%20%3A%20Bouscul%C3%A9%2C%20Lyon%20renverse%20Saint-Etienne%20et%20s%27offre%20le%20121e%20derby&amp;description=Si%20le%20public%20lyonnais%20ne%20connaissait%20pas%20encore%20Tino%20Kadewere%2C%20il%20n%27oubliera%20plus%20jamais%20son%20nom.%20Et%20pour%20cause%20%3A%20entr%C3%A9%20en%20jeu%20en%20seconde%20p%C3%A9riode%2C%20l%27attaquant%20zimbabw%C3%A9en%20a%20inscrit%20un%20doubl%C3%A9%20qui%20a%20permis%20%C3%A0%20l%27OL%20de%20renverser%20Saint-Etienne%20dans%20le%20121e%20derby%20du%20Rh%C3%B4ne%20%282-1%29.%20Une%20victoire%20pr%C3%A9cieuse%20et%20acquise%20dans%20la%20douleur%20par%20des%20Lyonnais%20qui%20grimpent%20ainsi%20%C3%A0%20la%20cinqui%C3%A8me%20place%20de%20Ligue%201%2C%20juste%20avant%20la%20tr%C3%AAve%20internationale.%20C%C3%B4t%C3%A9%20st%C3%A9phanois%2C%20il%20s%27agit%20d%27une%20sixi%C3%A8me%20d%C3%A9faite%20cons%C3%A9cutive.%20&amp;link=https%3A%2F%2Fsport.francetvinfo.fr%2Ffootball%2Fligue-1%2Fligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby" title="Partage Facebook" class="share-bis-link share-bis-fb"></a>
+        </li>
+        <li class="share-bis-item">
+            <a target="_blank" href="https://twitter.com/share?text=Ligue%201%20%3A%20Ligue%201%20%3A%20Bouscul%C3%A9%2C%20Lyon%20renverse%20Saint-Etienne%20et%20s%27offre%20le%20121e%20derby%0D&amp;url=https%3A%2F%2Fsport.francetvinfo.fr%2Ffootball%2Fligue-1%2Fligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby&via=francetvsport" title="Partage Twitter" class="share-bis-link share-bis-twitter"></a>
+        </li>
+        <li class="share-bis-item">
+            <a href="mailto:?subject=Ligue%201%20%3A%20Ligue%201%20%3A%20Bouscul%C3%A9%2C%20Lyon%20renverse%20Saint-Etienne%20et%20s%27offre%20le%20121e%20derby&amp;body=Ligue%201%20%3A%20Ligue%201%20%3A%20Bouscul%C3%A9%2C%20Lyon%20renverse%20Saint-Etienne%20et%20s%27offre%20le%20121e%20derby%0D%0A%0Ahttps%3A%2F%2Fsport.francetvinfo.fr%2Ffootball%2Fligue-1%2Fligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby%0D%0A%0AToute%20l%27actualit%C3%A9%20sportive%20sur%20www.sport.francetvinfo.fr" title="Email" class="share-bis-link share-bis-mail"></a>
+        </li>
+    </ul>
+</div>
+        </div>
+
+                                      <figure class="art__fgr article-detail-figure">
+                              <img src="https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2020-11/000_8uv48u.jpg?h=d1c21b0e&amp;itok=dMxIj62z"
+                  srcset="https://assets.sport.francetvinfo.fr/sites/default/files/styles/small_16_9/public/2020-11/000_8uv48u.jpg?h=d1c21b0e&amp;itok=-PBYKspg 415w,                          https://assets.sport.francetvinfo.fr/sites/default/files/styles/medium_16_9/public/2020-11/000_8uv48u.jpg?h=d1c21b0e&amp;itok=uBbKshKM 705w,                          https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2020-11/000_8uv48u.jpg?h=d1c21b0e&amp;itok=dMxIj62z 920w"
+                              sizes="(min-width:1025px) 705px, 100vw"
+                alt="Lyon Saint-Etienne"
+                class="article-detail-img">
+                              <figcaption class="art__fgr__lgnd article-detail-legend">
+                  Ça plane pour Lyon. | AFP                </figcaption>
+                          </figure>
+                  
+        <div class="blck__app-promo">
+  <p class="blck__app-promo__ttl">Retrouvez l’offre<br /> france tv sport sur</p>
+  <a href="https://app.adjust.com/mopn101" target="_blank" class="blck__app-promo__btn blck__app-promo__btn--google-play"></a>
+  <a href="https://app.adjust.com/kpw5wzk" target="_blank" class="blck__app-promo__btn blck__app-promo__btn--app-store"></a>
+</div>
+
+                          <div class="art__desc">
+            <p><strong>Si le public lyonnais ne connaissait pas encore Tino Kadewere, il n&#039;oubliera plus jamais son nom. Et pour cause : entré en jeu en seconde période, l&#039;attaquant zimbabwéen a inscrit un doublé qui a permis à l&#039;OL de renverser Saint-Etienne dans le 121e derby du Rhône (2-1). Une victoire précieuse et acquise dans la douleur par des Lyonnais qui grimpent ainsi à la cinquième place de Ligue 1, juste avant la trêve internationale. Côté stéphanois, il s&#039;agit d&#039;une sixième défaite consécutive. </strong></p>
+          </div>
+        
+        <div class="art__txt rte-text">
+                                                    <p><p>D’un côté, Lyon, une équipe invaincue depuis 6 matches. De l’autre, l’AS Saint-Etienne qui restait sur 5 défaites consécutives en championnat. A l’heure du 121<sup>e </sup>derby, la logique s’annonçait donc implacable, et la victoire de l’OL prévisible, voire facile. D’autant que les Verts se présentaient sur la pelouse lyonnaise avec un onze très jeune, face à l’expérience et au talent de l’OL. Mais dans un derby plus que dans tout autre match, la logique est un concept bien relatif. Et au coup de sifflet final, si c’est bien Lyon&nbsp;qui s’est imposé 2 à 1, cela n'a pas été sans souffrir face à de jeunes stéphanois longtemps séduisants, avant d'accuser le coup en seconde période, et qui ont manqué un penalty dans les derniers instants du match.</p>
+
+<h2>Les Verts retrouvent des couleurs</h2>
+
+<p>Une semaine après le match nul courageux décroché à Lille, <strong>Rudi Garcia </strong>avait décidé d’ajuster un peu son onze pour affronter l’ASSE : <strong>Dembélé</strong>, <strong>Caqueret</strong> et <strong>Toko-Ekambi </strong>faisaient ainsi leur retour. En face,<strong> Claude Puel</strong> restait dans sa logique malgré la série noire traversée par ses hommes : aligner une équipe jeune dans le but de reconstruire un projet à long terme. Et le début de match venait confirmer les choix de l’entraîneur stéphanois, puisque ses jeunes troupes, disciplinées et pleines d’envie, bousculaient l’OL. Après une frappe timide de <strong>Depay</strong> (5<sup>e</sup>) et un but refusé pour hors jeu à Dembélé (10<sup>e</sup>), Denis Bouanga poussait <strong>Anthony Lopes </strong>à une parade de gardien de handball (12<sup>e</sup>).</p>
+
+<p>Face à des Verts bien organisés et rapides en contre, Lyon se cassait les dents. Sur un coup franc bien frappé par Depay, Dembélé pensait ouvrir le score de la tête mais l’attaquant français était encore signalé hors jeu (30<sup>e</sup>). Quelques minutes plus tard, c’est le buteur stéphanois, <strong>Charles Abi</strong>, qui marquait un but invalidé à cause d’une poussette sur <strong>Denayer</strong>. Le coup d’envoi d’une fin de première période de folie totale. Profitant d’une erreur stéphanoise, <strong>Houssem Aouar </strong>filait d’abord seul au but mais voyait sa tentative repoussée par un Moulin impérial (39<sup>e</sup>). Sur le contre, Denis Bouanga était d’abord écœuré sur une tête repoussée par Lopes. Mais dans la continuité, l’ancien Lorientais s’amusait de la défense lyonnaise, avant de voir Lopes détourner son centre dans le but, pour le plus grand bonheur des Verts (0-1, 39<sup>e</sup>). Toko-Ekambi puis Aouar y allaient ensuite de leurs tentatives, mais les Lyonnais rentraient aux vestiaires logiquement menés.</p>
+</p>
+                                                                                                                              
+                  
+                  <blockquote class="twitter-tweet" lang="fr"><a href="https://twitter.com/OptaJean/status/1325567184773509123"></a></blockquote>
+                                                                      <p><h2>Denis Bouanga, héros déchu</h2>
+
+<p>Déçus par leur première période insignifiante, à l’image de la prestation de Memphis Depay, les hommes de Rudi Garcia affichaient un autre visage dès la reprise. Mais en face, l’AS Saint-Etienne maintenait aussi son rythme. Pourtant, en dehors de quelques tentatives sur coup de franc de part et d’autres, et une frappe lointaine de Bouanga (60<sup>e</sup>), les occasions franches étaient rares. Comme souvent dans ces cas-là, la lumière est venue d’un coup de pied arrêté. Peu après l’heure de jeu, Memphis Depay initiait ainsi une combinaison sur un coup franc pourtant idéalement placé. Décalé par le Néerlandais, <strong>Maxwell Cornet</strong> redressait vers les six mètres où <strong>Tino Kadewere</strong>, tout juste entré en jeu, reprenait d’une madjer pleine de classe (1-1, 64<sup>e</sup>). Lyon était de retour.</p>
+
+<p>Et l’homme qui avait rêvé dans la semaine "<em>marquer deux buts dans ce derby"</em>&nbsp;allait rendre ce songe prémonitoire. Après un poteau de Toko-Ekambi (70<sup>e</sup>), Tino Kadewere décidait de prendre le destin de ce derby en main, et de lancer définitivement son aventure lyonnaise. Sur le côté gauche, le Zimbabwéen se jouait de <strong>Camara</strong> puis de <strong>Moukoudi</strong> avant de surprendre Jessy Moulin, qui anticipait trop le centre (2-1, 72<sup>e</sup>). Cruel pour les jeunes Verts. Alors les Stéphanois un peu plus mûrs allaient prendre le relais, et sur un centre de <strong>Khazri</strong>, <strong>Hamouma</strong> voyait sa reprise sortie par les pieds de Lopes (76<sup>e</sup>). Dix minutes plus tard, ils obtenaient même un penalty sur une&nbsp;main de <strong>Jean Lucas </strong>dans la surface. Mais Denis Bouanga, si déterminant depuis le coup d'envoi, manquait sa tentative, alors que Lopes était battu (88<sup>e</sup>).&nbsp;Capable de se ressaisir en seconde période, l'OL remporte ce 121e derby dans la douleur et en ayant souffert. Mais qu'importe, puisqu'un derby, ça se gagne, et le reste importe peu.</p>
+</p>
+                                                                                                                              
+                  
+                  <blockquote class="twitter-tweet" lang="fr"><a href="https://twitter.com/OptaJean/status/1325553901593108487"></a></blockquote>
+                                                        </div>
+
+                          <div class="block-author">
+            
+                          <a href="/redaction/adrien-hemard" title="Adrien Hemard"><span class="author-name">Adrien Hemard</span></a>
+            
+                          <a href="https://twitter.com/@AdrienHemard" title="Adrien Hemard" class="author-twitter" target="_blank">@AdrienHemard</a>
+                      </div>
+        
+                <div class="block-share art__cntnt__shr">
+    <span class="share-title">Partager</span>
+    <ul class="share-list">
+        <li class="share-item">
+            <a target="_blank" href="https://www.facebook.com/dialog/feed?app_id=156013974533192&amp;display=popup&amp;picture=https%3A%2F%2Fassets.sport.francetvinfo.fr%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Flarge_16_9%2Fpublic%2F2020-11%2F000_8uv48u.jpg%3Fh%3Dd1c21b0e%26itok%3DdMxIj62z&amp;name=Ligue%201%20%3A%20Ligue%201%20%3A%20Bouscul%C3%A9%2C%20Lyon%20renverse%20Saint-Etienne%20et%20s%27offre%20le%20121e%20derby&amp;description=Si%20le%20public%20lyonnais%20ne%20connaissait%20pas%20encore%20Tino%20Kadewere%2C%20il%20n%27oubliera%20plus%20jamais%20son%20nom.%20Et%20pour%20cause%20%3A%20entr%C3%A9%20en%20jeu%20en%20seconde%20p%C3%A9riode%2C%20l%27attaquant%20zimbabw%C3%A9en%20a%20inscrit%20un%20doubl%C3%A9%20qui%20a%20permis%20%C3%A0%20l%27OL%20de%20renverser%20Saint-Etienne%20dans%20le%20121e%20derby%20du%20Rh%C3%B4ne%20%282-1%29.%20Une%20victoire%20pr%C3%A9cieuse%20et%20acquise%20dans%20la%20douleur%20par%20des%20Lyonnais%20qui%20grimpent%20ainsi%20%C3%A0%20la%20cinqui%C3%A8me%20place%20de%20Ligue%201%2C%20juste%20avant%20la%20tr%C3%AAve%20internationale.%20C%C3%B4t%C3%A9%20st%C3%A9phanois%2C%20il%20s%27agit%20d%27une%20sixi%C3%A8me%20d%C3%A9faite%20cons%C3%A9cutive.%20&amp;link=https%3A%2F%2Fsport.francetvinfo.fr%2Ffootball%2Fligue-1%2Fligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby" title="Partage Facebook" class="share-link share-fb"></a>
+        </li>
+        <li class="share-item">
+            <a target="_blank" href="https://twitter.com/share?text=Ligue%201%20%3A%20Ligue%201%20%3A%20Bouscul%C3%A9%2C%20Lyon%20renverse%20Saint-Etienne%20et%20s%27offre%20le%20121e%20derby%0D&amp;url=https%3A%2F%2Fsport.francetvinfo.fr%2Ffootball%2Fligue-1%2Fligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby&via=francetvsport" title="Partage Twitter" class="share-link share-twitter"></a>
+        </li>
+        <li class="share-item">
+            <a href="mailto:?subject=Ligue%201%20%3A%20Ligue%201%20%3A%20Bouscul%C3%A9%2C%20Lyon%20renverse%20Saint-Etienne%20et%20s%27offre%20le%20121e%20derby&amp;body=Ligue%201%20%3A%20Ligue%201%20%3A%20Bouscul%C3%A9%2C%20Lyon%20renverse%20Saint-Etienne%20et%20s%27offre%20le%20121e%20derby%0D%0A%0Ahttps%3A%2F%2Fsport.francetvinfo.fr%2Ffootball%2Fligue-1%2Fligue-1-bouscule-lyon-renverse-saint-etienne-et-soffre-le-121e-derby%0D%0A%0AToute%20l%27actualit%C3%A9%20sportive%20sur%20www.sport.francetvinfo.fr" title="Email" class="share-link share-mail"></a>
+        </li>
+    </ul>
+</div>
+      </article>
+
+      <div class="vid-blck">
+    <div class="vid-blck__hd">
+        <h1 class="vid-blck__ttl">Tout le sport en vidéo<br /> sur <span class="pict-f-tv">france•tv</span></h1>
+
+        <a class="vid-blck__cta-link cta-ext-link" href="https://www.france.tv/sport/" target="_blank" title="voir le sport sur •tv">
+      <span class="nav__chip vid-blck__chip">
+        voir le sport sur
+        <span class="pict-ftv">•tv</span>
+      </span>
+        </a>
+    </div>
+
+            <ul class="vid-blck__lst">
+                            <li class="vid-blck__lst-itm">
+                    <article class="vid-card">
+                        <a href="https://www.france.tv/france-3/stade-2/2090653-les-adieux-de-patrick-montel-a-france-televisions.html" title="Les adieux de Patrick Montel à France Télévisions" class="vid-card__lnk">
+
+                            <img src="https://www.france.tv/image/vignette_16x9/400/225/0/1/6/3fd6d4d0-31b9f472e78e4d37881f405c70473163b4e2823b6b7cac95131773c6ff5da610.jpg" sizes="100vw" alt="Les adieux de Patrick Montel à France Télévisions" class="vid-card__thmb" />
+
+                            <span class="vid-card__icn"></span>
+
+                            <div class="vid-card__desc">
+                                <h1 class="vid-card__ttl">Les adieux de Patrick Montel à France Télévisions</h1>
+                                <h2 class="vid-card__sub-ttl">Sports</h2>
+                                <div class="vid-card__time">diffusé le dim.  8 nov.. - 7 min</div>
+                            </div>
+                        </a>
+                    </article>
+                </li>
+                            <li class="vid-blck__lst-itm">
+                    <article class="vid-card">
+                        <a href="https://www.france.tv/france-3/stade-2/2090651-grand-format-bikingman-corsica.html" title="Grand Format : BikingMan Corsica" class="vid-card__lnk">
+
+                            <img src="https://www.france.tv/image/vignette_16x9/400/225/0/c/d/2817a8cf-5043f2c9649741d4b859edc93227221624e32a2691bbf587a614345f9be20dc0.jpg" sizes="100vw" alt="Grand Format : BikingMan Corsica" class="vid-card__thmb" />
+
+                            <span class="vid-card__icn"></span>
+
+                            <div class="vid-card__desc">
+                                <h1 class="vid-card__ttl">Grand Format : BikingMan Corsica</h1>
+                                <h2 class="vid-card__sub-ttl">Sports</h2>
+                                <div class="vid-card__time">diffusé le dim.  8 nov.. - 8 min</div>
+                            </div>
+                        </a>
+                    </article>
+                </li>
+                            <li class="vid-blck__lst-itm">
+                    <article class="vid-card">
+                        <a href="https://www.france.tv/france-3/stade-2/2090649-fidji-le-rugby-en-religion.html" title="Fidji : Le rugby en religion" class="vid-card__lnk">
+
+                            <img src="https://www.france.tv/image/vignette_16x9/400/225/5/7/0/c7c9391e-8ac01c6f98084061a933b6099c9ac78e13fdc7cae37320b7ebf90ce65c8ba075.jpg" sizes="100vw" alt="Fidji : Le rugby en religion" class="vid-card__thmb" />
+
+                            <span class="vid-card__icn"></span>
+
+                            <div class="vid-card__desc">
+                                <h1 class="vid-card__ttl">Fidji : Le rugby en religion</h1>
+                                <h2 class="vid-card__sub-ttl">Sports</h2>
+                                <div class="vid-card__time">diffusé le dim.  8 nov.. - 3 min</div>
+                            </div>
+                        </a>
+                    </article>
+                </li>
+                    </ul>
+    </div>
+
+    </div>
+
+    <aside class="art__asid page-aside">
+              <div class="last-news last-news--light"></div>
+
+        <article class="card-live card-live__content">
+
+    
+            <div class="card-live__wrppr">
+            <h3 class="card-live__title">Directs à venir</h3>
+
+            <p class="card-live__subtitle">sur l’app sport ou sur
+                <span class="pict-ftv">•tv</span>
+            </p>
+
+            <ul class="live-list card-live__list">
+                                    <li class="live-item">
+                        <a href="https://www.france.tv/france-3/tout-le-sport" target="_blank">
+                            <div class="live-txt-wrapper card-live__list__item__inner">
+                                <img src="https://www.france.tv/image/carre/265/265/x/j/7/aa5877c7-php4ef7jx.jpg" alt="" class="card-live__list__item__thumb"/>
+                                <div class="card-live__list__item__nfo">
+                                    <h4 class="card-live__list__item__title">Émission du lundi 9 novembre 2020</h4>
+                                    <p class="live-date card-live__list__item__date">
+                                        <time class="live-time">09/11/2020 20h45</time>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                                    <li class="live-item">
+                        <a href="https://www.france.tv/france-2/image-du-jour-rugby" target="_blank">
+                            <div class="live-txt-wrapper card-live__list__item__inner">
+                                <img src="https://www.france.tv/image/carre/265/265/0/2/7/978474a6-8f1975f8a0d44c1f8717e8bdbe0848481f44376492ea7022ed6704e4934a4720.jpg" alt="" class="card-live__list__item__thumb"/>
+                                <div class="card-live__list__item__nfo">
+                                    <h4 class="card-live__list__item__title">Émission du mardi 10 novembre 2020</h4>
+                                    <p class="live-date card-live__list__item__date">
+                                        <time class="live-time">10/11/2020 13h44</time>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                                    <li class="live-item">
+                        <a href="https://www.france.tv/france-3/tout-le-sport" target="_blank">
+                            <div class="live-txt-wrapper card-live__list__item__inner">
+                                <img src="https://www.france.tv/image/carre/265/265/8/9/7/b7abca7c-1f0cba24cd464ed9a464ae8369ca831635d49ba446155c0e9d13ca508127b798.jpg" alt="" class="card-live__list__item__thumb"/>
+                                <div class="card-live__list__item__nfo">
+                                    <h4 class="card-live__list__item__title">Émission du mardi 10 novembre 2020</h4>
+                                    <p class="live-date card-live__list__item__date">
+                                        <time class="live-time">10/11/2020 20h45</time>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                            </ul>
+        </div>
+    
+    <div class="card-cta-wrapper card-live__cta-wrapper">
+        <a class="card-live__cta-link" href="https://www.france.tv/sport/tous-les-directs" target="_blank" title="voir les direct sur •tv">
+      <span class="nav__chip direct__chip">
+          voir les directs sur
+          <span class="pict-ftv">•tv</span>
+      </span>
+        </a>
+    </div>
+</article>
+
+
+        <div class="aside__app-promo">
+  <img src="/snp-assets/images/app-promo/aside-app-promo.png" alt="" class="aside__app-promo__img"/>
+  <a href="https://app.adjust.com/mopn101" target="_blank" class="aside__app-promo__btn aside__app-promo__btn--google-play"></a>
+  <a href="https://app.adjust.com/kpw5wzk" target="_blank" class="aside__app-promo__btn aside__app-promo__btn--app-store"></a>
+</div>
+
+        
+<div class="ad-wrapper">
+    <span class="ad-headline">Publicité</span>
+    <div id="dfp_middle">
+        <div class="adCtnt">
+        </div>
+    </div>
+</div>          </aside>
+
+          
+  <div class="card-recall">
+      <h3 class="recall-title">Ligue 1</h3>
+      <nav class="recall-nav">
+          <ul class="recall-list">
+                                                                                              <li class="recall-item ">
+        <a href="https://www.france.tv/sport/football/toutes-les-videos/" title="Vidéos" class="recall-link">Vidéos</a>
+    </li>
+
+                                                                                              <li class="recall-item ">
+        <a href="/football/ligue-1/calendrier-resultats" title="Calendrier Résultats" class="recall-link">Calendrier Résultats</a>
+    </li>
+
+                                                                                              <li class="recall-item ">
+        <a href="/football/ligue-1/classements" title="Classement" class="recall-link">Classement</a>
+    </li>
+
+                        </ul>
+      </nav>
+  </div>
+      </div>
+
+      
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>      </main>
+
+
+	<script async src="https://www.francetvinfo.fr/skin/1.2.509/www/js/externe/dist/metanav-responsive.min.js"></script>
+<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+																										
+
+
+
+
+
+													
+
+
+<script defer src="https://sport.francetvinfo.fr/snp-assets/scripts/main-e54bf30026.js"></script>
+
+<link rel="dns-prefetch" href="https://sport.francetvinfo.fr">
+
+    
+          
+<div id="dfp_interstitiel"></div>
+
+<script>
+(function (protocol, performance, newrelic) {
+            var scriptUri = '//tags.tiqcdn.com/utag/francetv/ftv-sport/prod/utag.js';
+        if (!performance) {
+        return false;
+    }
+    if (!performance.getEntriesByName(protocol+scriptUri)[0]) {
+        return false;
+    }
+    var scriptLoadDuration = performance.getEntriesByName(protocol+scriptUri)[0].duration;
+    newrelic.addPageAction('script-load-duration', {
+        tealium: scriptLoadDuration
+    });
+})(location.protocol, window.performance, newrelic);
+</script>
+    <script type="didomi/javascript" data-vendor="c:chartbeat-i7QUkrYZ">
+    var _sf_async_config={};
+        _sf_async_config.uid = 27776;
+    _sf_async_config.domain = 'sport.francetvinfo.fr';
+    _sf_async_config.useCanonical = true;
+    _sf_async_config.sections = 'Ligue 1, article, prod';
+          _sf_async_config.authors = 'Adrien Hemard';
+            (function(){
+      function loadChartbeat() {
+        window._sf_endpt=(new Date()).getTime();
+        var e = document.createElement('script');
+        e.setAttribute('language', 'javascript');
+        e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
+        document.body.appendChild(e);
+      }
+      var oldonload = window.onload;
+      window.onload = (typeof window.onload != 'function') ?
+      loadChartbeat : function() { oldonload(); loadChartbeat(); };
+    })();
+  </script>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"05099bba55","applicationID":"236519519","transactionName":"NgdWYhFZXEQFVkANDQ9NdVUXUV1ZS3REFCAUDFBaBgJ0RQVbVwE2F1hQXxFdUUMX","queueTime":0,"applicationTime":58,"atts":"GkBVFFlDT0o=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

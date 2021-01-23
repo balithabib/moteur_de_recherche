@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:og="http://ogp.me/ns#">
+<head>
+	<meta charset="utf-8">
+	<title>Programmation Java pour les enfants, les parents et les grands-parents</title>
+	<link rel="canonical" href="https://java.developpez.com/livres-collaboratifs/javaenfants/">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="generator" content="developpez-com">
+	<meta name="description" content="Programmation Java pour les enfants, les parents et les grands parents">
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Programmation Java pour les enfants, les parents et les grands-parents" />
+	<meta property="og:image" content="https://www.developpez.com/template/images/logo.png" />
+	<meta property="og:url" content="http://java.developpez.com/livres-collaboratifs/javaenfants/" />
+	<meta property="og:locale" content="fr_FR" />
+	<meta property="og:site_name" content="Developpez.com" />
+	<meta property="twitter:card" content="summary" />
+	<meta property="twitter:url" content="http://java.developpez.com/livres-collaboratifs/javaenfants/" />
+	<meta property="twitter:description" content="Programmation Java pour les enfants, les parents et les grands parents" />
+	<meta property="twitter:title" content="Programmation Java pour les enfants, les parents et les grands-parents" />
+	<meta property="twitter:image" content="https://www.developpez.com/template/images/logo.png" />
+	<script type="text/javascript" src="/template/scripts/jquery-1.7.2.js"></script>
+	<script async type="text/javascript" src="https://www.developpez.com/ws/pageview/url/java,livres-collaboratifs,javaenfants,%3Fpage%3Dpremier-programme/"></script>
+<!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+<script type="text/javascript" async=true>
+(function() {
+  var host = window.location.hostname;
+  var element = document.createElement('script');
+  var firstScript = document.getElementsByTagName('script')[0];
+  var url = 'https://quantcast.mgr.consensu.org'
+    .concat('/choice/', 'rZ6Mx73PT_R7Q', '/', host, '/choice.js')
+  var uspTries = 0;
+  var uspTriesLimit = 3;
+  element.async = true;
+  element.type = 'text/javascript';
+  element.src = url;
+
+  firstScript.parentNode.insertBefore(element, firstScript);
+
+  function makeStub() {
+    var TCF_LOCATOR_NAME = '__tcfapiLocator';
+    var queue = [];
+    var win = window;
+    var cmpFrame;
+
+    function addFrame() {
+      var doc = win.document;
+      var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+      if (!otherCMP) {
+        if (doc.body) {
+          var iframe = doc.createElement('iframe');
+
+          iframe.style.cssText = 'display:none';
+          iframe.name = TCF_LOCATOR_NAME;
+          doc.body.appendChild(iframe);
+        } else {
+          setTimeout(addFrame, 5);
+        }
+      }
+      return !otherCMP;
+    }
+
+    function tcfAPIHandler() {
+      var gdprApplies;
+      var args = arguments;
+
+      if (!args.length) {
+        return queue;
+      } else if (args[0] === 'setGdprApplies') {
+        if (
+          args.length > 3 &&
+          args[2] === 2 &&
+          typeof args[3] === 'boolean'
+        ) {
+          gdprApplies = args[3];
+          if (typeof args[2] === 'function') {
+            args[2]('set', true);
+          }
+        }
+      } else if (args[0] === 'ping') {
+        var retr = {
+          gdprApplies: gdprApplies,
+          cmpLoaded: false,
+          cmpStatus: 'stub'
+        };
+
+        if (typeof args[2] === 'function') {
+          args[2](retr);
+        }
+      } else {
+        queue.push(args);
+      }
+    }
+
+    function postMessageEventHandler(event) {
+      var msgIsString = typeof event.data === 'string';
+      var json = {};
+
+      try {
+        if (msgIsString) {
+          json = JSON.parse(event.data);
+        } else {
+          json = event.data;
+        }
+      } catch (ignore) {}
+
+      var payload = json.__tcfapiCall;
+
+      if (payload) {
+        window.__tcfapi(
+          payload.command,
+          payload.version,
+          function(retValue, success) {
+            var returnMsg = {
+              __tcfapiReturn: {
+                returnValue: retValue,
+                success: success,
+                callId: payload.callId
+              }
+            };
+            if (msgIsString) {
+              returnMsg = JSON.stringify(returnMsg);
+            }
+            event.source.postMessage(returnMsg, '*');
+          },
+          payload.parameter
+        );
+      }
+    }
+
+    while (win) {
+      try {
+        if (win.frames[TCF_LOCATOR_NAME]) {
+          cmpFrame = win;
+          break;
+        }
+      } catch (ignore) {}
+
+      if (win === window.top) {
+        break;
+      }
+      win = win.parent;
+    }
+    if (!cmpFrame) {
+      addFrame();
+      win.__tcfapi = tcfAPIHandler;
+      win.addEventListener('message', postMessageEventHandler, false);
+    }
+  };
+
+  makeStub();
+
+  var uspStubFunction = function() {
+    var arg = arguments;
+    if (typeof window.__uspapi !== uspStubFunction) {
+      setTimeout(function() {
+        if (typeof window.__uspapi !== 'undefined') {
+          window.__uspapi.apply(window.__uspapi, arg);
+        }
+      }, 500);
+    }
+  };
+
+  var checkIfUspIsReady = function() {
+    uspTries++;
+    if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+      console.warn('USP is not accessible');
+    } else {
+      clearInterval(uspInterval);
+    }
+  };
+
+  if (typeof window.__uspapi === 'undefined') {
+    window.__uspapi = uspStubFunction;
+    var uspInterval = setInterval(checkIfUspIsReady, 6000);
+  }
+})();
+</script>
+<!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+
+	<script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+	<script>
+		var googletag = googletag || {};
+		googletag.cmd = googletag.cmd || [];
+	</script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="/template/favicon.ico" />
+	<link rel="image_src" href="https://www.developpez.com/facebook-icon.png" />
+	<link rel="stylesheet" type="text/css" href="/template/gabarit.css?1573548434" />
+	<link rel="stylesheet" type="text/css" media="print" href="/template/printer.css" />
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-mobile.css?1573548434" />
+	<script type="text/javascript" src="/template/gabarit-mobile.js?1573548434"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="/template/kit/developpez-kit-generation.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/template/kit/code.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/template/kit/lightbox.2.51.css" />
+	<script type="text/javascript" src="/template/kit/developpez-kit-generation.js"></script>
+	<script type="text/javascript" src="/template/kit/lightbox.2.51.js"></script>
+	<script type="text/javascript" src="/template/kit/fonctions-kit.js"></script>
+	<meta name="author" content="Yakov Fain" />
+	<!--[if lt IE 7]>
+	<script src="/template/ie7/IE7.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie6.css" />
+	<![endif]-->
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie7.css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/template/kit/html5_ie.js"></script>
+	<![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" href="/template/kit/ie9.css" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="/template/kit/ie8.css" /><![endif]-->
+	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="/template/kit/ie.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/template/kit/ie7.css" /><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/template/kit/ie6.css" /><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="/template/kit/html5_ie.js"></script><![endif]-->
+
+</head>
+<body>
+<header>
+
+<div id="gabarit_b1">
+	<div id="gabarit-barreRecherche" style="display:none;"><form action="https://www.google.fr" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8110924381468607:6449306375" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="12" />
+    <input type="submit" name="sa" value="Rechercher" />
+  </div>
+</form></div>
+<div id="gabarit-new-logo" role="gabarit-accueil">
+	<a href="https://www.developpez.com"><img src="/template/images/logo-dvp-h55.png" width="48" height="55" /></a>
+	<a href="https://www.developpez.com"><span class="dvp"></span></a>
+	<span class="triangle"></span>
+</div>
+<div id="gabarit_recherche"><!--<div class="gabarit-btn-menu profil" role="gabarit-profil"></div>-->
+	<div class="gabarit-btn-menu contacts" role="gabarit-contacts"></div><div class="gabarit-btn-menu recherche" role="gabarit-recherche"></div>
+</div>
+
+<div id="gabarit_superieur">
+	<nav>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="https://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="https://general.developpez.com/faq/" title="">FAQ</a></li>
+		<li><a href="https://www.developpez.net/forums/blogs/" title="">Blogs</a></li>
+		<li><a href="https://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="https://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="https://etudes.developpez.com/">Études</a></li>
+		<li><a href="https://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="https://droit.developpez.com/" title="">Droit</a></li>
+		<li><a href="https://club.developpez.com/">Club</a></li>
+	</ul>
+	</nav>
+</div></div>
+
+<nav>
+
+<!-- CONNEXION -->
+<div id="gabarit_mobile_connexion"></div>
+<div id="connexionMobile">
+	<form>
+		<div id="connexionMobile_contenu">
+		
+			<i id="fermerConnexionMobile" class="glyphicon glyphicon-remove"></i>
+			<p class="alert alert-info headerBox"></p>
+			<div class="englobeForm connexion">
+			
+				<p>Vous devez avoir un compte Developpez.com et être connecté pour pouvoir participer aux discussions.</p>
+				
+				<div class="row">
+					<div id="identificationConnexionMobile" class="col-sm-6">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Identifiez-vous</h5>
+								
+								<div id="loginBoxConnexionMobile" class="card-text">
+									<div class="groupbox">
+										<div class="cat_content">
+											<table width="100%">
+												<tr class="formIdentite">
+													<td nowrap="nowrap" class="form_label">Identifiant</td>
+													<td><input type="text" class="form_input form-control" id="formloginConnexionMobile"/></td>
+												</tr>
+												<tr class="formIdentite">
+													<td nowrap="nowrap" class="form_label">Mot de passe</td>
+													<td><input type="password" class="form_input form-control" id="formpassConnexionMobile"/></td>
+												</tr>
+												<tr><td colspan="2"><div id="formmsgConnexionMobile" style="display: none;"/></td></tr>
+												<tr><td colspan="2" align="right" class="form_label"><a href="http://www.developpez.net/forums/login.php?do=lostpw">Mot de passe oublié ?</a></td></tr>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<div id="btnValidationConnexion">
+									<input type="button" value="Je me connecte !" id="formbuttonConnexionMobile" class="btn btn-primary" />
+									<div id="loadingConnexionMobile"><i class="glyphicon glyphicon-repeat gly-spin"></i></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="inscriptionConnexionMobile" class="col-sm-6">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Créer un compte</h5>
+								<p class="card-text">Vous n'avez pas encore de compte Developpez.com ? L'inscription est gratuite et ne vous prendra que quelques instants !</p>
+								<a href="https://www.developpez.net/forums/inscription/" class="btn btn-primary">Je m'inscris !</a>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			<div class="englobeForm actions"></div>
+		</div>
+	</form>
+</div>
+<!-- FIN CONNEXION -->
+
+<div id="gabarit_mobile">
+	<div><a href="https://www.developpez.com"><img src="/template/images/logo-mobile.png" alt="" height="60"></a></div>
+	<div>
+		<p>Developpez.com</p>
+		<p>Java</p>
+	</div>
+
+	<div class="nav nav-pills nav-justified" style="white-space: nowrap; width: calc(100% - 40px);">
+					<a href="https://java.developpez.com" class="nav-item nav-link"> &nbsp;Rubrique Java&nbsp; </a>
+			<a href="https://www.developpez.net/forums/f6/java/" class="nav-item nav-link"> &nbsp;Forum Java&nbsp; </a>
+			
+	</div>
+	
+	<div class="nav nav-pills nav-justified" style="width: calc(100% - 40px); margin: 0 auto 6px;">
+		<a href="https://www.developpez.com/" class="nav-item nav-link"><i class="glyphicon glyphicon-home" style="top:0;"></i>&nbsp; Accueil</a>
+		<a href="https://www.developpez.net/forums/" class="nav-item nav-link"><i class="glyphicon glyphicon-comment" style="top:1px;"></i>&nbsp; Forums</a>
+			
+		<span class="nav-item nav-link" style="white-space:nowrap;" data-toggle="collapse" href="#gabarit_menu_mobile" role="button" aria-expanded="false"><i class="glyphicon glyphicon-th" style="top:0;"></i>&nbsp; Rubriques</span>
+	</div>
+</div>
+<div id="gabarit_mobile_fin"></div>
+
+<div class="collapse multi-collapse" id="gabarit_menu_mobile">
+	<p>Choisissez la catégorie, puis la rubrique :</p>
+	<ul>
+					<li>
+				<a href="https://www.developpez.com" data-idrub="1" data-niv="1">Accueil</a>
+							</li>
+					<li>
+				<a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="1">DI/DSI Solutions d&#039;entreprise</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;DI/DSI Solutions d&#039;entreprise
+							</a>
+						</li>
+													<li>
+								<a href="https://abbyy.developpez.com" data-idrub="147" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ABBYY
+								</a>
+							</li>
+													<li>
+								<a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Big Data
+								</a>
+							</li>
+													<li>
+								<a href="https://bpm.developpez.com" data-idrub="134" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;BPM
+								</a>
+							</li>
+													<li>
+								<a href="https://business-intelligence.developpez.com" data-idrub="61" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Business Intelligence
+								</a>
+							</li>
+													<li>
+								<a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ERP / PGI
+								</a>
+							</li>
+													<li>
+								<a href="https://crm.developpez.com" data-idrub="92" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;CRM
+								</a>
+							</li>
+													<li>
+								<a href="https://sas.developpez.com" data-idrub="93" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SAS
+								</a>
+							</li>
+													<li>
+								<a href="https://sap.developpez.com" data-idrub="106" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SAP
+								</a>
+							</li>
+													<li>
+								<a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft BizTalk Server
+								</a>
+							</li>
+													<li>
+								<a href="https://talend.developpez.com" data-idrub="118" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Talend
+								</a>
+							</li>
+													<li>
+								<a href="https://droit.developpez.com" data-idrub="132" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Droit informatique et entreprise
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="1">Cloud</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Cloud Computing
+							</a>
+						</li>
+													<li>
+								<a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Azure
+								</a>
+							</li>
+													<li>
+								<a href="https://ibmcloud.developpez.com" data-idrub="135" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;IBM Cloud
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="1">IA</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Intelligence artificielle
+							</a>
+						</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://alm.developpez.com" data-idrub="42" data-niv="1">ALM</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://alm.developpez.com" data-idrub="42" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ALM
+							</a>
+						</li>
+													<li>
+								<a href="https://merise.developpez.com" data-idrub="43" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Merise
+								</a>
+							</li>
+													<li>
+								<a href="https://uml.developpez.com" data-idrub="12" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;UML
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://dotnet.developpez.com" data-idrub="20" data-niv="1">Microsoft</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://dotnet.developpez.com" data-idrub="20" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft &amp; .NET
+							</a>
+						</li>
+													<li>
+								<a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Visual Studio
+								</a>
+							</li>
+													<li>
+								<a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ASP.NET
+								</a>
+							</li>
+													<li>
+								<a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;C#
+								</a>
+							</li>
+													<li>
+								<a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;VB.NET
+								</a>
+							</li>
+													<li>
+								<a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Azure
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://java.developpez.com" data-idrub="4" data-niv="1">Java</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://java.developpez.com" data-idrub="4" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Java
+							</a>
+						</li>
+													<li>
+								<a href="https://javaweb.developpez.com" data-idrub="97" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Java Web
+								</a>
+							</li>
+													<li>
+								<a href="https://spring.developpez.com" data-idrub="87" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Spring
+								</a>
+							</li>
+													<li>
+								<a href="https://android.developpez.com" data-idrub="95" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Android
+								</a>
+							</li>
+													<li>
+								<a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Eclipse
+								</a>
+							</li>
+													<li>
+								<a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NetBeans
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://web.developpez.com" data-idrub="8" data-niv="1">Dév. Web</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://web.developpez.com" data-idrub="8" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Développement et hébergement Web
+							</a>
+						</li>
+													<li>
+								<a href="https://ajax.developpez.com" data-idrub="85" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;AJAX
+								</a>
+							</li>
+													<li>
+								<a href="https://apache.developpez.com" data-idrub="71" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Apache
+								</a>
+							</li>
+													<li>
+								<a href="https://asp.developpez.com" data-idrub="10" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ASP
+								</a>
+							</li>
+													<li>
+								<a href="https://css.developpez.com" data-idrub="51" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;CSS
+								</a>
+							</li>
+													<li>
+								<a href="https://dart.developpez.com" data-idrub="125" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Dart
+								</a>
+							</li>
+													<li>
+								<a href="https://flash.developpez.com" data-idrub="41" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Flash / Flex
+								</a>
+							</li>
+													<li>
+								<a href="https://javascript.developpez.com" data-idrub="45" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;JavaScript
+								</a>
+							</li>
+													<li>
+								<a href="https://nodejs.developpez.com" data-idrub="141" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NodeJS
+								</a>
+							</li>
+													<li>
+								<a href="https://php.developpez.com" data-idrub="9" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;PHP
+								</a>
+							</li>
+													<li>
+								<a href="https://ruby.developpez.com" data-idrub="53" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Ruby &amp; Rails
+								</a>
+							</li>
+													<li>
+								<a href="https://typescript.developpez.com" data-idrub="127" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;TypeScript
+								</a>
+							</li>
+													<li>
+								<a href="https://web-semantique.developpez.com" data-idrub="111" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Web sémantique
+								</a>
+							</li>
+													<li>
+								<a href="https://webmarketing.developpez.com" data-idrub="80" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Webmarketing
+								</a>
+							</li>
+													<li>
+								<a href="https://xhtml.developpez.com" data-idrub="50" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;(X)HTML
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://edi.developpez.com" data-idrub="90" data-niv="1">EDI</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://edi.developpez.com" data-idrub="90" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;EDI
+							</a>
+						</li>
+													<li>
+								<a href="https://4d.developpez.com" data-idrub="39" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;4D
+								</a>
+							</li>
+													<li>
+								<a href="https://delphi.developpez.com" data-idrub="2" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Delphi
+								</a>
+							</li>
+													<li>
+								<a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Eclipse
+								</a>
+							</li>
+													<li>
+								<a href="https://jetbrains.developpez.com" data-idrub="144" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;JetBrains
+								</a>
+							</li>
+													<li>
+								<a href="https://labview.developpez.com" data-idrub="72" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;LabVIEW
+								</a>
+							</li>
+													<li>
+								<a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NetBeans
+								</a>
+							</li>
+													<li>
+								<a href="https://matlab.developpez.com" data-idrub="58" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;MATLAB
+								</a>
+							</li>
+													<li>
+								<a href="https://scilab.developpez.com" data-idrub="120" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Scilab
+								</a>
+							</li>
+													<li>
+								<a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Visual Studio
+								</a>
+							</li>
+													<li>
+								<a href="https://wind.developpez.com" data-idrub="74" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;WinDev
+								</a>
+							</li>
+													<li>
+								<a href="https://vb.developpez.com" data-idrub="5" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Visual Basic 6
+								</a>
+							</li>
+													<li>
+								<a href="https://lazarus.developpez.com" data-idrub="96" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Lazarus
+								</a>
+							</li>
+													<li>
+								<a href="https://qt-creator.developpez.com" data-idrub="109" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Qt Creator
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://programmation.developpez.com" data-idrub="119" data-niv="1">Programmation</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://programmation.developpez.com" data-idrub="119" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Programmation
+							</a>
+						</li>
+													<li>
+								<a href="https://algo.developpez.com" data-idrub="47" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Débuter - Algorithmique
+								</a>
+							</li>
+													<li>
+								<a href="https://jeux.developpez.com" data-idrub="38" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;2D - 3D - Jeux
+								</a>
+							</li>
+													<li>
+								<a href="https://asm.developpez.com" data-idrub="16" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Assembleur
+								</a>
+							</li>
+													<li>
+								<a href="https://c.developpez.com" data-idrub="3" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;C
+								</a>
+							</li>
+													<li>
+								<a href="https://cpp.developpez.com" data-idrub="59" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;C++
+								</a>
+							</li>
+													<li>
+								<a href="https://d.developpez.com" data-idrub="123" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;D
+								</a>
+							</li>
+													<li>
+								<a href="https://go.developpez.com" data-idrub="124" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Go
+								</a>
+							</li>
+													<li>
+								<a href="https://kotlin.developpez.com" data-idrub="145" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Kotlin
+								</a>
+							</li>
+													<li>
+								<a href="https://objective-c.developpez.com" data-idrub="117" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Objective C
+								</a>
+							</li>
+													<li>
+								<a href="https://pascal.developpez.com" data-idrub="7" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Pascal
+								</a>
+							</li>
+													<li>
+								<a href="https://perl.developpez.com" data-idrub="29" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Perl
+								</a>
+							</li>
+													<li>
+								<a href="https://python.developpez.com" data-idrub="27" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Python
+								</a>
+							</li>
+													<li>
+								<a href="https://rust.developpez.com" data-idrub="137" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Rust
+								</a>
+							</li>
+													<li>
+								<a href="https://swift.developpez.com" data-idrub="128" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Swift
+								</a>
+							</li>
+													<li>
+								<a href="https://qt.developpez.com" data-idrub="65" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Qt
+								</a>
+							</li>
+													<li>
+								<a href="https://xml.developpez.com" data-idrub="11" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;XML
+								</a>
+							</li>
+													<li>
+								<a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Autres
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://sgbd.developpez.com" data-idrub="13" data-niv="1">SGBD</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://sgbd.developpez.com" data-idrub="13" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SGBD &amp; SQL
+							</a>
+						</li>
+													<li>
+								<a href="https://4d.developpez.com" data-idrub="39" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;4D
+								</a>
+							</li>
+													<li>
+								<a href="https://access.developpez.com" data-idrub="19" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Access
+								</a>
+							</li>
+													<li>
+								<a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Big Data
+								</a>
+							</li>
+													<li>
+								<a href="https://db2.developpez.com" data-idrub="36" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;DB2
+								</a>
+							</li>
+													<li>
+								<a href="https://firebird.developpez.com" data-idrub="73" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Firebird
+								</a>
+							</li>
+													<li>
+								<a href="https://interbase.developpez.com" data-idrub="32" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;InterBase
+								</a>
+							</li>
+													<li>
+								<a href="https://mysql.developpez.com" data-idrub="31" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;MySQL
+								</a>
+							</li>
+													<li>
+								<a href="https://nosql.developpez.com" data-idrub="114" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NoSQL
+								</a>
+							</li>
+													<li>
+								<a href="https://postgresql.developpez.com" data-idrub="33" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;PostgreSQL
+								</a>
+							</li>
+													<li>
+								<a href="https://oracle.developpez.com" data-idrub="25" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Oracle
+								</a>
+							</li>
+													<li>
+								<a href="https://sybase.developpez.com" data-idrub="37" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Sybase
+								</a>
+							</li>
+													<li>
+								<a href="https://sqlserver.developpez.com" data-idrub="34" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SQL-Server
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://office.developpez.com" data-idrub="54" data-niv="1">Office</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://office.developpez.com" data-idrub="54" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Office
+							</a>
+						</li>
+													<li>
+								<a href="https://access.developpez.com" data-idrub="19" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Access
+								</a>
+							</li>
+													<li>
+								<a href="https://excel.developpez.com" data-idrub="75" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Excel
+								</a>
+							</li>
+													<li>
+								<a href="https://word.developpez.com" data-idrub="76" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Word
+								</a>
+							</li>
+													<li>
+								<a href="https://outlook.developpez.com" data-idrub="77" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Outlook
+								</a>
+							</li>
+													<li>
+								<a href="https://powerpoint.developpez.com" data-idrub="78" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;PowerPoint
+								</a>
+							</li>
+													<li>
+								<a href="https://sharepoint.developpez.com" data-idrub="79" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SharePoint
+								</a>
+							</li>
+													<li>
+								<a href="https://project.developpez.com" data-idrub="99" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Project
+								</a>
+							</li>
+													<li>
+								<a href="https://openoffice-libreoffice.developpez.com" data-idrub="116" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;OpenOffice &amp; LibreOffice
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://mobiles.developpez.com" data-idrub="94" data-niv="1">Mobiles</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://mobiles.developpez.com" data-idrub="94" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Mobiles
+							</a>
+						</li>
+													<li>
+								<a href="https://android.developpez.com" data-idrub="95" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Android
+								</a>
+							</li>
+													<li>
+								<a href="https://ios.developpez.com" data-idrub="101" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;iOS
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://systeme.developpez.com" data-idrub="30" data-niv="1">Systèmes</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://systeme.developpez.com" data-idrub="30" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Systèmes
+							</a>
+						</li>
+													<li>
+								<a href="https://windows.developpez.com" data-idrub="17" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Windows
+								</a>
+							</li>
+													<li>
+								<a href="https://linux.developpez.com" data-idrub="18" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Linux
+								</a>
+							</li>
+													<li>
+								<a href="https://arduino.developpez.com" data-idrub="142" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Arduino
+								</a>
+							</li>
+													<li>
+								<a href="https://securite.developpez.com" data-idrub="40" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Sécurité
+								</a>
+							</li>
+													<li>
+								<a href="https://hardware.developpez.com" data-idrub="64" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Hardware
+								</a>
+							</li>
+													<li>
+								<a href="https://hpc.developpez.com" data-idrub="139" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;HPC
+								</a>
+							</li>
+													<li>
+								<a href="https://mac.developpez.com" data-idrub="57" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Mac
+								</a>
+							</li>
+													<li>
+								<a href="https://raspberry-pi.developpez.com" data-idrub="131" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Raspberry Pi
+								</a>
+							</li>
+													<li>
+								<a href="https://reseau.developpez.com" data-idrub="70" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Réseau
+								</a>
+							</li>
+													<li>
+								<a href="https://green-it.developpez.com" data-idrub="104" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Green IT
+								</a>
+							</li>
+													<li>
+								<a href="https://embarque.developpez.com" data-idrub="110" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Systèmes embarqués
+								</a>
+							</li>
+													<li>
+								<a href="https://virtualisation.developpez.com" data-idrub="108" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Virtualisation
+								</a>
+							</li>
+											</ul>
+							</li>
+			</ul>
+</div>
+
+<ul id="gabarit_menu" style="padding-left:56px;">
+	<li><a href="https://www.developpez.com" data-idrub="1" data-niv="1" style="padding:0;"><div id="gabarit_home"></div></a>
+			</li>
+	<li><a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="1">DI/DSI Solutions d&#039;entreprise<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="2">DI/DSI Solutions d&#039;entreprise</a></li>
+				<li><a href="https://abbyy.developpez.com" data-idrub="147" data-niv="2">ABBYY</a></li>
+				<li><a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://bpm.developpez.com" data-idrub="134" data-niv="2">BPM</a></li>
+				<li><a href="https://business-intelligence.developpez.com" data-idrub="61" data-niv="2">Business Intelligence</a></li>
+				<li><a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">ERP / PGI</a></li>
+				<li><a href="https://crm.developpez.com" data-idrub="92" data-niv="2">CRM</a></li>
+				<li><a href="https://sas.developpez.com" data-idrub="93" data-niv="2">SAS</a></li>
+				<li><a href="https://sap.developpez.com" data-idrub="106" data-niv="2">SAP</a></li>
+				<li><a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">Microsoft BizTalk Server</a></li>
+				<li><a href="https://talend.developpez.com" data-idrub="118" data-niv="2">Talend</a></li>
+				<li><a href="https://droit.developpez.com" data-idrub="132" data-niv="2">Droit informatique et entreprise</a></li>
+			</ul></li>
+	<li><a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="1">Cloud<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="2">Cloud Computing</a></li>
+				<li><a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+				<li><a href="https://ibmcloud.developpez.com" data-idrub="135" data-niv="2">IBM Cloud</a></li>
+			</ul></li>
+	<li><a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="1">IA<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="2">Intelligence artificielle</a></li>
+			</ul></li>
+	<li><a href="https://alm.developpez.com" data-idrub="42" data-niv="1">ALM<!--<span class="gabarit_tooltip">Cycle de vie du logiciel</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://alm.developpez.com" data-idrub="42" data-niv="2">ALM</a></li>
+				<li><a href="https://merise.developpez.com" data-idrub="43" data-niv="2">Merise</a></li>
+				<li><a href="https://uml.developpez.com" data-idrub="12" data-niv="2">UML</a></li>
+			</ul></li>
+	<li><a href="https://dotnet.developpez.com" data-idrub="20" data-niv="1">Microsoft<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://dotnet.developpez.com" data-idrub="20" data-niv="2">Microsoft &amp; .NET</a></li>
+				<li><a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">ASP.NET</a></li>
+				<li><a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">C#</a></li>
+				<li><a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">VB.NET</a></li>
+				<li><a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+			</ul></li>
+	<li><a href="https://java.developpez.com" data-idrub="4" data-niv="1" class="gabarit_selection">Java<!--<span class="gabarit_tooltip">Plateforme et langage Java</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://java.developpez.com" data-idrub="4" data-niv="2">Java</a></li>
+				<li><a href="https://javaweb.developpez.com" data-idrub="97" data-niv="2">Java Web</a></li>
+				<li><a href="https://spring.developpez.com" data-idrub="87" data-niv="2">Spring</a></li>
+				<li><a href="https://android.developpez.com" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">NetBeans</a></li>
+			</ul></li>
+	<li><a href="https://web.developpez.com" data-idrub="8" data-niv="1">Dév. Web<!--<span class="gabarit_tooltip">Développement Web et Webmarketing</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://web.developpez.com" data-idrub="8" data-niv="2">Développement et hébergement Web</a></li>
+				<li><a href="https://ajax.developpez.com" data-idrub="85" data-niv="2">AJAX</a></li>
+				<li><a href="https://apache.developpez.com" data-idrub="71" data-niv="2">Apache</a></li>
+				<li><a href="https://asp.developpez.com" data-idrub="10" data-niv="2">ASP</a></li>
+				<li><a href="https://css.developpez.com" data-idrub="51" data-niv="2">CSS</a></li>
+				<li><a href="https://dart.developpez.com" data-idrub="125" data-niv="2">Dart</a></li>
+				<li><a href="https://flash.developpez.com" data-idrub="41" data-niv="2">Flash / Flex</a></li>
+				<li><a href="https://javascript.developpez.com" data-idrub="45" data-niv="2">JavaScript</a></li>
+				<li><a href="https://nodejs.developpez.com" data-idrub="141" data-niv="2">NodeJS</a></li>
+				<li><a href="https://php.developpez.com" data-idrub="9" data-niv="2">PHP</a></li>
+				<li><a href="https://ruby.developpez.com" data-idrub="53" data-niv="2">Ruby &amp; Rails</a></li>
+				<li><a href="https://typescript.developpez.com" data-idrub="127" data-niv="2">TypeScript</a></li>
+				<li><a href="https://web-semantique.developpez.com" data-idrub="111" data-niv="2">Web sémantique</a></li>
+				<li><a href="https://webmarketing.developpez.com" data-idrub="80" data-niv="2">Webmarketing</a></li>
+				<li><a href="https://xhtml.developpez.com" data-idrub="50" data-niv="2">(X)HTML</a></li>
+			</ul></li>
+	<li><a href="https://edi.developpez.com" data-idrub="90" data-niv="1">EDI<!--<span class="gabarit_tooltip">Environnements de Développement Intégré</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://edi.developpez.com" data-idrub="90" data-niv="2">EDI</a></li>
+				<li><a href="https://4d.developpez.com" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://delphi.developpez.com" data-idrub="2" data-niv="2">Delphi</a></li>
+				<li><a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://jetbrains.developpez.com" data-idrub="144" data-niv="2">JetBrains</a></li>
+				<li><a href="https://labview.developpez.com" data-idrub="72" data-niv="2">LabVIEW</a></li>
+				<li><a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">NetBeans</a></li>
+				<li><a href="https://matlab.developpez.com" data-idrub="58" data-niv="2">MATLAB</a></li>
+				<li><a href="https://scilab.developpez.com" data-idrub="120" data-niv="2">Scilab</a></li>
+				<li><a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://wind.developpez.com" data-idrub="74" data-niv="2">WinDev</a></li>
+				<li><a href="https://vb.developpez.com" data-idrub="5" data-niv="2">Visual Basic 6</a></li>
+				<li><a href="https://lazarus.developpez.com" data-idrub="96" data-niv="2">Lazarus</a></li>
+				<li><a href="https://qt-creator.developpez.com" data-idrub="109" data-niv="2">Qt Creator</a></li>
+			</ul></li>
+	<li><a href="https://programmation.developpez.com" data-idrub="119" data-niv="1">Programmation<!--<span class="gabarit_tooltip">Programmation et langages de programmation applicatifs</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://programmation.developpez.com" data-idrub="119" data-niv="2">Programmation</a></li>
+				<li><a href="https://algo.developpez.com" data-idrub="47" data-niv="2">Débuter - Algorithmique</a></li>
+				<li><a href="https://jeux.developpez.com" data-idrub="38" data-niv="2">2D - 3D - Jeux</a></li>
+				<li><a href="https://asm.developpez.com" data-idrub="16" data-niv="2">Assembleur</a></li>
+				<li><a href="https://c.developpez.com" data-idrub="3" data-niv="2">C</a></li>
+				<li><a href="https://cpp.developpez.com" data-idrub="59" data-niv="2">C++</a></li>
+				<li><a href="https://d.developpez.com" data-idrub="123" data-niv="2">D</a></li>
+				<li><a href="https://go.developpez.com" data-idrub="124" data-niv="2">Go</a></li>
+				<li><a href="https://kotlin.developpez.com" data-idrub="145" data-niv="2">Kotlin</a></li>
+				<li><a href="https://objective-c.developpez.com" data-idrub="117" data-niv="2">Objective C</a></li>
+				<li><a href="https://pascal.developpez.com" data-idrub="7" data-niv="2">Pascal</a></li>
+				<li><a href="https://perl.developpez.com" data-idrub="29" data-niv="2">Perl</a></li>
+				<li><a href="https://python.developpez.com" data-idrub="27" data-niv="2">Python</a></li>
+				<li><a href="https://rust.developpez.com" data-idrub="137" data-niv="2">Rust</a></li>
+				<li><a href="https://swift.developpez.com" data-idrub="128" data-niv="2">Swift</a></li>
+				<li><a href="https://qt.developpez.com" data-idrub="65" data-niv="2">Qt</a></li>
+				<li><a href="https://xml.developpez.com" data-idrub="11" data-niv="2">XML</a></li>
+				<li><a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">Autres</a></li>
+			</ul></li>
+	<li><a href="https://sgbd.developpez.com" data-idrub="13" data-niv="1">SGBD<!--<span class="gabarit_tooltip">Systèmes de Gestion de Bases de Données</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://sgbd.developpez.com" data-idrub="13" data-niv="2">SGBD &amp; SQL</a></li>
+				<li><a href="https://4d.developpez.com" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://access.developpez.com" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://db2.developpez.com" data-idrub="36" data-niv="2">DB2</a></li>
+				<li><a href="https://firebird.developpez.com" data-idrub="73" data-niv="2">Firebird</a></li>
+				<li><a href="https://interbase.developpez.com" data-idrub="32" data-niv="2">InterBase</a></li>
+				<li><a href="https://mysql.developpez.com" data-idrub="31" data-niv="2">MySQL</a></li>
+				<li><a href="https://nosql.developpez.com" data-idrub="114" data-niv="2">NoSQL</a></li>
+				<li><a href="https://postgresql.developpez.com" data-idrub="33" data-niv="2">PostgreSQL</a></li>
+				<li><a href="https://oracle.developpez.com" data-idrub="25" data-niv="2">Oracle</a></li>
+				<li><a href="https://sybase.developpez.com" data-idrub="37" data-niv="2">Sybase</a></li>
+				<li><a href="https://sqlserver.developpez.com" data-idrub="34" data-niv="2">SQL-Server</a></li>
+			</ul></li>
+	<li><a href="https://office.developpez.com" data-idrub="54" data-niv="1">Office<!--<span class="gabarit_tooltip">Bureautique pour l'entreprise</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://office.developpez.com" data-idrub="54" data-niv="2">Microsoft Office</a></li>
+				<li><a href="https://access.developpez.com" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://excel.developpez.com" data-idrub="75" data-niv="2">Excel</a></li>
+				<li><a href="https://word.developpez.com" data-idrub="76" data-niv="2">Word</a></li>
+				<li><a href="https://outlook.developpez.com" data-idrub="77" data-niv="2">Outlook</a></li>
+				<li><a href="https://powerpoint.developpez.com" data-idrub="78" data-niv="2">PowerPoint</a></li>
+				<li><a href="https://sharepoint.developpez.com" data-idrub="79" data-niv="2">SharePoint</a></li>
+				<li><a href="https://project.developpez.com" data-idrub="99" data-niv="2">Microsoft Project</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+			</ul></li>
+	<li><a href="https://mobiles.developpez.com" data-idrub="94" data-niv="1">Mobiles<!--<span class="gabarit_tooltip">Logiciels et matériels mobiles</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://mobiles.developpez.com" data-idrub="94" data-niv="2">Mobiles</a></li>
+				<li><a href="https://android.developpez.com" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://ios.developpez.com" data-idrub="101" data-niv="2">iOS</a></li>
+			</ul></li>
+	<li><a href="https://systeme.developpez.com" data-idrub="30" data-niv="1">Systèmes<!--<span class="gabarit_tooltip">Logiciels et matériels systèmes</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://systeme.developpez.com" data-idrub="30" data-niv="2">Systèmes</a></li>
+				<li><a href="https://windows.developpez.com" data-idrub="17" data-niv="2">Windows</a></li>
+				<li><a href="https://linux.developpez.com" data-idrub="18" data-niv="2">Linux</a></li>
+				<li><a href="https://arduino.developpez.com" data-idrub="142" data-niv="2">Arduino</a></li>
+				<li><a href="https://securite.developpez.com" data-idrub="40" data-niv="2">Sécurité</a></li>
+				<li><a href="https://hardware.developpez.com" data-idrub="64" data-niv="2">Hardware</a></li>
+				<li><a href="https://hpc.developpez.com" data-idrub="139" data-niv="2">HPC</a></li>
+				<li><a href="https://mac.developpez.com" data-idrub="57" data-niv="2">Mac</a></li>
+				<li><a href="https://raspberry-pi.developpez.com" data-idrub="131" data-niv="2">Raspberry Pi</a></li>
+				<li><a href="https://reseau.developpez.com" data-idrub="70" data-niv="2">Réseau</a></li>
+				<li><a href="https://green-it.developpez.com" data-idrub="104" data-niv="2">Green IT</a></li>
+				<li><a href="https://embarque.developpez.com" data-idrub="110" data-niv="2">Systèmes embarqués</a></li>
+				<li><a href="https://virtualisation.developpez.com" data-idrub="108" data-niv="2">Virtualisation</a></li>
+			</ul></li>
+</ul>
+
+<ul id="gabarit_barre1"><li class="gabarit_selection"><a href="https://java.developpez.com">Java</a></li><li><a href="https://javaweb.developpez.com">Java Web</a></li><li><a href="https://spring.developpez.com">Spring</a></li><li><a href="https://android.developpez.com">Android</a></li><li><a href="https://eclipse.developpez.com">Eclipse</a></li><li><a href="https://netbeans.developpez.com">NetBeans</a></li></ul>
+
+<div id="gabarit_barre2">
+	<a class="gabarit_social gabarit_facebook" href="http://www.facebook.com/pages/Java/368176262168" target="_blank" title="Retrouver Developpez sur Facebook"></a>
+	<a class="gabarit_social gabarit_twitter" href="http://twitter.com/javaDeveloppez" target="_blank" title="Retrouver Developpez sur Twitter"></a>
+	<a class="gabarit_social gabarit_rss" href="http://java.developpez.com/index/rss" target="_blank" title="Flux RSS"></a>
+	<ul>
+<li><a href="https://www.developpez.net/forums/f6/java/">Forums Java</a></li><li><a href="https://java.developpez.com/faq/">FAQ Java</a></li><li><a href="https://java.developpez.com/cours/">Tutoriels Java</a></li><li><a href="https://java.developpez.com/livres/">Livres Java</a></li><li><a href="https://java.developpez.com/videos/">Vidéos Java</a></li><li><a href="https://java.developpez.com/telecharger/index/categorie/43/Sources-Java">Sources Java</a></li><li><a href="https://java.developpez.com/outils/">Outils, EDI &amp; API Java</a></li><li><a href="http://javasearch.developpez.com">JavaSearch</a></li>	</ul>
+</div>
+
+</nav>
+</header>
+<section>
+
+<div id="gabarit_pubBB">
+<div id="gabarit_pub0"></div><div id="be4vq0s" class="dvpb0" style="display: inline-block; width: 728px; height: 90px"></div>
+</div>
+
+<div class="contenuPage">		<article class="ArticleComplet" itemscope itemtype="http://schema.org/Article">
+<meta itemprop="genre" content="informatique"/>
+<meta itemprop="inLanguage" content="fr-FR"/>
+		
+<header class="EnteteTitres">
+<h1 class="titre-article" itemprop="name">Programmation Java pour les enfants, les parents et les grands-parents</h1>
+
+</header><nav class="nav-sommaire ArticleHorsLigne"><header><h1 class="TitreHeader StopArrondi ToggleGecko">Table des mati&egrave;res<img class="ToggleImgPlier" title="Plier" alt="Plier" src="/template/kit/fleche-haut-bleue.png"/><img class="ToggleImgDeplier" title="Déplier" alt="Déplier" style="display:none;" src="/template/kit/fleche-bas-bleue.png"/></h1></header><ul id="nav_sommaire_ul_principal" class="nav-sommaire-ul">
+  
+  
+  
+  
+  
+  
+  
+	
+	
+  <li><a class="summaryIndent0" href="#LIII">III. Chapitre 1. Ton premier programme Java</a><ul class="nav-sommaire-ul IndentationIII">
+      
+      
+      
+      
+      
+      
+      
+      <li><a class="summaryIndent1" href="#LIII-A">III-A. Comment installer Java sur ton ordinateur</a></li>
+      <li><a class="summaryIndent1" href="#LIII-B">III-B. Les trois étapes principales de la programmation</a></li>
+      <li><a class="summaryIndent1" href="#LIII-C">III-C. Etape 1 - Tape le programme</a></li>
+      <li><a class="summaryIndent1" href="#LIII-D">III-D. Etape 2 - Compile le programme</a></li>
+      <li><a class="summaryIndent1" href="#LIII-E">III-E. Etape 3 - Exécute le programme</a></li>
+      <li><a class="summaryIndent1" href="#LIII-F">III-F. Autres lectures</a></li>
+    </ul></li>
+  
+</ul></nav><section class="ArticleHorsLigne"><section class="articleBody" itemprop="articleBody"><div class="cachee"><div class="barreNavigation"><hr class="hr-separation"/><a class="lientelechargement" href="?page=introduction"><img title="Page précédente" alt="précédent" src="/template/kit/kitprecedent.png"/></a><a class="lientelechargement" href="."><img title="Revenir au sommaire" alt="sommaire" src="/template/kit/kitsommaire.png"/></a><a class="lientelechargement" href="?page=eclipse"><img alt="suivant" title="Page suivante" src="/template/kit/kitsuivant.png"/></a><hr class="hr-separation"/></div></div>
+  
+  
+  
+  
+  
+  
+  
+	
+	
+  
+		<h1 class="TitreSection0" id="LIII">III. Chapitre 1. Ton premier programme Java<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+						Les gens communiquent entre eux à l'aide de différentes langues.
+						De la même façon, on peut écrire des programmes informatiques, tels que des jeux,
+						calculatrices ou éditeurs de texte, à l'aide de différents langages de programmation.
+						Sans programmes, ton ordinateur serait inutile et son écran serait toujours noir.
+						Les éléments de l'ordinateur constituent le  <span class="italique">matériel (hardware)</span><a class="signetNoteBasPage" id="signetNoteBasPage1" href="#noteBasPage1">(1)</a>	
+						et les programmes le <span class="italique">logiciel (software</span>).
+						Les langages informatiques les plus populaires sont Visual Basic, C++ et Java. 
+						Qu'est-ce qui fait de Java un langage différent de beaucoup d'autres ?
+			</p>
+      <p>
+						Premièrement, le même programme Java peut <span class="italique">tourner</span> (fonctionner) sur différents ordinateurs, tels que PC, Apple et autres, sans modification. En fait, les programmes Java ne savent même pas où ils s'exécutent, car ils le font à l'intérieur d'une enveloppe logicielle spéciale appelée Machine Virtuelle Java, ou plus simplement Java. Si, par exemple, ton programme Java a besoin d'imprimer des messages, il demande à Java de le faire et Java sait comment se débrouiller avec ton imprimante.
+			</p>
+      <p>
+					Deuxièmement, Java permet de traduire facilement tes programmes (écrans, menus et messages) en différentes langues.
+			</p>
+      <p>
+						Troisièmement, Java te permet de créer des composants logiciels (classes)
+						<a class="signetNoteBasPage" id="signetNoteBasPage2" href="#noteBasPage2">(2)</a>						
+						qui représentent les objets du monde réel. Par exemple, tu peux créer une classe Java nommée Voiture et lui donner des attributs tels que portes ou roues similaires à ceux d'une vraie voiture. Ensuite, à partir de cette classe, tu peux créer une autre classe, par exemple Ford, qui aura toutes les caractéristiques de la classe Voiture et d'autres que seules les Ford possèdent. 
+			</p>
+      <p>
+					Quatrièmement, Java est plus puissant que beaucoup d'autres langages.
+			</p>
+      <p>
+						Cinquièmement, Java est gratuit ! Tu peux trouver sur Internet tout ce qu'il faut pour créer tes programmes Java sans débourser un euro !
+			</p>
+      
+		<h2 class="TitreSection1" id="LIII-A">III-A. Comment installer Java sur ton ordinateur<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+								Pour pouvoir programmer en Java, tu as besoin de télécharger un logiciel spécial depuis le site web de la société Sun Microsystems, qui a créé ce langage. Le nom complet de ce logiciel est Java 2 Software Development Kit (J2SDK). A l'heure où j'écris ces lignes, la dernière version disponible, 1.5.0, peut être téléchargée depuis ce site : 
+				</p>
+        <p>
+          <a class="lienArticle simple" href="http://java.sun.com/j2se">http://java.sun.com/j2se</a>
+        </p>
+        <p>
+								Sélectionne la version (<span class="italique">release</span>) <span class="mot_souligne">J2SE 1.5.0 </span>ou la plus récente dans la rubrique Downloads,
+								 puis sur la page de téléchargement clique sur le lien <span class="mot_souligne">Download JDK</span>.
+								  Accepte le contrat de licence et sélectionne  <span class="italique">Windows Offline Installation</span> 
+								  (à moins que tu aies un ordinateur Macintosh, Linux ou Solaris). 
+								   Dans l'écran suivant, clique sur le bouton <span class="italique">Enregistrer</span> puis choisis le répertoire de ton 
+								   disque dur où tu souhaites enregistrer le fichier d'installation Java.
+				</p>
+        <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="./images/pic1.JPG" alt="Image non disponible" width="374" height="269"/></figure></div>
+        <p>
+								Une fois le téléchargement terminé, lance l'installation - double-clique simplement sur le fichier que tu as téléchargé pour installer J2SDK sur ton disque. Par exemple, sur une machine Windows, le programme d'installation créera un répertoire comme celui-ci :  c:\Program Files\java\j2sdk1.5.0_03, où c: est le nom de ton disque dur. 
+				</p>
+        <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="./images/pic2.JPG"><img class="ImgCliquable figure-img-caption" src="./images/pic2.JPG" alt="Image non disponible" width="424" height="325"/></a></figure></div>
+        <p>
+								Si tu n'as pas assez de place sur ton disque c:, choisis-en un autre, sinon, contente-toi d'appuyer sur les boutons <span class="italique">Next</span>, <span class="italique">Install</span> et <span class="italique">Finish</span> dans les fenêtres qui s'affichent à l'écran. L'installation de Java sur ton ordinateur ne prendra que quelques minutes.
+				</p>
+        <p>
+							A l'étape suivante de l'installation, tu dois définir deux <span class="italique">variables système</span>.
+			 Dans Windows, par exemple, clique sur le bouton <span class="italique">démarrer</span> et ouvre le  <span class="italique">Panneau de configuration</span>
+			  (il peut être caché derrière le menu <span class="italique">Paramètres</span>), puis double-clique sur l'icône <span class="italique">Système</span>.
+			   Sélectionne l'onglet <span class="italique">Avancé</span> et clique sur le bouton <span class="italique">Variables d'environnement</span>. 
+				</p>
+        <p>
+						Voici à quoi ressemble cet écran sur mon ordinateur Windows XP :
+				</p>
+        <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="./images/pic3.JPG"><img class="ImgCliquable figure-img-caption" src="./images/pic3.JPG" alt="Image non disponible" width="289" height="325"/></a></figure></div>
+        <p>
+						La fenêtre suivante présente toutes les variables système qui existent déjà dans ton système.
+				</p>
+        <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="./images/pic4.JPG"><img class="ImgCliquable figure-img-caption" src="./images/pic4.JPG" alt="Image non disponible" width="290" height="325"/></a></figure></div>
+        <p>
+								Clique sur le bouton <span class="italique">Nouveau</span> en bas de la fenêtre et déclare la variable Path qui permettra à Windows (ou Unix) de trouver J2SDK sur ta machine. Vérifie bien le nom du répertoire où tu as installé Java. Si la variable Path existe déjà, clique sur le bouton <span class="italique">Modifier</span> et ajoute le nom complet du répertoire Java suivi d'un point-virgule au tout début de la boîte <span class="italique">Valeur de la variable</span> :
+				</p>
+        <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="./images/pic5.JPG" alt="Image non disponible" width="360" height="146"/></figure></div>
+        <p>
+								De même, déclare la variable CLASSPATH en entrant comme valeur un point suivi d'un point-virgule. Cette variable système permettra à Java de trouver tes programmes. Le point signifie que Java doit chercher tes programmes à partir du répertoire courant. Le point-virgule n'est qu'un séparateur :
+				</p>
+        <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="./images/pic6.JPG" alt="Image non disponible" width="360" height="146"/></figure></div>
+        <p>
+						L'installation de J2SDK est maintenant terminée !
+				</p>
+        <p>
+						Si tu as un vieil ordinateur Windows 98, tu dois positionner les variables PATH et CLASSPATH d'une autre manière.
+				</p>
+        <p>
+					Trouve le fichier autoexec.bat sur ton disque c: et utilise le Bloc-notes ou un autre éditeur de texte pour entrer les bonnes valeurs de ces variables à la fin du fichier, comme ceci :
+				</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e531">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e531" onclick="selectionCode('contenuCoded0e531', 'IdTitreCode-d0e531');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e531" class="contenuCode">SET CLASSPATH=.;
+SET PATH=c:\j2sdk1.5.0_03\bin;%PATH%</code></pre></div>
+        <p>
+						Après avoir effectué cette modification, il faut redémarrer ton ordinateur. 
+			
+				</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LIII-B">III-B. Les trois étapes principales de la programmation<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+						Pour créer un programme Java qui marche, tu dois passer par les étapes suivantes : 
+				</p>
+        <ul class="ListeDVP">
+          <li>	<span class="italique">Ecrire </span>le programme en Java et l'enregistrer sur un disque.</li>
+          <li>	<span class="italique">Compiler </span>le programme pour le traduire en un <span class="italique">code binaire</span> spécial compréhensible par Java.</li>
+          <li>	<span class="italique">Exécuter </span>le programme.</li>
+        </ul>
+      </div>
+      
+		<h2 class="TitreSection1" id="LIII-C">III-C. Etape 1 - Tape le programme<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+					Tu peux utiliser n'importe quel éditeur de texte pour écrire des programmes Java, par exemple le Bloc-notes.
+				</p>
+        <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="./images/pic7.JPG"><img class="ImgCliquable figure-img-caption" src="./images/pic7.JPG" alt="Image non disponible" width="479" height="325"/></a></figure></div>
+        <p>
+								Tout d'abord, tu dois taper le programme et l'enregistrer dans un fichier texte dont le nom se termine par .<span class="italique">java</span>. Par exemple, si tu veux écrire un programme appelé BonjourMonde, entre son texte (on appelle ça le <span class="italique">code source</span>) dans le Bloc-notes et enregistre-le dans un fichier que tu nommeras BonjourMonde.java. Ne mets pas de blancs dans les noms de fichiers Java.
+				</p>
+        <p>
+						Voici le programme qui affiche les mots "Bonjour Monde" à l'écran :
+				</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e593">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e593" onclick="selectionCode('contenuCoded0e593', 'IdTitreCode-d0e593');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e593" class="contenuCode"><code class="java_keyword1">public</code> <code class="java_keyword3">class</code> BonjourMonde <code class="java_operator">{</code>
+
+  <code class="java_keyword1">public</code> <code class="java_keyword1">static</code> <code class="java_keyword3">void</code> <code class="java_function">main</code><code class="java_operator">(</code>String[] args) <code class="java_operator">{</code>
+    System.out.<code class="java_function">println</code><code class="java_operator">(</code><code class="java_literal1">"Bonjour Monde"</code>);
+  <code class="java_operator">}</code>
+
+<code class="java_operator">}</code></code></pre></div>
+        <p>
+								J'expliquerai comment fonctionne ce programme un peu plus tard dans ce chapitre, mais pour l'instant fais-moi confiance - ce programme affichera les mots "Bonjour Monde" à l'étape 3.
+				</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LIII-D">III-D. Etape 2 - Compile le programme<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+							Maintenant, tu dois compiler le programme. Tu vas utiliser le <span class="italique">compilateur</span> javac, qui est une partie de J2SDK.
+				</p>
+        <p>
+					Disons que tu as enregistré ton programme dans le répertoire c:\exercices. Sélectionne les menus <span class="italique">Démarrer</span>,  <span class="italique">Exécuter</span>, et entre le mot cmd  pour ouvrir une fenêtre de commande.
+				</p>
+        <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="./images/pic8.JPG" alt="Image non disponible" width="295" height="324"/></figure></div>
+        <p>
+								Juste pour vérifier que tu as positionné correctement les variables système PATH et CLASSPATH, entre le mot set et jette un œil à leurs valeurs. 
+				</p>
+        <p>
+					Va dans le répertoire c:\exercices et compile le programme : 
+				</p>
+        <p>
+						cd \exercices
+				</p>
+        <p>
+						javac BonjourMonde.java
+				</p>
+        <p>
+						Tu n'es pas obligé de nommer le répertoire exercices - donne-lui le nom de ton choix.
+				</p>
+        <p class="imgtext-info">
+					Sous Windows 98, sélectionne Invite de commande MS DOS depuis le menu démarrer pour ouvrir une fenêtre DOS.
+				</p>
+        <p>
+								Le programme javac est le <span class="italique">compilateur</span> Java. Aucun message ne va te confirmer que ton programme BonjourMonde a bien été compilé. C'est le cas typique du "Pas de nouvelles, bonnes nouvelles". Tape la commande dir et tu verras la liste de tous les fichiers de ton répertoire. Tu devrais y trouver un nouveau fichier nommé BonjourMonde.class. Ca prouve que ton programme a bien été compilé. Ton fichier d'origine, BonjourMonde.java, est là aussi, et tu pourras le modifier plus tard pour afficher "Bonjour Maman" ou autre chose.
+				</p>
+        <p>
+								S'il y a des erreurs de syntaxe dans ton programme, par exemple si tu as oublié la dernière accolade fermante, le compilateur Java affichera 
+			un message d'erreur. Il te faudra alors corriger l'erreur et recompiler le programme. S'il y a plusieurs erreurs, tu peux avoir besoin de répéter ces actions à plusieurs reprises avant d'obtenir le fichier BonjourMonde.class.
+				</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LIII-E">III-E. Etape 3 - Exécute le programme<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+							Maintenant, exécutons le programme. Dans la même fenêtre de commande, tape la commande suivante : 
+				</p>
+        <p>
+						java BonjourMonde
+				</p>
+        <p>
+								As-tu remarqué que cette fois tu as utilisé le programme java au lieu de javac ? Ce programme est appelé <span class="italique">Environnement d'exécution</span> <span class="italique">Java</span> (<span class="italique">Java Run-time Environment</span> ou <span class="italique">JRE</span>), ou plus simplement Java comme je l'ai fait jusqu'ici.
+				</p>
+        <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="./images/pic9.JPG" alt="Image non disponible" width="429" height="151"/></figure></div>
+        <p>
+								N'oublie jamais que Java fait la différence entre les lettres minuscules et majuscules. Par exemple, si tu as nommé le programme BonjourMonde,  avec un B majuscule et un M majuscule, n'essaie pas de lancer le programme bonjourmonde ou bonjourMonde - Java se plaindrait.
+				</p>
+        <p>
+								Maintenant amusons-nous un  peu - essaie de deviner comment modifier ce programme. Je t'expliquerai comment fonctionne ce programme dans le prochain chapitre, mais tout de même, essaie de deviner comment le modifier pour qu'il dise bonjour à ton animal familier, ton ami ou qu'il affiche ton adresse. Suis les trois étapes pour voir si le programme fonctionne toujours après tes modifications :-).
+				</p>
+        <p>
+								Dans le prochain chapitre, je vais te montrer comment écrire, compiler et exécuter tes programmes dans un environnement plus sympa qu'un éditeur de texte et une fenêtre de commande.
+				</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LIII-F">III-F. Autres lectures<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="TextAlign-center"><table class="tableau" style="border-width:0px;width:80%;">
+          <tr>
+            <td class="colonne" style="text-align:center;">
+              <a data-rel="lightbox[article]" href="./images/pic10.JPG"><img src="./images/pic10.JPG" alt="Image non disponible" width="402" height="325" class="ImgCliquable image_verticale"/></a>
+            </td>
+            <td class="colonne" style="">
+              <p>
+								Pour créer ta première application :
+							</p>
+              <p>
+                <a class="lienArticle simple" href="http://java.sun.com/docs/books/tutorial/getStarted/cupojava/win32.html">http://java.sun.com/ (...) /win32.html</a>
+              </p>
+              <p>
+								Instructions d'installation de Java pour Windows :
+							</p>
+              <p>
+                <a class="lienArticle simple" href="http://java.sun.com/j2se/1.5.0/install-windows.html">http://java.sun.com/j2se/1.5.0/install-windows.html</a>
+              </p>
+            </td>
+          </tr>
+        </table></div>
+      </div>
+    </div>
+  
+<div class="cachee"><div class="barreNavigation"><hr class="hr-separation"/><a class="lientelechargement" href="?page=introduction"><img title="Page précédente" alt="précédent" src="/template/kit/kitprecedent.png"/></a><a class="lientelechargement" href="."><img title="Revenir au sommaire" alt="sommaire" src="/template/kit/kitsommaire.png"/></a><a class="lientelechargement" href="?page=eclipse"><img alt="suivant" title="Page suivante" src="/template/kit/kitsuivant.png"/></a><hr class="hr-separation"/></div></div></section></section>
+  
+  
+  
+  
+  
+  
+  
+	
+	
+  <section class="ArticleHorsLigne"><section class="SectionNoteBasPage articleBody"><div class="UneNoteBasDePage"><div class="NumerotationNoteBasPage"><a class="noteBasPage" id="noteBasPage1" href="#signetNoteBasPage1">(1)</a></div><div class="ContenuUneNoteBasPage">
+							NDT : L'anglais constituant la langue de référence dans le monde de l'informatique en général et de la programmation en particulier, nous avons pris le parti de rappeler, entre parenthèses, l'équivalent anglais des principaux termes techniques lors de leur première apparition dans le texte.
+						</div></div><div class="UneNoteBasDePage"><div class="NumerotationNoteBasPage"><a class="noteBasPage" id="noteBasPage2" href="#signetNoteBasPage2">(2)</a></div><div class="ContenuUneNoteBasPage">
+							  NDT : En français : une <span class="italique">classe</span>, des <span class="italique">classes</span>. En anglais : a <span class="italique">class</span>, <span class="italique">classes</span>.
+						</div></div><hr class="hr-separation clear"/></section></section>
+  
+	<section class="articleBody"><p>Vous avez aimé ce tutoriel ? Alors partagez-le en cliquant sur les boutons suivants : <a title="Viadeo" href="http://www.viadeo.com/shareit/share/?url=http%3A%2F%2Fjava.developpez.com%2Flivres-collaboratifs%2Fjavaenfants%2F&amp;Title=Programmation+Java+pour+les+enfants%2C+les+parents+et+les+grands-parents" rel="nofollow"><img alt="Viadeo" src="https://www.developpez.com/template/kit/kitbm-viadeo.png"/></a>&nbsp;<a title="Twitter" href="http://twitter.com/timeline/home?status=http%3A%2F%2Fjava.developpez.com%2Flivres-collaboratifs%2Fjavaenfants%2F" rel="nofollow"><img alt="Twitter" src="https://www.developpez.com/template/kit/kitbm-twitter.png"/></a>&nbsp;<a title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fjava.developpez.com%2Flivres-collaboratifs%2Fjavaenfants%2F" rel="nofollow"><img alt="Facebook" src="https://www.developpez.com/template/kit/kitbm-facebook.png"/></a>&nbsp;<a title="Google +" href="https://plus.google.com/share?url=http%3A%2F%2Fjava.developpez.com%2Flivres-collaboratifs%2Fjavaenfants%2F" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/></a>&nbsp;<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: fr_FR</script>
+			<script type="IN/Share" data-url="$url"></script>&nbsp;</p></section>
+</article>
+		<div class="clear">&nbsp;&nbsp;</div>
+<p class="licence">Copyright &copy; 2015 Yakov Fain.
+Aucune reproduction, m&ecirc;me partielle, ne peut &ecirc;tre faite
+de ce site ni de l'ensemble de son contenu&nbsp;: textes, documents, images, etc.
+sans l'autorisation expresse de l'auteur. Sinon vous encourez selon la loi jusqu'&agrave;
+trois ans de prison et jusqu'&agrave; 300&nbsp;000&nbsp;&euro; de dommages et int&eacute;r&ecirc;ts.
+</p>
+<script type="text/javascript">
+$(function() {
+	if ($("#gabarit_pubBB").is(":hidden"))
+		$('.contenuPage').css('padding-top', '30px');
+	$("#gabarit_voiraussi").load("https://www.developpez.com/voiraussi/index/rubrique/4/");
+	$("#gabarit_encartemploi").load("https://www.developpez.com/ws/offres?alt=3&utf8=1");
+});
+</script>
+<img src="https://compteur.developpez.com/compter-4" alt="" width="1" height="1" style="position: absolute; left: 1px; top: 1px">
+<script type="text/javascript" src="https://altsysimg.developpez.com/show_i.php?testjs=1"></script><script type="text/javascript" src="https://sysimg.developpez.com/show_i.php?testjs=2"></script><script type="text/javascript">var GOOgle=0;if(!document.getElementById("RLISlqbpEKnU")){GOOgle=1;var c=document.createElement("img");c.src="https://compteur.developpez.com/spe-1";c.style="position: absolute; left: 3px; top: 2px";document.body.appendChild(c);}else{var c=document.createElement("img");c.src="https://compteur.developpez.com/spe-0";c.style="position: absolute; left: 3px; top: 2px";document.body.appendChild(c);}var XGOOgle=0;if(!document.getElementById("iZa4cCaP9NJh")){XGOOgle=1;var c=document.createElement("img");c.src="https://compteur.developpez.com/spea-1";c.style="position: absolute; left: 4px; top: 3px";document.body.appendChild(c);}else{var c=document.createElement("img");c.src="https://compteur.developpez.com/spea-0";c.style="position: absolute; left: 4px; top: 3px";document.body.appendChild(c);}</script><script type="text/javascript">$(function(){$("#be4vq0s").load("/template/be4vq0s"+GOOgle+".jpg");});</script>
+<style type="text/css">@media screen and (max-width: 975px) { #be4vq0s { display:none !important; } }</style>
+</div>
+</section>
+
+<div id="gabarit_voiraussi" style="background: #e1e1e2; display: flex; justify-content: center"></div>
+<div id="gabarit_encartemploi" style="background: #e1e1e2; display: flex; justify-content: center; padding-bottom: 10px"></div>
+
+<footer>
+<div id="gabarit_responsable">
+		Responsables b&eacute;n&eacute;voles de la rubrique Java :
+	<a href="http://www.developpez.net/forums/u69211/keulkeul/" target="_blank">Mickael Baron</a> -
+	<a href="http://www.developpez.net/forums/u313680/robin56/" target="_blank">Robin56</a> -				<script type="text/javascript">
+	<!--
+	Ch=new Array(4);Res=new Array(4);
+	Ch[0]='le_club_des_developeur';Ch[1]='������';
+	Ch[2]='����������';Ch[3]='���������ߡ���';
+	for(y=1;y<4;y++){Res[y]="";for(x=0;x<Ch[y].length;x++)
+	Res[y]+=String.fromCharCode(Ch[y].charCodeAt(x)-Ch[0].charCodeAt(x));}
+	var st = '<a href="'+Res[1]+':java'+Res[2]+'-'+Res[3]+'">Contacter par email<\/a>';	document.write(st);
+	//-->
+	</script>
+
+	</div>
+
+<ul id="gabarit_pied">
+	<li><a href="https://club.developpez.com/contacts/">Nous contacter</a>
+	<li><a href="https://www.developpez.com/participez/">Participez</a>
+	<li><a href="https://www.developpez.com/hebergement/">H&eacute;bergement</a>
+	<li><a href="https://www.developpez.com/legal/">Informations l&eacute;gales</a>
+	<li>Partenaire : <a href="https://www.planethoster.com/fr/" target="_blank" rel="noopener">H�bergement Web</a>
+</ul>
+
+<p id="gabarit_copyright">&copy; 2000-2020 - www.developpez.com</p>
+<p id="gabarit_pied_mobile">Partenaire : <a href="https://www.planethoster.com/fr/" target="_blank" rel="noopener">H�bergement Web</a></p>
+
+</footer>
+<!-- Google Analytics general -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-1']);
+  _gaq.push(['_setDomainName', 'developpez.com']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'java', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'Autre', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+<script type="text/javascript" src="/template/dfp.min.js"></script>
+<script type="text/javascript">
+(function() {
+	var v;
+	if(document.getElementById('qrirybccrmpbz'))
+		v = 1;
+	else
+		v = 2;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/template/cab.php?s=1&v=' + v, true);
+	xhr.send();
+})();
+</script>
+
+
+</body>
+</html>
+		

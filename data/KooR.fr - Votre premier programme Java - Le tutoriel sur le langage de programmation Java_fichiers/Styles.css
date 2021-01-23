@@ -1,0 +1,815 @@
+html, body {
+    background: #333333;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+* {
+    font-family: arial;
+}
+
+.bloc a {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+p, li, .text, .encart, .encart a {
+    font-size: 13pt;
+}
+
+/*******************************************************
+ * Header styles
+ ******************************************************/
+
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 10000;
+}
+
+header div {
+    background: #333333;
+    height: 106px;
+    font-size: 11pt; 
+    transition: height 1s; 
+    overflow: hidden;  
+}
+
+header + div {          /* Pour le div qui suit */
+    height: 146px;
+    transition: height 1s;   
+}
+
+header.smallBar div {
+    height: 50px;
+    transition: height 1s;
+}
+
+header.smallBar + div {
+    height: 90px;
+    transition: height 1s;   
+}
+
+header .logo {
+    display: inline-block;
+    vertical-align: top;
+    float: left;
+    height: 100%;
+}
+
+header #searchBlock {
+    vertical-align: top;
+    float: right;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header input[type='search'] {
+    vertical-align: middle;
+}
+	
+header .searchButton {
+	cursor: pointer;
+	width: 32px;
+    vertical-align: middle;
+    margin-right: 40px;
+    transition: margin-right 1s, width 1s;   
+}
+
+header.smallBar .searchButton {
+	width: 20px;
+    margin-right: 20px;
+    transition: margin-right 1s, width 1s;   
+}
+
+/*******************************************************
+ * Navigation bar styles
+ ******************************************************/
+
+nav {
+	display: block;
+    background: #22cbff;
+    text-align: left;
+    height: 40px;
+}
+
+nav a[target='_self'] {         /* Les éléments du menu */
+    height: 40px;
+	line-height: 40px;
+	margin: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-size: 12pt;
+}
+
+nav a[target='_blank'] {        /* Logo Facebook */
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    float: right;
+}
+
+nav a:hover {
+    background: #0fb5eb;
+    text-decoration: underline;
+}
+
+nav.subMenu {
+	background: #22cbff;
+}
+
+nav.subMenu a {
+	box-sizing: border-box;
+	text-align: center;
+}
+
+nav a.selected {
+    background: #0fb5eb;
+}
+
+#mainPopupMenu {
+    background: #22cbff;
+    position: fixed;
+    width: 60%;
+    padding: 4px;
+    z-index: 2000;
+}
+
+#mainPopupMenu a {
+    color: white;
+    text-align: center;
+    display: block;
+    -padding: 10px;
+    font-size: 12pt;
+    line-height: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid #0fb5eb; 
+}
+
+#mainPopupMenu a:hover {
+    background: #0fb5eb;
+    text-decoration: underline;
+}
+
+/*******************************************************
+ * Left menu pane
+ ******************************************************/
+
+.navigationPane {
+	display: inline-block;
+    position: fixed;
+    box-sizing: border-box;
+	width: 0px;
+	height: calc(100% - 90px); 
+	border-right: #333333 3px solid;
+	background: #e0e0e0;
+	-padding: 10px;
+	overflow: auto;
+    transition: width 1s;
+    z-index: 1000;
+}
+
+.navigationPane .back {
+    background: #333333;
+    padding: 10px; 
+    font-size: 20px;
+    line-height: 32px;	
+}
+
+.navigationPane .back img {
+    width: 28px;
+    margin-right: 30px;
+    vertical-align: middle;
+}
+
+.navigationPane .back a, .navigationPane .back a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+.navigationPane a, .navigationPane a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+.navigationPane a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+/*******************************************************
+ * Navigation button styles
+ ******************************************************/
+
+.pageContent .navigationButton, .pageContent a .navigationButton:visited {
+    display: inline-block;
+    vertical-align: top;
+	
+	height: 40px;
+    margin: 0px 0px 3px 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+    background: #22cbff;
+    color: white;
+
+    line-height: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navigationButton img {
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+/*******************************************************
+ * Social Network bar styles
+ ******************************************************/
+
+
+.sideBar {
+    font-size: 13px;
+    text-align: center;
+	position: fixed;
+    z-index: 10000;
+    top: 265px;
+    right: 0px;
+    width: 40px;
+    transition: left 1s;
+}
+
+.sideBar img {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+
+hr {
+    background: #3c6eb4;
+    height: 2px;
+    border: 0px;
+}
+
+
+/*******************************************************
+ * Comment icon
+ ******************************************************/
+
+#commentBlock {
+    box-sizing: border-box;
+    position: fixed;
+    top: 265px;
+    right: 50px;
+    padding: 0px;
+
+    border-radius: 20px 20px;
+    background: #e64a2b;
+    color: white;
+
+    transition: width 1s, height 1s;
+    overflow: hidden;
+}
+
+#commentBlock h1 {
+    color: white;
+    text-align: left;
+    margin: 0px;
+}
+
+#commentBlock #txtWhere {
+    width: 400px;
+}
+
+#commentBlock #txtWhat {
+    width: 540px;
+    height: 100px;
+}
+
+#commentBlock #send, #commentBlock #cancel {
+    color: #e64a2b;
+    background: white;
+    border: 0px;
+    border-radius: 10px 10px;
+    padding: 5px 30px 5px 30px;
+    margin: 0px 20px 0px 0px;
+    font-size: 20pt;
+    position: relative;
+    top: -10px;
+    cursor: pointer;
+}
+
+.commentBlockOff {
+    width: 0px;
+    height: 0px;
+}
+
+.commentBlockOn {
+    width: 600px;
+    height: 400px;
+}
+
+.thanks {
+    background: #e64a2b;
+    color: white;
+    box-shadow: 10px 10px 5px #404040;
+    
+    position: fixed;
+    top: 40%;
+    left: 20%;
+    width: 60%;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    padding: 50px;
+}
+
+/*******************************************************
+ * Page content style
+ ******************************************************/
+
+.pageContent {
+	-display: flex;
+    min-height: 500px;
+    background: white;
+    transition: margin-left 1s;
+}
+
+
+.pageContent a.koorButton {
+    display: inline-block;
+    margin: 35px;
+    width: 140px;
+    height: 140px;
+    box-shadow: 10px 10px 0px #E0E0E0;
+    vertical-align: top;
+    
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-size: 30pt;    
+}
+
+.pageContent a.koorButton span {
+    display: inline-block;
+    width: 140px;
+    height: 140px;
+    vertical-align: middle;
+    padding-top: 34%;
+}
+
+.pageContent {
+    padding: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background: white;
+}
+
+.pageContent a {
+    color: rgb(47,72,135);
+    text-decoration: none;
+}
+
+.pageContent a[href]:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    color: #004080;
+    font-weight: bold;
+    text-align: center;
+    font-size: 22pt;
+}
+
+h2  { 
+    font-weight: bold; 
+    color: #3c6eb4; 
+    text-align:left; 
+    font-size: 16pt; 
+    margin-top: 40px;
+    border-bottom: 1px solid #3c6eb4;
+}
+
+h3 {
+	font-weight: bold; 
+    font-size: 14pt;
+	color: #404040;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+p {
+    text-align: justify;
+}
+
+.note, .rappel {
+	background: url('Images/info.png') no-repeat left;
+	background-size: 32px 32px;
+	padding: 20px 20px 20px 40px;
+}
+
+.rappel:before {
+    content: "Rappel : ";
+    font-weight: bold;
+}
+
+.note:before {
+    content: "Note : ";
+    font-weight: bold;
+}
+
+.warning {
+    background: url('Images/warning.png') no-repeat left;
+    background-size: 32px 32px;
+    padding: 20px 20px 20px 40px;
+}
+
+.warning:before {
+    content: "ATTENTION : ";
+    font-weight: bold;
+}
+
+.api {
+    background: url('Images/api.png') no-repeat left;
+    background-size: 32px 32px;
+    padding: 20px 20px 20px 40px;
+}
+
+.api:before {
+    content: "API : ";
+    font-weight: bold;
+}
+
+/*******************************************************
+ * Quiz blocks
+ ******************************************************/
+
+.quizBlock {
+    font-size: arial;
+    box-sizing: border-box; display: inline-block;
+    width: 380px; 
+    margin: 10px; margin-bottom: 20px; 
+    cursor: pointer;
+}            
+            
+.quizBlock .quizTitle {
+    z-index: 1; position: absolute; margin-top: 140px; 
+    width: 340px; height: 90px; line-height: 90px; 
+    text-align: center; font-size: 20pt;
+    color: white;
+}
+            
+.quizBlock .quizStart {
+    z-index: 1; position: absolute; margin-top: 220px; margin-left: 40px; 
+    width: 340px; height: 40px; line-height: 40px; 
+    text-align: center; font-size: 20pt;
+    color: white;
+}
+
+.quizBlock select {
+    width: 100%;
+    font-size: 16pt;
+}
+
+/*******************************************************
+ * Footer styles
+ ******************************************************/
+
+footer {
+    background: #333333;
+    padding: 10px;
+    text-align: right;
+    
+    color: white;
+    transition: margin-left 1s; 
+}
+
+footer, footer * {
+    font-size: 16px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/********************************************************
+*** Les bulles d'informations 
+********************************************************/
+
+.Definition {
+    border-bottom: 1px dashed #000080;
+}
+
+.JwtToolTip {
+    width: 280px;
+    border: 1px solid rgb( 10,7,149);
+    background: rgb( 180, 190, 250 );
+    padding: 6px;
+}
+
+.JwtToolTip TD, .JwtToolTip {
+    text-align: left;
+    font-size: 10px;
+}
+
+
+/********************************************************
+*** Les blocs de menu
+********************************************************/
+
+.tocBloc {
+    background: white;      /* Do not remove ! */
+    float: left;
+    padding-right: 30px;
+    padding-bottom: 10px;    
+}
+
+.encart {
+    border: 1px solid #7397AB;
+    background-color: #B8CFDA;
+    padding: 5px; 
+    font-size: 11pt; 
+    text-align: justify;
+}
+
+.encart pre {
+    display: inline;
+}
+
+.encart a {
+    text-decoration: none;
+    font-size: 11pt; 
+}
+
+.encart a:hover {
+    text-decoration: underline;
+}
+
+.encart b {
+    color: #244F67;
+}
+
+/********************************************************
+*** Les différentes sections de code
+********************************************************/
+
+/* caption { color: #006090; font-size: 11pt; } */
+
+pre, pre * {
+    font-family: courier, monospace;
+}
+
+.SectionCode, .SectionCode *, .JwtCodeColorer {
+    font-size: 12pt;
+}
+
+.SectionCode {
+    background-color:#E0E0E0;
+    border: solid 1px #111111;
+    border-collapse: collapse;
+
+    box-sizing: border-box;
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    
+    text-align:left;
+    color:#000000;
+    
+    overflow: auto;
+}
+
+.SectionCode .keyword {
+    color: rgb( 127, 0, 85 );
+    font-weight: bold;
+}
+
+.SectionCode .comment {
+    color: rgb( 0, 128, 0 );
+}
+
+.SectionCode .shebang {
+    color: gray;
+}
+
+.navigationBar {
+    height: 80px;
+}
+
+
+code {
+	background: #F0F0F0; 
+	border-radius: 3px 3px; 
+	padding-left: 2px; 
+	padding-right: 2px; 
+	border: 1px solid #D0D0D0; 
+}
+
+/********************************************************
+*** Data array
+********************************************************/
+
+.screenshot {
+    max-width: 80%;
+}
+
+.screenshotShadow {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    
+    z-index: 20000;
+    
+    background: black;
+    opacity: 0.6;
+}
+
+.screenshotOriginalImage {
+    position: fixed;
+    margin: auto;
+    z-index: 20001;
+    border: 3px solid black;
+    border-radius: 8px 8px;
+    padding: 10px;
+    background: white;
+    box-sizing: border-box;
+}
+
+/********************************************************
+*** Data array
+********************************************************/
+
+.dataArray {
+    border: 1px solid black;
+    margin: auto;
+    box-sizing: border-box;
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.dataArray th,.dataArray td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.dataArray th {
+    background: #19506F;
+    color: white;
+    padding: 4px;
+}
+
+.dataArray td {
+    background: white;
+}
+
+.dataArray .alt td {
+    background: #80C0FF;
+}
+
+.dataArray .indent {
+    padding-left: 260px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////
+/// Light boxes & Internal Frames                                                       ///
+/////////////////////////////////////////////////////////////////////////////////////////*/
+
+.JwtLightBox {
+    background: white;
+}
+
+.JwtInternalFrame {
+    background-color: white;
+    box-shadow: 0px 1px 6px 0px #000000;
+    color: #454545;
+    
+    border-radius: 5px; 
+}
+
+.JwtInternalFrame .JwtInternalFrameBtnClose {
+    float: right; 
+    cursor: pointer;
+    background-image: url('Images/close.png');    
+    height: 18px;
+    width: 18px;
+    margin-top: 5px;
+}
+
+.JwtInternalFrame .JwtInternalFrameBtnClose:HOVER {
+    background-image: url('Images/close_on.png');
+}
+
+.JwtInternalFrame .borderTopLeft,    .JwtInternalFrame .borderTop,    .JwtInternalFrame .borderTopRight,
+.JwtInternalFrame .borderLeft,                                        .JwtInternalFrame .borderRight,
+.JwtInternalFrame .borderBottomLeft, .JwtInternalFrame .borderBottom, .JwtInternalFrame .borderBottomRight {
+    background: none;
+}
+
+.JwtInternalFrame .borderTopLeft {
+    width: 18px;
+}
+
+.JwtInternalFrame .borderTop {
+    vertical-align: middle;
+    text-align: center;
+    height: 32pt;
+    
+    line-height: 32pt;
+    color: #0080FF;
+}
+
+.JwtInternalFrameTitle {
+    font-size: 20pt;
+}
+
+.JwtInternalFrame .JwtInternalFrameCloseWindow {
+    width: 18px; height: 25px;
+    vertical-align: top;
+}
+
+.JwtInternalFrame .JwtInternalFrameCloseWindow img {
+    margin-top: 6px;
+}
+
+.JwtInternalFrame .borderRight {
+    width: 18px;
+}
+
+.cookiesMessage {
+    position: fixed;    
+    display: block;
+    left: 50%;
+    right: 10px;
+    bottom: 10px;
+
+    border: 1px solid black;
+    color: black;
+    background: #ffffee;
+    padding: 1em;
+    box-shadow: 3px 3px 3px gray;
+
+    text-align: justify;
+    font-size: 16pt;
+    cursor: pointer; 
+}
+
+/********************************************************
+*** Responsive Web Design Rules
+********************************************************/
+nav span#mobileMenuItems {
+    display: none;
+}
+
+@media only screen and (max-width: 1020px) {
+
+    header nav .leftMenu {
+        float: left;
+    }
+
+    header nav {
+        text-align: center;
+    }
+
+    nav span#classicMenuItems {
+        display: none;
+    }
+
+    nav span#mobileMenuItems {
+        display: inline;
+    } 
+    
+    .pageContent a.koorButton {
+        margin: 10px;
+    }
+    
+    #comment {
+        display: none;
+    }
+    
+    .sideBar {
+        display: none;
+    }
+}

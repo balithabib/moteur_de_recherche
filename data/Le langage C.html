@@ -1,0 +1,2370 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:og="http://ogp.me/ns#">
+<head>
+	<meta charset="utf-8">
+	<title>Le langage C</title>
+	<link rel="canonical" href="https://c.developpez.com/cours/poly-c/">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="generator" content="developpez-com">
+	<meta name="description" content="Le langage C">
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Le langage C" />
+	<meta property="og:image" content="https://www.developpez.com/template/images/logo.png" />
+	<meta property="og:url" content="http://c.developpez.com/cours/poly-c/" />
+	<meta property="og:locale" content="fr_FR" />
+	<meta property="og:site_name" content="Developpez.com" />
+	<meta property="twitter:card" content="summary" />
+	<meta property="twitter:url" content="http://c.developpez.com/cours/poly-c/" />
+	<meta property="twitter:description" content="Le langage C" />
+	<meta property="twitter:title" content="Le langage C" />
+	<meta property="twitter:image" content="https://www.developpez.com/template/images/logo.png" />
+	<script type="text/javascript" src="/template/scripts/jquery-1.7.2.js"></script>
+	<script async type="text/javascript" src="https://www.developpez.com/ws/pageview/url/c,cours,poly-c,%3Fpage%3Dpage_1/"></script>
+<!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+<script type="text/javascript" async=true>
+(function() {
+  var host = window.location.hostname;
+  var element = document.createElement('script');
+  var firstScript = document.getElementsByTagName('script')[0];
+  var url = 'https://quantcast.mgr.consensu.org'
+    .concat('/choice/', 'rZ6Mx73PT_R7Q', '/', host, '/choice.js')
+  var uspTries = 0;
+  var uspTriesLimit = 3;
+  element.async = true;
+  element.type = 'text/javascript';
+  element.src = url;
+
+  firstScript.parentNode.insertBefore(element, firstScript);
+
+  function makeStub() {
+    var TCF_LOCATOR_NAME = '__tcfapiLocator';
+    var queue = [];
+    var win = window;
+    var cmpFrame;
+
+    function addFrame() {
+      var doc = win.document;
+      var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+      if (!otherCMP) {
+        if (doc.body) {
+          var iframe = doc.createElement('iframe');
+
+          iframe.style.cssText = 'display:none';
+          iframe.name = TCF_LOCATOR_NAME;
+          doc.body.appendChild(iframe);
+        } else {
+          setTimeout(addFrame, 5);
+        }
+      }
+      return !otherCMP;
+    }
+
+    function tcfAPIHandler() {
+      var gdprApplies;
+      var args = arguments;
+
+      if (!args.length) {
+        return queue;
+      } else if (args[0] === 'setGdprApplies') {
+        if (
+          args.length > 3 &&
+          args[2] === 2 &&
+          typeof args[3] === 'boolean'
+        ) {
+          gdprApplies = args[3];
+          if (typeof args[2] === 'function') {
+            args[2]('set', true);
+          }
+        }
+      } else if (args[0] === 'ping') {
+        var retr = {
+          gdprApplies: gdprApplies,
+          cmpLoaded: false,
+          cmpStatus: 'stub'
+        };
+
+        if (typeof args[2] === 'function') {
+          args[2](retr);
+        }
+      } else {
+        queue.push(args);
+      }
+    }
+
+    function postMessageEventHandler(event) {
+      var msgIsString = typeof event.data === 'string';
+      var json = {};
+
+      try {
+        if (msgIsString) {
+          json = JSON.parse(event.data);
+        } else {
+          json = event.data;
+        }
+      } catch (ignore) {}
+
+      var payload = json.__tcfapiCall;
+
+      if (payload) {
+        window.__tcfapi(
+          payload.command,
+          payload.version,
+          function(retValue, success) {
+            var returnMsg = {
+              __tcfapiReturn: {
+                returnValue: retValue,
+                success: success,
+                callId: payload.callId
+              }
+            };
+            if (msgIsString) {
+              returnMsg = JSON.stringify(returnMsg);
+            }
+            event.source.postMessage(returnMsg, '*');
+          },
+          payload.parameter
+        );
+      }
+    }
+
+    while (win) {
+      try {
+        if (win.frames[TCF_LOCATOR_NAME]) {
+          cmpFrame = win;
+          break;
+        }
+      } catch (ignore) {}
+
+      if (win === window.top) {
+        break;
+      }
+      win = win.parent;
+    }
+    if (!cmpFrame) {
+      addFrame();
+      win.__tcfapi = tcfAPIHandler;
+      win.addEventListener('message', postMessageEventHandler, false);
+    }
+  };
+
+  makeStub();
+
+  var uspStubFunction = function() {
+    var arg = arguments;
+    if (typeof window.__uspapi !== uspStubFunction) {
+      setTimeout(function() {
+        if (typeof window.__uspapi !== 'undefined') {
+          window.__uspapi.apply(window.__uspapi, arg);
+        }
+      }, 500);
+    }
+  };
+
+  var checkIfUspIsReady = function() {
+    uspTries++;
+    if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+      console.warn('USP is not accessible');
+    } else {
+      clearInterval(uspInterval);
+    }
+  };
+
+  if (typeof window.__uspapi === 'undefined') {
+    window.__uspapi = uspStubFunction;
+    var uspInterval = setInterval(checkIfUspIsReady, 6000);
+  }
+})();
+</script>
+<!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+
+	<script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+	<script>
+		var googletag = googletag || {};
+		googletag.cmd = googletag.cmd || [];
+	</script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="/template/favicon.ico" />
+	<link rel="image_src" href="https://www.developpez.com/facebook-icon.png" />
+	<link rel="stylesheet" type="text/css" href="/template/gabarit.css?1573548434" />
+	<link rel="stylesheet" type="text/css" media="print" href="/template/printer.css" />
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-mobile.css?1573548434" />
+	<script type="text/javascript" src="/template/gabarit-mobile.js?1573548434"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="/template/kit/developpez-kit-generation.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/template/kit/code.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/template/kit/lightbox.2.51.css" />
+	<script type="text/javascript" src="/template/kit/developpez-kit-generation.js"></script>
+	<script type="text/javascript" src="/template/kit/lightbox.2.51.js"></script>
+	<script type="text/javascript" src="/template/kit/fonctions-kit.js"></script>
+	<meta name="author" content="Henri Garreta" />
+	<!--[if lt IE 7]>
+	<script src="/template/ie7/IE7.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie6.css" />
+	<![endif]-->
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie7.css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/template/kit/html5_ie.js"></script>
+	<![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" href="/template/kit/ie9.css" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="/template/kit/ie8.css" /><![endif]-->
+	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="/template/kit/ie.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/template/kit/ie7.css" /><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/template/kit/ie6.css" /><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="/template/kit/html5_ie.js"></script><![endif]-->
+
+</head>
+<body>
+<header>
+
+<div id="gabarit_b1">
+	<div id="gabarit-barreRecherche" style="display:none;"><form action="https://www.google.fr" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8110924381468607:6449306375" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="12" />
+    <input type="submit" name="sa" value="Rechercher" />
+  </div>
+</form></div>
+<div id="gabarit-new-logo" role="gabarit-accueil">
+	<a href="https://www.developpez.com"><img src="/template/images/logo-dvp-h55.png" width="48" height="55" /></a>
+	<a href="https://www.developpez.com"><span class="dvp"></span></a>
+	<span class="triangle"></span>
+</div>
+<div id="gabarit_recherche"><!--<div class="gabarit-btn-menu profil" role="gabarit-profil"></div>-->
+	<div class="gabarit-btn-menu contacts" role="gabarit-contacts"></div><div class="gabarit-btn-menu recherche" role="gabarit-recherche"></div>
+</div>
+
+<div id="gabarit_superieur">
+	<nav>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="https://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="https://general.developpez.com/faq/" title="">FAQ</a></li>
+		<li><a href="https://www.developpez.net/forums/blogs/" title="">Blogs</a></li>
+		<li><a href="https://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="https://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="https://etudes.developpez.com/">Études</a></li>
+		<li><a href="https://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="https://droit.developpez.com/" title="">Droit</a></li>
+		<li><a href="https://club.developpez.com/">Club</a></li>
+	</ul>
+	</nav>
+</div></div>
+
+<nav>
+
+<!-- CONNEXION -->
+<div id="gabarit_mobile_connexion"></div>
+<div id="connexionMobile">
+	<form>
+		<div id="connexionMobile_contenu">
+		
+			<i id="fermerConnexionMobile" class="glyphicon glyphicon-remove"></i>
+			<p class="alert alert-info headerBox"></p>
+			<div class="englobeForm connexion">
+			
+				<p>Vous devez avoir un compte Developpez.com et être connecté pour pouvoir participer aux discussions.</p>
+				
+				<div class="row">
+					<div id="identificationConnexionMobile" class="col-sm-6">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Identifiez-vous</h5>
+								
+								<div id="loginBoxConnexionMobile" class="card-text">
+									<div class="groupbox">
+										<div class="cat_content">
+											<table width="100%">
+												<tr class="formIdentite">
+													<td nowrap="nowrap" class="form_label">Identifiant</td>
+													<td><input type="text" class="form_input form-control" id="formloginConnexionMobile"/></td>
+												</tr>
+												<tr class="formIdentite">
+													<td nowrap="nowrap" class="form_label">Mot de passe</td>
+													<td><input type="password" class="form_input form-control" id="formpassConnexionMobile"/></td>
+												</tr>
+												<tr><td colspan="2"><div id="formmsgConnexionMobile" style="display: none;"/></td></tr>
+												<tr><td colspan="2" align="right" class="form_label"><a href="http://www.developpez.net/forums/login.php?do=lostpw">Mot de passe oublié ?</a></td></tr>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<div id="btnValidationConnexion">
+									<input type="button" value="Je me connecte !" id="formbuttonConnexionMobile" class="btn btn-primary" />
+									<div id="loadingConnexionMobile"><i class="glyphicon glyphicon-repeat gly-spin"></i></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="inscriptionConnexionMobile" class="col-sm-6">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Créer un compte</h5>
+								<p class="card-text">Vous n'avez pas encore de compte Developpez.com ? L'inscription est gratuite et ne vous prendra que quelques instants !</p>
+								<a href="https://www.developpez.net/forums/inscription/" class="btn btn-primary">Je m'inscris !</a>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			<div class="englobeForm actions"></div>
+		</div>
+	</form>
+</div>
+<!-- FIN CONNEXION -->
+
+<div id="gabarit_mobile">
+	<div><a href="https://www.developpez.com"><img src="/template/images/logo-mobile.png" alt="" height="60"></a></div>
+	<div>
+		<p>Developpez.com</p>
+		<p>C</p>
+	</div>
+
+	<div class="nav nav-pills nav-justified" style="white-space: nowrap; width: calc(100% - 40px);">
+					<a href="https://c.developpez.com" class="nav-item nav-link"> &nbsp;Rubrique C&nbsp; </a>
+			<a href="https://www.developpez.net/forums/f7/c-cpp/" class="nav-item nav-link"> &nbsp;Forum C&nbsp; </a>
+			
+	</div>
+	
+	<div class="nav nav-pills nav-justified" style="width: calc(100% - 40px); margin: 0 auto 6px;">
+		<a href="https://www.developpez.com/" class="nav-item nav-link"><i class="glyphicon glyphicon-home" style="top:0;"></i>&nbsp; Accueil</a>
+		<a href="https://www.developpez.net/forums/" class="nav-item nav-link"><i class="glyphicon glyphicon-comment" style="top:1px;"></i>&nbsp; Forums</a>
+			
+		<span class="nav-item nav-link" style="white-space:nowrap;" data-toggle="collapse" href="#gabarit_menu_mobile" role="button" aria-expanded="false"><i class="glyphicon glyphicon-th" style="top:0;"></i>&nbsp; Rubriques</span>
+	</div>
+</div>
+<div id="gabarit_mobile_fin"></div>
+
+<div class="collapse multi-collapse" id="gabarit_menu_mobile">
+	<p>Choisissez la catégorie, puis la rubrique :</p>
+	<ul>
+					<li>
+				<a href="https://www.developpez.com" data-idrub="1" data-niv="1">Accueil</a>
+							</li>
+					<li>
+				<a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="1">DI/DSI Solutions d&#039;entreprise</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;DI/DSI Solutions d&#039;entreprise
+							</a>
+						</li>
+													<li>
+								<a href="https://abbyy.developpez.com" data-idrub="147" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ABBYY
+								</a>
+							</li>
+													<li>
+								<a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Big Data
+								</a>
+							</li>
+													<li>
+								<a href="https://bpm.developpez.com" data-idrub="134" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;BPM
+								</a>
+							</li>
+													<li>
+								<a href="https://business-intelligence.developpez.com" data-idrub="61" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Business Intelligence
+								</a>
+							</li>
+													<li>
+								<a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ERP / PGI
+								</a>
+							</li>
+													<li>
+								<a href="https://crm.developpez.com" data-idrub="92" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;CRM
+								</a>
+							</li>
+													<li>
+								<a href="https://sas.developpez.com" data-idrub="93" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SAS
+								</a>
+							</li>
+													<li>
+								<a href="https://sap.developpez.com" data-idrub="106" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SAP
+								</a>
+							</li>
+													<li>
+								<a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft BizTalk Server
+								</a>
+							</li>
+													<li>
+								<a href="https://talend.developpez.com" data-idrub="118" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Talend
+								</a>
+							</li>
+													<li>
+								<a href="https://droit.developpez.com" data-idrub="132" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Droit informatique et entreprise
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="1">Cloud</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Cloud Computing
+							</a>
+						</li>
+													<li>
+								<a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Azure
+								</a>
+							</li>
+													<li>
+								<a href="https://ibmcloud.developpez.com" data-idrub="135" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;IBM Cloud
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="1">IA</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Intelligence artificielle
+							</a>
+						</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://alm.developpez.com" data-idrub="42" data-niv="1">ALM</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://alm.developpez.com" data-idrub="42" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ALM
+							</a>
+						</li>
+													<li>
+								<a href="https://merise.developpez.com" data-idrub="43" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Merise
+								</a>
+							</li>
+													<li>
+								<a href="https://uml.developpez.com" data-idrub="12" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;UML
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://dotnet.developpez.com" data-idrub="20" data-niv="1">Microsoft</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://dotnet.developpez.com" data-idrub="20" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft &amp; .NET
+							</a>
+						</li>
+													<li>
+								<a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Visual Studio
+								</a>
+							</li>
+													<li>
+								<a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ASP.NET
+								</a>
+							</li>
+													<li>
+								<a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;C#
+								</a>
+							</li>
+													<li>
+								<a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;VB.NET
+								</a>
+							</li>
+													<li>
+								<a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Azure
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://java.developpez.com" data-idrub="4" data-niv="1">Java</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://java.developpez.com" data-idrub="4" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Java
+							</a>
+						</li>
+													<li>
+								<a href="https://javaweb.developpez.com" data-idrub="97" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Java Web
+								</a>
+							</li>
+													<li>
+								<a href="https://spring.developpez.com" data-idrub="87" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Spring
+								</a>
+							</li>
+													<li>
+								<a href="https://android.developpez.com" data-idrub="95" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Android
+								</a>
+							</li>
+													<li>
+								<a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Eclipse
+								</a>
+							</li>
+													<li>
+								<a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NetBeans
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://web.developpez.com" data-idrub="8" data-niv="1">Dév. Web</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://web.developpez.com" data-idrub="8" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Développement et hébergement Web
+							</a>
+						</li>
+													<li>
+								<a href="https://ajax.developpez.com" data-idrub="85" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;AJAX
+								</a>
+							</li>
+													<li>
+								<a href="https://apache.developpez.com" data-idrub="71" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Apache
+								</a>
+							</li>
+													<li>
+								<a href="https://asp.developpez.com" data-idrub="10" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;ASP
+								</a>
+							</li>
+													<li>
+								<a href="https://css.developpez.com" data-idrub="51" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;CSS
+								</a>
+							</li>
+													<li>
+								<a href="https://dart.developpez.com" data-idrub="125" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Dart
+								</a>
+							</li>
+													<li>
+								<a href="https://flash.developpez.com" data-idrub="41" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Flash / Flex
+								</a>
+							</li>
+													<li>
+								<a href="https://javascript.developpez.com" data-idrub="45" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;JavaScript
+								</a>
+							</li>
+													<li>
+								<a href="https://nodejs.developpez.com" data-idrub="141" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NodeJS
+								</a>
+							</li>
+													<li>
+								<a href="https://php.developpez.com" data-idrub="9" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;PHP
+								</a>
+							</li>
+													<li>
+								<a href="https://ruby.developpez.com" data-idrub="53" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Ruby &amp; Rails
+								</a>
+							</li>
+													<li>
+								<a href="https://typescript.developpez.com" data-idrub="127" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;TypeScript
+								</a>
+							</li>
+													<li>
+								<a href="https://web-semantique.developpez.com" data-idrub="111" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Web sémantique
+								</a>
+							</li>
+													<li>
+								<a href="https://webmarketing.developpez.com" data-idrub="80" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Webmarketing
+								</a>
+							</li>
+													<li>
+								<a href="https://xhtml.developpez.com" data-idrub="50" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;(X)HTML
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://edi.developpez.com" data-idrub="90" data-niv="1">EDI</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://edi.developpez.com" data-idrub="90" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;EDI
+							</a>
+						</li>
+													<li>
+								<a href="https://4d.developpez.com" data-idrub="39" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;4D
+								</a>
+							</li>
+													<li>
+								<a href="https://delphi.developpez.com" data-idrub="2" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Delphi
+								</a>
+							</li>
+													<li>
+								<a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Eclipse
+								</a>
+							</li>
+													<li>
+								<a href="https://jetbrains.developpez.com" data-idrub="144" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;JetBrains
+								</a>
+							</li>
+													<li>
+								<a href="https://labview.developpez.com" data-idrub="72" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;LabVIEW
+								</a>
+							</li>
+													<li>
+								<a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NetBeans
+								</a>
+							</li>
+													<li>
+								<a href="https://matlab.developpez.com" data-idrub="58" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;MATLAB
+								</a>
+							</li>
+													<li>
+								<a href="https://scilab.developpez.com" data-idrub="120" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Scilab
+								</a>
+							</li>
+													<li>
+								<a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Visual Studio
+								</a>
+							</li>
+													<li>
+								<a href="https://wind.developpez.com" data-idrub="74" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;WinDev
+								</a>
+							</li>
+													<li>
+								<a href="https://vb.developpez.com" data-idrub="5" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Visual Basic 6
+								</a>
+							</li>
+													<li>
+								<a href="https://lazarus.developpez.com" data-idrub="96" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Lazarus
+								</a>
+							</li>
+													<li>
+								<a href="https://qt-creator.developpez.com" data-idrub="109" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Qt Creator
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://programmation.developpez.com" data-idrub="119" data-niv="1">Programmation</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://programmation.developpez.com" data-idrub="119" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Programmation
+							</a>
+						</li>
+													<li>
+								<a href="https://algo.developpez.com" data-idrub="47" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Débuter - Algorithmique
+								</a>
+							</li>
+													<li>
+								<a href="https://jeux.developpez.com" data-idrub="38" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;2D - 3D - Jeux
+								</a>
+							</li>
+													<li>
+								<a href="https://asm.developpez.com" data-idrub="16" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Assembleur
+								</a>
+							</li>
+													<li>
+								<a href="https://c.developpez.com" data-idrub="3" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;C
+								</a>
+							</li>
+													<li>
+								<a href="https://cpp.developpez.com" data-idrub="59" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;C++
+								</a>
+							</li>
+													<li>
+								<a href="https://d.developpez.com" data-idrub="123" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;D
+								</a>
+							</li>
+													<li>
+								<a href="https://go.developpez.com" data-idrub="124" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Go
+								</a>
+							</li>
+													<li>
+								<a href="https://kotlin.developpez.com" data-idrub="145" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Kotlin
+								</a>
+							</li>
+													<li>
+								<a href="https://objective-c.developpez.com" data-idrub="117" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Objective C
+								</a>
+							</li>
+													<li>
+								<a href="https://pascal.developpez.com" data-idrub="7" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Pascal
+								</a>
+							</li>
+													<li>
+								<a href="https://perl.developpez.com" data-idrub="29" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Perl
+								</a>
+							</li>
+													<li>
+								<a href="https://python.developpez.com" data-idrub="27" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Python
+								</a>
+							</li>
+													<li>
+								<a href="https://rust.developpez.com" data-idrub="137" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Rust
+								</a>
+							</li>
+													<li>
+								<a href="https://swift.developpez.com" data-idrub="128" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Swift
+								</a>
+							</li>
+													<li>
+								<a href="https://qt.developpez.com" data-idrub="65" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Qt
+								</a>
+							</li>
+													<li>
+								<a href="https://xml.developpez.com" data-idrub="11" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;XML
+								</a>
+							</li>
+													<li>
+								<a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Autres
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://sgbd.developpez.com" data-idrub="13" data-niv="1">SGBD</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://sgbd.developpez.com" data-idrub="13" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SGBD &amp; SQL
+							</a>
+						</li>
+													<li>
+								<a href="https://4d.developpez.com" data-idrub="39" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;4D
+								</a>
+							</li>
+													<li>
+								<a href="https://access.developpez.com" data-idrub="19" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Access
+								</a>
+							</li>
+													<li>
+								<a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Big Data
+								</a>
+							</li>
+													<li>
+								<a href="https://db2.developpez.com" data-idrub="36" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;DB2
+								</a>
+							</li>
+													<li>
+								<a href="https://firebird.developpez.com" data-idrub="73" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Firebird
+								</a>
+							</li>
+													<li>
+								<a href="https://interbase.developpez.com" data-idrub="32" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;InterBase
+								</a>
+							</li>
+													<li>
+								<a href="https://mysql.developpez.com" data-idrub="31" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;MySQL
+								</a>
+							</li>
+													<li>
+								<a href="https://nosql.developpez.com" data-idrub="114" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;NoSQL
+								</a>
+							</li>
+													<li>
+								<a href="https://postgresql.developpez.com" data-idrub="33" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;PostgreSQL
+								</a>
+							</li>
+													<li>
+								<a href="https://oracle.developpez.com" data-idrub="25" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Oracle
+								</a>
+							</li>
+													<li>
+								<a href="https://sybase.developpez.com" data-idrub="37" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Sybase
+								</a>
+							</li>
+													<li>
+								<a href="https://sqlserver.developpez.com" data-idrub="34" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SQL-Server
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://office.developpez.com" data-idrub="54" data-niv="1">Office</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://office.developpez.com" data-idrub="54" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Office
+							</a>
+						</li>
+													<li>
+								<a href="https://access.developpez.com" data-idrub="19" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Access
+								</a>
+							</li>
+													<li>
+								<a href="https://excel.developpez.com" data-idrub="75" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Excel
+								</a>
+							</li>
+													<li>
+								<a href="https://word.developpez.com" data-idrub="76" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Word
+								</a>
+							</li>
+													<li>
+								<a href="https://outlook.developpez.com" data-idrub="77" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Outlook
+								</a>
+							</li>
+													<li>
+								<a href="https://powerpoint.developpez.com" data-idrub="78" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;PowerPoint
+								</a>
+							</li>
+													<li>
+								<a href="https://sharepoint.developpez.com" data-idrub="79" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;SharePoint
+								</a>
+							</li>
+													<li>
+								<a href="https://project.developpez.com" data-idrub="99" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Microsoft Project
+								</a>
+							</li>
+													<li>
+								<a href="https://openoffice-libreoffice.developpez.com" data-idrub="116" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;OpenOffice &amp; LibreOffice
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://mobiles.developpez.com" data-idrub="94" data-niv="1">Mobiles</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://mobiles.developpez.com" data-idrub="94" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Mobiles
+							</a>
+						</li>
+													<li>
+								<a href="https://android.developpez.com" data-idrub="95" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Android
+								</a>
+							</li>
+													<li>
+								<a href="https://ios.developpez.com" data-idrub="101" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;iOS
+								</a>
+							</li>
+											</ul>
+							</li>
+					<li>
+				<a href="https://systeme.developpez.com" data-idrub="30" data-niv="1">Systèmes</a>
+									<ul class="gabarit_sousmenu">
+						<li>
+							<a href="https://systeme.developpez.com" data-idrub="30" data-niv="2">
+								<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Systèmes
+							</a>
+						</li>
+													<li>
+								<a href="https://windows.developpez.com" data-idrub="17" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Windows
+								</a>
+							</li>
+													<li>
+								<a href="https://linux.developpez.com" data-idrub="18" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Linux
+								</a>
+							</li>
+													<li>
+								<a href="https://arduino.developpez.com" data-idrub="142" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Arduino
+								</a>
+							</li>
+													<li>
+								<a href="https://securite.developpez.com" data-idrub="40" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Sécurité
+								</a>
+							</li>
+													<li>
+								<a href="https://hardware.developpez.com" data-idrub="64" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Hardware
+								</a>
+							</li>
+													<li>
+								<a href="https://hpc.developpez.com" data-idrub="139" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;HPC
+								</a>
+							</li>
+													<li>
+								<a href="https://mac.developpez.com" data-idrub="57" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Mac
+								</a>
+							</li>
+													<li>
+								<a href="https://raspberry-pi.developpez.com" data-idrub="131" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Raspberry Pi
+								</a>
+							</li>
+													<li>
+								<a href="https://reseau.developpez.com" data-idrub="70" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Réseau
+								</a>
+							</li>
+													<li>
+								<a href="https://green-it.developpez.com" data-idrub="104" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Green IT
+								</a>
+							</li>
+													<li>
+								<a href="https://embarque.developpez.com" data-idrub="110" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Systèmes embarqués
+								</a>
+							</li>
+													<li>
+								<a href="https://virtualisation.developpez.com" data-idrub="108" data-niv="2">
+									<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Virtualisation
+								</a>
+							</li>
+											</ul>
+							</li>
+			</ul>
+</div>
+
+<ul id="gabarit_menu" style="padding-left:56px;">
+	<li><a href="https://www.developpez.com" data-idrub="1" data-niv="1" style="padding:0;"><div id="gabarit_home"></div></a>
+			</li>
+	<li><a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="1">DI/DSI Solutions d&#039;entreprise<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="2">DI/DSI Solutions d&#039;entreprise</a></li>
+				<li><a href="https://abbyy.developpez.com" data-idrub="147" data-niv="2">ABBYY</a></li>
+				<li><a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://bpm.developpez.com" data-idrub="134" data-niv="2">BPM</a></li>
+				<li><a href="https://business-intelligence.developpez.com" data-idrub="61" data-niv="2">Business Intelligence</a></li>
+				<li><a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">ERP / PGI</a></li>
+				<li><a href="https://crm.developpez.com" data-idrub="92" data-niv="2">CRM</a></li>
+				<li><a href="https://sas.developpez.com" data-idrub="93" data-niv="2">SAS</a></li>
+				<li><a href="https://sap.developpez.com" data-idrub="106" data-niv="2">SAP</a></li>
+				<li><a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">Microsoft BizTalk Server</a></li>
+				<li><a href="https://talend.developpez.com" data-idrub="118" data-niv="2">Talend</a></li>
+				<li><a href="https://droit.developpez.com" data-idrub="132" data-niv="2">Droit informatique et entreprise</a></li>
+			</ul></li>
+	<li><a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="1">Cloud<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="2">Cloud Computing</a></li>
+				<li><a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+				<li><a href="https://ibmcloud.developpez.com" data-idrub="135" data-niv="2">IBM Cloud</a></li>
+			</ul></li>
+	<li><a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="1">IA<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="2">Intelligence artificielle</a></li>
+			</ul></li>
+	<li><a href="https://alm.developpez.com" data-idrub="42" data-niv="1">ALM<!--<span class="gabarit_tooltip">Cycle de vie du logiciel</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://alm.developpez.com" data-idrub="42" data-niv="2">ALM</a></li>
+				<li><a href="https://merise.developpez.com" data-idrub="43" data-niv="2">Merise</a></li>
+				<li><a href="https://uml.developpez.com" data-idrub="12" data-niv="2">UML</a></li>
+			</ul></li>
+	<li><a href="https://dotnet.developpez.com" data-idrub="20" data-niv="1">Microsoft<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://dotnet.developpez.com" data-idrub="20" data-niv="2">Microsoft &amp; .NET</a></li>
+				<li><a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">ASP.NET</a></li>
+				<li><a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">C#</a></li>
+				<li><a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">VB.NET</a></li>
+				<li><a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+			</ul></li>
+	<li><a href="https://java.developpez.com" data-idrub="4" data-niv="1">Java<!--<span class="gabarit_tooltip">Plateforme et langage Java</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://java.developpez.com" data-idrub="4" data-niv="2">Java</a></li>
+				<li><a href="https://javaweb.developpez.com" data-idrub="97" data-niv="2">Java Web</a></li>
+				<li><a href="https://spring.developpez.com" data-idrub="87" data-niv="2">Spring</a></li>
+				<li><a href="https://android.developpez.com" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">NetBeans</a></li>
+			</ul></li>
+	<li><a href="https://web.developpez.com" data-idrub="8" data-niv="1">Dév. Web<!--<span class="gabarit_tooltip">Développement Web et Webmarketing</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://web.developpez.com" data-idrub="8" data-niv="2">Développement et hébergement Web</a></li>
+				<li><a href="https://ajax.developpez.com" data-idrub="85" data-niv="2">AJAX</a></li>
+				<li><a href="https://apache.developpez.com" data-idrub="71" data-niv="2">Apache</a></li>
+				<li><a href="https://asp.developpez.com" data-idrub="10" data-niv="2">ASP</a></li>
+				<li><a href="https://css.developpez.com" data-idrub="51" data-niv="2">CSS</a></li>
+				<li><a href="https://dart.developpez.com" data-idrub="125" data-niv="2">Dart</a></li>
+				<li><a href="https://flash.developpez.com" data-idrub="41" data-niv="2">Flash / Flex</a></li>
+				<li><a href="https://javascript.developpez.com" data-idrub="45" data-niv="2">JavaScript</a></li>
+				<li><a href="https://nodejs.developpez.com" data-idrub="141" data-niv="2">NodeJS</a></li>
+				<li><a href="https://php.developpez.com" data-idrub="9" data-niv="2">PHP</a></li>
+				<li><a href="https://ruby.developpez.com" data-idrub="53" data-niv="2">Ruby &amp; Rails</a></li>
+				<li><a href="https://typescript.developpez.com" data-idrub="127" data-niv="2">TypeScript</a></li>
+				<li><a href="https://web-semantique.developpez.com" data-idrub="111" data-niv="2">Web sémantique</a></li>
+				<li><a href="https://webmarketing.developpez.com" data-idrub="80" data-niv="2">Webmarketing</a></li>
+				<li><a href="https://xhtml.developpez.com" data-idrub="50" data-niv="2">(X)HTML</a></li>
+			</ul></li>
+	<li><a href="https://edi.developpez.com" data-idrub="90" data-niv="1">EDI<!--<span class="gabarit_tooltip">Environnements de Développement Intégré</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://edi.developpez.com" data-idrub="90" data-niv="2">EDI</a></li>
+				<li><a href="https://4d.developpez.com" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://delphi.developpez.com" data-idrub="2" data-niv="2">Delphi</a></li>
+				<li><a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://jetbrains.developpez.com" data-idrub="144" data-niv="2">JetBrains</a></li>
+				<li><a href="https://labview.developpez.com" data-idrub="72" data-niv="2">LabVIEW</a></li>
+				<li><a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">NetBeans</a></li>
+				<li><a href="https://matlab.developpez.com" data-idrub="58" data-niv="2">MATLAB</a></li>
+				<li><a href="https://scilab.developpez.com" data-idrub="120" data-niv="2">Scilab</a></li>
+				<li><a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://wind.developpez.com" data-idrub="74" data-niv="2">WinDev</a></li>
+				<li><a href="https://vb.developpez.com" data-idrub="5" data-niv="2">Visual Basic 6</a></li>
+				<li><a href="https://lazarus.developpez.com" data-idrub="96" data-niv="2">Lazarus</a></li>
+				<li><a href="https://qt-creator.developpez.com" data-idrub="109" data-niv="2">Qt Creator</a></li>
+			</ul></li>
+	<li><a href="https://programmation.developpez.com" data-idrub="119" data-niv="1" class="gabarit_selection">Programmation<!--<span class="gabarit_tooltip">Programmation et langages de programmation applicatifs</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://programmation.developpez.com" data-idrub="119" data-niv="2">Programmation</a></li>
+				<li><a href="https://algo.developpez.com" data-idrub="47" data-niv="2">Débuter - Algorithmique</a></li>
+				<li><a href="https://jeux.developpez.com" data-idrub="38" data-niv="2">2D - 3D - Jeux</a></li>
+				<li><a href="https://asm.developpez.com" data-idrub="16" data-niv="2">Assembleur</a></li>
+				<li><a href="https://c.developpez.com" data-idrub="3" data-niv="2">C</a></li>
+				<li><a href="https://cpp.developpez.com" data-idrub="59" data-niv="2">C++</a></li>
+				<li><a href="https://d.developpez.com" data-idrub="123" data-niv="2">D</a></li>
+				<li><a href="https://go.developpez.com" data-idrub="124" data-niv="2">Go</a></li>
+				<li><a href="https://kotlin.developpez.com" data-idrub="145" data-niv="2">Kotlin</a></li>
+				<li><a href="https://objective-c.developpez.com" data-idrub="117" data-niv="2">Objective C</a></li>
+				<li><a href="https://pascal.developpez.com" data-idrub="7" data-niv="2">Pascal</a></li>
+				<li><a href="https://perl.developpez.com" data-idrub="29" data-niv="2">Perl</a></li>
+				<li><a href="https://python.developpez.com" data-idrub="27" data-niv="2">Python</a></li>
+				<li><a href="https://rust.developpez.com" data-idrub="137" data-niv="2">Rust</a></li>
+				<li><a href="https://swift.developpez.com" data-idrub="128" data-niv="2">Swift</a></li>
+				<li><a href="https://qt.developpez.com" data-idrub="65" data-niv="2">Qt</a></li>
+				<li><a href="https://xml.developpez.com" data-idrub="11" data-niv="2">XML</a></li>
+				<li><a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">Autres</a></li>
+			</ul></li>
+	<li><a href="https://sgbd.developpez.com" data-idrub="13" data-niv="1">SGBD<!--<span class="gabarit_tooltip">Systèmes de Gestion de Bases de Données</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://sgbd.developpez.com" data-idrub="13" data-niv="2">SGBD &amp; SQL</a></li>
+				<li><a href="https://4d.developpez.com" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://access.developpez.com" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://db2.developpez.com" data-idrub="36" data-niv="2">DB2</a></li>
+				<li><a href="https://firebird.developpez.com" data-idrub="73" data-niv="2">Firebird</a></li>
+				<li><a href="https://interbase.developpez.com" data-idrub="32" data-niv="2">InterBase</a></li>
+				<li><a href="https://mysql.developpez.com" data-idrub="31" data-niv="2">MySQL</a></li>
+				<li><a href="https://nosql.developpez.com" data-idrub="114" data-niv="2">NoSQL</a></li>
+				<li><a href="https://postgresql.developpez.com" data-idrub="33" data-niv="2">PostgreSQL</a></li>
+				<li><a href="https://oracle.developpez.com" data-idrub="25" data-niv="2">Oracle</a></li>
+				<li><a href="https://sybase.developpez.com" data-idrub="37" data-niv="2">Sybase</a></li>
+				<li><a href="https://sqlserver.developpez.com" data-idrub="34" data-niv="2">SQL-Server</a></li>
+			</ul></li>
+	<li><a href="https://office.developpez.com" data-idrub="54" data-niv="1">Office<!--<span class="gabarit_tooltip">Bureautique pour l'entreprise</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://office.developpez.com" data-idrub="54" data-niv="2">Microsoft Office</a></li>
+				<li><a href="https://access.developpez.com" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://excel.developpez.com" data-idrub="75" data-niv="2">Excel</a></li>
+				<li><a href="https://word.developpez.com" data-idrub="76" data-niv="2">Word</a></li>
+				<li><a href="https://outlook.developpez.com" data-idrub="77" data-niv="2">Outlook</a></li>
+				<li><a href="https://powerpoint.developpez.com" data-idrub="78" data-niv="2">PowerPoint</a></li>
+				<li><a href="https://sharepoint.developpez.com" data-idrub="79" data-niv="2">SharePoint</a></li>
+				<li><a href="https://project.developpez.com" data-idrub="99" data-niv="2">Microsoft Project</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+			</ul></li>
+	<li><a href="https://mobiles.developpez.com" data-idrub="94" data-niv="1">Mobiles<!--<span class="gabarit_tooltip">Logiciels et matériels mobiles</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://mobiles.developpez.com" data-idrub="94" data-niv="2">Mobiles</a></li>
+				<li><a href="https://android.developpez.com" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://ios.developpez.com" data-idrub="101" data-niv="2">iOS</a></li>
+			</ul></li>
+	<li><a href="https://systeme.developpez.com" data-idrub="30" data-niv="1">Systèmes<!--<span class="gabarit_tooltip">Logiciels et matériels systèmes</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://systeme.developpez.com" data-idrub="30" data-niv="2">Systèmes</a></li>
+				<li><a href="https://windows.developpez.com" data-idrub="17" data-niv="2">Windows</a></li>
+				<li><a href="https://linux.developpez.com" data-idrub="18" data-niv="2">Linux</a></li>
+				<li><a href="https://arduino.developpez.com" data-idrub="142" data-niv="2">Arduino</a></li>
+				<li><a href="https://securite.developpez.com" data-idrub="40" data-niv="2">Sécurité</a></li>
+				<li><a href="https://hardware.developpez.com" data-idrub="64" data-niv="2">Hardware</a></li>
+				<li><a href="https://hpc.developpez.com" data-idrub="139" data-niv="2">HPC</a></li>
+				<li><a href="https://mac.developpez.com" data-idrub="57" data-niv="2">Mac</a></li>
+				<li><a href="https://raspberry-pi.developpez.com" data-idrub="131" data-niv="2">Raspberry Pi</a></li>
+				<li><a href="https://reseau.developpez.com" data-idrub="70" data-niv="2">Réseau</a></li>
+				<li><a href="https://green-it.developpez.com" data-idrub="104" data-niv="2">Green IT</a></li>
+				<li><a href="https://embarque.developpez.com" data-idrub="110" data-niv="2">Systèmes embarqués</a></li>
+				<li><a href="https://virtualisation.developpez.com" data-idrub="108" data-niv="2">Virtualisation</a></li>
+			</ul></li>
+</ul>
+
+<ul id="gabarit_barre1"><li><a href="https://programmation.developpez.com">Programmation</a></li><li><a href="https://algo.developpez.com">Algorithmique</a></li><li><a href="https://jeux.developpez.com">2D-3D-Jeux</a></li><li><a href="https://asm.developpez.com">Assembleur</a></li><li class="gabarit_selection"><a href="https://c.developpez.com">C</a></li><li><a href="https://cpp.developpez.com">C++</a></li><li><a href="https://d.developpez.com">D</a></li><li><a href="https://go.developpez.com">Go</a></li><li><a href="https://kotlin.developpez.com">Kotlin</a></li><li><a href="https://objective-c.developpez.com">Objective C</a></li><li><a href="https://pascal.developpez.com">Pascal</a></li><li><a href="https://perl.developpez.com">Perl</a></li><li><a href="https://python.developpez.com">Python</a></li><li><a href="https://rust.developpez.com">Rust</a></li><li><a href="https://swift.developpez.com">Swift</a></li><li><a href="https://qt.developpez.com">Qt</a></li><li><a href="https://xml.developpez.com">XML</a></li><li><a href="https://general.developpez.com/cours/">Autres</a></li></ul>
+
+<div id="gabarit_barre2">
+	<a class="gabarit_social gabarit_facebook" href="http://www.facebook.com/pages/C/108584359174497" target="_blank" title="Retrouver Developpez sur Facebook"></a>
+	<a class="gabarit_social gabarit_twitter" href="http://twitter.com/C_Developpez" target="_blank" title="Retrouver Developpez sur Twitter"></a>
+	<a class="gabarit_social gabarit_rss" href="http://c.developpez.com/index/rss" target="_blank" title="Flux RSS"></a>
+	<ul>
+<li><a href="https://c.developpez.com/">Accueil C</a></li><li><a href="https://www.developpez.net/forums/f7/c-cpp/">Forums C</a></li><li><a href="https://c.developpez.com/faq/">FAQ C</a></li><li><a href="https://c.developpez.com/cours/">Tutoriels C</a></li><li><a href="https://c.developpez.com/livres/">Livres C</a></li><li><a href="https://c.developpez.com/telecharger/index/categorie/30/Outils-C-C">Compilateurs et outils C</a></li><li><a href="https://c.developpez.com/telecharger/index/categorie/149/Sources-C">Sources C</a></li><li><a href="https://c.developpez.com/telecharger/index/categorie/451/Bibliotheques-C">Bibliothèques C</a></li><li><a href="http://gtk.developpez.com/">GTK+</a></li>	</ul>
+</div>
+
+</nav>
+</header>
+<section>
+
+<div id="gabarit_pubBB">
+<div id="gabarit_pub0"></div><div id="az3gr0w" class="dvpb0" style="display: inline-block; width: 728px; height: 90px"></div>
+</div>
+
+<div class="contenuPage">		<article class="ArticleComplet" itemscope itemtype="http://schema.org/Article">
+<meta itemprop="genre" content="informatique"/>
+<meta itemprop="inLanguage" content="fr-FR"/>
+		
+<header class="EnteteTitres">
+<h1 class="titre-article" itemprop="name">Le langage C</h1>
+
+</header><nav class="nav-sommaire ArticleHorsLigne"><header><h1 class="TitreHeader StopArrondi ToggleGecko">Table des mati&egrave;res<img class="ToggleImgPlier" title="Plier" alt="Plier" src="/template/kit/fleche-haut-bleue.png"/><img class="ToggleImgDeplier" title="Déplier" alt="Déplier" style="display:none;" src="/template/kit/fleche-bas-bleue.png"/></h1></header><ul id="nav_sommaire_ul_principal" class="nav-sommaire-ul">
+  
+  
+  
+  
+  
+	
+	
+	
+	
+  
+  <li><a class="summaryIndent0" href="#LI">I. Eléments de base</a><ul class="nav-sommaire-ul IndentationI">
+      
+      <li><a class="summaryIndent1" href="#LI-A">I-A. Structure générale d'un programme</a></li>
+      <li><a class="summaryIndent1" href="#LI-B">I-B. Considérations lexicales</a><ul class="nav-sommaire-ul IndentationI-B">
+        
+        <li><a class="summaryIndent2" href="#LI-B-1">I-B-1. Présentation du texte du programme</a></li>
+        <li><a class="summaryIndent2" href="#LI-B-2">I-B-2. Mots-clés</a></li>
+        <li><a class="summaryIndent2" href="#LI-B-3">I-B-3. Identificateurs</a></li>
+        <li><a class="summaryIndent2" href="#LI-B-4">I-B-4. Opérateurs</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#LI-C">I-C. Constantes littérales</a><ul class="nav-sommaire-ul IndentationI-C">
+        
+        <li><a class="summaryIndent2" href="#LI-C-1">I-C-1. Nombres entiers</a></li>
+        <li><a class="summaryIndent2" href="#LI-C-2">I-C-2. Nombres flottants</a></li>
+        <li><a class="summaryIndent2" href="#LI-C-3">I-C-3. Caractères et chaines de caractères</a></li>
+        <li><a class="summaryIndent2" href="#LI-C-4">I-C-4. Expressions constantes</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#LI-D">I-D. Types fondamentaux</a><ul class="nav-sommaire-ul IndentationI-D">
+        
+        
+        
+        
+        <li><a class="summaryIndent2" href="#LI-D-1">I-D-1. Nombres entiers et caractères</a></li>
+        <li><a class="summaryIndent2" href="#LI-D-2">I-D-2. Types énumérés</a></li>
+        <li><a class="summaryIndent2" href="#LI-D-3">I-D-3. Nombres flottants</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#LI-E">I-E. Variables</a><ul class="nav-sommaire-ul IndentationI-E">
+        
+        <li><a class="summaryIndent2" href="#LI-E-1">I-E-1. Syntaxe des déclarations</a></li>
+        <li><a class="summaryIndent2" href="#LI-E-2">I-E-2. Visibilité des variables</a></li>
+        <li><a class="summaryIndent2" href="#LI-E-3">I-E-3. Allocation et durée de vie des variables</a></li>
+        <li><a class="summaryIndent2" href="#LI-E-4">I-E-4. Initialisation des variables</a></li>
+        <li><a class="summaryIndent2" href="#LI-E-5">I-E-5. Variables locales statiques</a></li>
+        <li><a class="summaryIndent2" href="#LI-E-6">I-E-6. Variables critiques</a></li>
+        <li><a class="summaryIndent2" href="#LI-E-7">I-E-7. Variables constantes et volatiles</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#LI-F">I-F. Variables, fonctions et compilation séparée</a><ul class="nav-sommaire-ul IndentationI-F">
+        
+        <li><a class="summaryIndent2" href="#LI-F-1">I-F-1. Identificateurs publics et privés</a></li>
+        <li><a class="summaryIndent2" href="#LI-F-2">I-F-2. Déclaration d'objets externes</a></li>
+      </ul></li>
+    </ul></li>
+  
+</ul></nav><section class="ArticleHorsLigne"><section class="articleBody" itemprop="articleBody"><div class="cachee"><div class="barreNavigation"><hr class="hr-separation"/><a class="lientelechargement" href="."><img title="Page précédente" alt="précédent" src="/template/kit/kitprecedent.png"/></a><a class="lientelechargement" href="."><img title="Revenir au sommaire" alt="sommaire" src="/template/kit/kitsommaire.png"/></a><a class="lientelechargement" href="?page=page_2"><img alt="suivant" title="Page suivante" src="/template/kit/kitsuivant.png"/></a><hr class="hr-separation"/></div></div>
+  
+  
+  
+  
+  
+	
+	
+	
+	
+  
+  
+		<h1 class="TitreSection0" id="LI">I. Eléments de base<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      
+		<h2 class="TitreSection1" id="LI-A">I-A. Structure générale d'un programme<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+					La transformation d'un texte écrit en langage C en un programme exécutable par l'ordinateur se fait en deux
+étapes : la <span class="italique">compilation et l'édition de liens</span>. La compilation est la traduction des fonctions écrites en C en des
+procédures équivalentes écrites dans un langage dont la machine peut exécuter les instructions. Le compilateur
+lit toujours un fichier, appelé fichier source, et produit un fichier, dit <span class="italique">fichier objet</span>.
+				</p>
+        <p>
+					Chaque fichier objet est incomplet, insuffisant pour être exécuté, car il contient des appels de fonctions ou des
+références à des variables qui ne sont pas définies dans le même fichier. Par exemple, le premier programme que
+vous écrirez contiendra déjà la fonction printf que vous n'aurez certainement pas écrite vous-même. L'édition
+de liens est l'opération par laquelle plusieurs fichiers objets sont mis ensemble pour se compléter mutuellement : un fichier apporte des définitions de fonctions et de variables auxquelles un autre fichier fait référence
+et réciproquement. L'éditeur de liens (ou <span class="italique">linker</span> ) prend en entrée plusieurs fichiers objets et bibliothèques (une
+variété particulière de fichiers objets) et produit un unique fichier exécutable. L'éditeur de liens est largement
+indépendant du langage de programmation utilisé pour écrire les fichiers sources, qui peuvent même avoir été
+écrits dans des langages différents.
+				</p>
+        <p>
+					Chaque fichier source entrant dans la composition d'un programme exécutable est fait d'une succession d'un
+nombre quelconque d'éléments indépendants, qui sont :
+				</p>
+        <ul class="ListeDVP">
+          <li>des directives pour le préprocesseur (lignes commençant par #),</li>
+          <li>des constructions de types (struct, union, enum, typedef),</li>
+          <li>des déclarations de variables et de fonctions <span class="italique">externes</span>,</li>
+          <li>des définitions de variables et</li>
+          <li>des définitions de fonctions.</li>
+        </ul>
+        <p>
+					Seules les expressions des deux dernières catégories font grossir le fichier objet : les définitions de fonctions 
+					laissent leur traduction en langage machine, tandis que les définitions de variables se traduisent par des
+réservations d'espace, éventuellement garni de valeurs initiales. Les autres directives et déclarations s'adressent
+au compilateur et il n'en reste pas de trace lorsque la compilation est finie.
+				</p>
+        <p>
+					En C on n'a donc pas une structure syntaxique englobant tout, comme la construction « Program ... end. »
+du langage Pascal ; un programme n'est qu'une collection de fonctions assortie d'un ensemble de variables
+globales. D'où la question : par ou l'exécution doit-elle commencer ? La règle généralement suivie par l'éditeur
+de liens est la suivante : parmi les fonctions données il doit en exister une dont le nom est main. C'est par elle
+que l'exécution commencera ; le lancement du programme équivaut à l'appel de cette fonction par le système
+d'exploitation. Notez bien que, à part cela, main est une fonction comme les autres, sans aucune autre propriété
+spécifique ; en particulier, les variables internes à main sont locales, tout comme celles des autres fonctions.
+Pour finir cette entrée en matière, voici la version C du célèbre programme-qui-dit-bonjour, sans lequel on
+ne saurait commencer un cours de programmation<a class="renvoiSignet" href="?page=page_1#note1">1</a> :
+				</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e258">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e258" onclick="selectionCode('contenuCoded0e258', 'IdTitreCode-d0e258');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e258" class="contenuCode"><code class="c_literal4">#include &lt;stdio.h&gt;</code>
+ 
+	<code class="c_keyword3">int</code> <code class="c_function">main</code><code class="c_operator">(</code>) <code class="c_operator">{</code>
+	<code class="c_function">printf</code><code class="c_operator">(</code><code class="c_literal3">"</code><code class="cpp_literal1">Bonjour</code><code class="cpp_literal4">\n</code><code class="c_literal3">"</code>);
+	<code class="c_keyword1">return</code> <code class="c_digit">0</code>;
+<code class="c_operator">}</code></code></pre></div>
+        <a id="note1">&nbsp;</a>
+        <p id="note1"><sup>1</sup>Le programme montré ici est écrit selon des règles strictes. En fait, la plupart des compilateurs acceptent que main soit déclarée
+void au lieu de int, ou que ce type ne figure pas, et que l'instruction « return 0 ; » n'apparaisse pas explicitement.
+				</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LI-B">I-B. Considérations lexicales<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        
+		<h3 class="TitreSection2" id="LI-B-1">I-B-1. Présentation du texte du programme<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Le programmeur est maitre de la disposition du texte du programme. Des blancs, des tabulations et des
+sauts à la ligne peuvent être placés à tout endroit ou cela ne coupe pas un identificateur, un nombre ou un
+symbole composé<a class="renvoiSignet" href="?page=page_1#note2">2</a>.
+					</p>
+          <p>
+						Les commentaires commencent par /* et se terminent par */ :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e322">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e322" onclick="selectionCode('contenuCoded0e322', 'IdTitreCode-d0e322');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e322" class="contenuCode"><code class="c_comment2">/* Ce texte est un commentaire et sera donc</code>
+<code class="c_comment2">ignoré par le compilateur */</code></code></pre></div>
+          <p>
+						Les commentaires ne peuvent pas être imbriqués : écrit dans un programme, le texte <span class="codeinline">/* voici un grand
+/* et un petit */ commentaire */</span> est erroné, car seul <span class="codeinline">/* voici un grand /* et un petit */</span>sera vu comme un commentaire par le compilateur.
+					</p>
+          <p>
+						Les langages C et C++ cohabitant dans la plupart des compilateurs actuels, ces derniers acceptent également
+comme commentaire tout texte compris entre le signe // et la fin de la ligne ou ce signe apparait :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e341">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e341" onclick="selectionCode('contenuCoded0e341', 'IdTitreCode-d0e341');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e341" class="contenuCode"><code class="c_comment2">// Ceci est un commentaire à la mode C++.</code></code></pre></div>
+          <p>
+						Le caractère anti-slash \ précédant immédiatement un saut à la ligne masque ce dernier : la ligne suivante
+est considérée comme devant être concaténée à la ligne courante. Cela est vrai en toute circonstance, y compris
+à l'intérieur d'une chaine de caractères. Par exemple, le texte
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e348">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e348" onclick="selectionCode('contenuCoded0e348', 'IdTitreCode-d0e348');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e348" class="contenuCode">message <code class="c_operator">=</code> <code class="c_literal3">"</code><code class="cpp_literal1">anti\</code>
+<code class="cpp_literal1">constitutionnellement</code><code class="c_literal3">"</code>;</code></pre></div>
+          <p>
+						est compris comme ceci : « message = "anti constitutionnellement" ; »
+					</p>
+          <a id="note2">&nbsp;</a>
+          <p id="note2"><sup>2</sup> Néanmoins, les directives pour le préprocesseur (cf. section VIII.A) doivent comporter un # dans la première position de la ligne.
+Cela ne constitue pas une exception à la règle donnée ici, car le préprocesseur n'est pas le compilateur C et ne travaille pas sur la
+syntaxe du langage.	
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-B-2">I-B-2. Mots-clés<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Les mots suivants sont réservés. Leur fonction est prévue par la syntaxe de C et ils ne peuvent pas être
+utilisés dans un autre but :
+					</p>
+          <div class="TextAlign-center"><table class="tableau" style="border-width:0px;width:80%;">
+            <tr>
+              <td class="colonne" style="">auto</td>
+              <td class="colonne" style="">break</td>
+              <td class="colonne" style="">case</td>
+              <td class="colonne" style="">char</td>
+              <td class="colonne" style="">const</td>
+              <td class="colonne" style="">continue</td>
+              <td class="colonne" style="">default</td>
+              <td class="colonne" style="">do</td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">double</td>
+              <td class="colonne" style="">else</td>
+              <td class="colonne" style="">enum</td>
+              <td class="colonne" style="">extern</td>
+              <td class="colonne" style="">float</td>
+              <td class="colonne" style="">for</td>
+              <td class="colonne" style="">goto</td>
+              <td class="colonne" style="">if</td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">int</td>
+              <td class="colonne" style="">long</td>
+              <td class="colonne" style="">register</td>
+              <td class="colonne" style="">return</td>
+              <td class="colonne" style="">short</td>
+              <td class="colonne" style="">signed</td>
+              <td class="colonne" style="">sizeof</td>
+              <td class="colonne" style="">static</td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">struct</td>
+              <td class="colonne" style="">switch</td>
+              <td class="colonne" style="">typedef</td>
+              <td class="colonne" style="">union</td>
+              <td class="colonne" style="">unsigned</td>
+              <td class="colonne" style="">void</td>
+              <td class="colonne" style="">volatile</td>
+              <td class="colonne" style="">while</td>
+            </tr>
+          </table></div>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-B-3">I-B-3. Identificateurs<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Un identificateur est une suite de lettres et chiffres contigus, dont le premier est une lettre. Lorsque seul
+le compilateur est concerné, c'est-à-dire lorsqu'il s'agit d'identificateurs dont la portée est incluse dans un seul
+fichier (nous dirons de tels identificateurs qu'ils sont <span class="italique">privés</span>) :
+					</p>
+          <ul class="ListeDVP">
+            <li>en toute circonstance une lettre majuscule est tenue pour différente de la lettre minuscule correspondante ;</li>
+            <li>dans les identificateurs, le nombre de caractères discriminants est au moins de 31.</li>
+          </ul>
+          <p class="imgtext-warning">
+						Attention, lorsqu'il s'agit d'identificateurs externes, c'est-à-dire partagés par plusieurs fichiers sources, il est
+possible que sur un système particulier l'éditeur de liens sous-jacent soit trop rustique pour permettre le respect
+de ces deux prescriptions.
+					</p>
+          <p>
+						Le caractère _ (appelé « blanc souligné ») est considéré comme une lettre ; il peut donc figurer à n'importe
+quelle place dans un identificateur. Cependant, par convention un programmeur ne doit pas utiliser des identificateurs qui commencent par ce caractère. Cela assure qu'il n'y aura jamais de conflit avec les noms introduits
+(à travers les fichiers « .h ») pour les besoins des bibliothèques, car ces noms commencent par un tel blanc
+souligné. ~
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-B-4">I-B-4. Opérateurs<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Symboles simples :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e530">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e530" onclick="selectionCode('contenuCoded0e530', 'IdTitreCode-d0e530');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e530" class="contenuCode"><code class="c_operator">(</code> 	) 	[ 	] 	. 	<code class="c_operator">!</code> 	<code class="c_operator">~</code> 	<code class="c_operator">&lt;</code> 	<code class="c_operator">&gt;</code> 	? 	:
+<code class="c_operator">=</code> 	, 	<code class="c_operator">+</code> 	<code class="c_operator">-</code> 	<code class="c_operator">*</code> 	<code class="c_operator">/</code> 	<code class="c_operator">%</code> 	<code class="c_operator">|</code> 	<code class="c_operator">&amp;</code> 	<code class="c_operator">^</code></code></pre></div>
+          <p>
+						Symboles composés :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e576">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e576" onclick="selectionCode('contenuCoded0e576', 'IdTitreCode-d0e576');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e576" class="contenuCode"><code class="c_operator">-&gt;</code> 	<code class="c_operator">++</code> 	<code class="c_operator">--</code> 	<code class="c_operator">&lt;=</code> 	<code class="c_operator">&gt;=</code> 	<code class="c_operator">==</code> 	<code class="c_operator">!=</code> 	<code class="c_operator">&amp;&amp;</code> 	<code class="c_operator">||</code> 	<code class="c_operator">&lt;&lt;</code> 	<code class="c_operator">&gt;&gt;</code>
+<code class="c_operator">+=</code> 	<code class="c_operator">-=</code> 	<code class="c_operator">*=</code> 	<code class="c_operator">/=</code> 	<code class="c_operator">%=</code> 	<code class="c_operator">&lt;&lt;=</code> <code class="c_operator">&gt;&gt;=</code> <code class="c_operator">|=</code> 	<code class="c_operator">&amp;=</code> 	<code class="c_operator">^=</code></code></pre></div>
+          <p>
+						Tous ces symboles sont reconnus par le compilateur comme des opérateurs. Il est interdit d'insérer des
+caractères blancs à l'intérieur d'un symbole composé. En outre, il est conseillé d'encadrer par des blancs toute
+utilisation d'un opérateur. Dans certaines circonstances cette règle est plus qu'un conseil, car sa non-observance
+crée une expression ambigüe.
+					</p>
+        </div>
+      </div>
+      
+		<h2 class="TitreSection1" id="LI-C">I-C. Constantes littérales<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        
+		<h3 class="TitreSection2" id="LI-C-1">I-C-1. Nombres entiers<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Les constantes littérales numériques entières ou réelles suivent les conventions habituelles, avec quelques
+particularités.
+					</p>
+          <p>
+						Les constantes littérales sont sans signe : l'expression -123 est comprise comme l'application de l'opérateur
+unaire - à la constante 123 ; mais puisque le calcul est fait pendant la compilation, cette subtilité n'a aucune
+conséquence pour le programmeur. Notez aussi qu'en C original, comme il n'existe pas d'opérateur + unaire, la
+notation +123 est interdite.
+					</p>
+          <p>Les constantes littérales entières peuvent aussi s'écrire en octal et en hexadécimal :
+					</p>
+          <ul class="ListeDVP">
+            <li>une constante écrite en octal (base 8) commence par 0 (zéro) ;</li>
+            <li>une constante écrite en hexadécimal (base 16) commence par 0x ou 0X.</li>
+          </ul>
+          <p>
+						Voici par exemple trois manières d'écrire le même nombre :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e676">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e676" onclick="selectionCode('contenuCoded0e676', 'IdTitreCode-d0e676');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e676" class="contenuCode">	27 	033 	0x1B</code></pre></div>
+          <p>
+						Détail à retenir : on ne doit pas écrire de zéro non significatif à gauche d'un nombre : 0123 ne représente
+pas la même valeur que 123.
+					</p>
+          <p>
+						Le type d'une constante entière est le plus petit type dans lequel sa valeur peut être représentée. Ou, plus
+exactement :
+					</p>
+          <ul class="ListeDVP">
+            <li>si elle est décimale : si possible int, sinon long, sinon unsigned long ;</li>
+            <li>si elle est octale ou hexadécimale : si possible int, sinon unsigned int, sinon unsigned long.</li>
+          </ul>
+          <p>
+						Certains suffixes permettent de changer cette classification :
+					</p>
+          <ul class="ListeDVP">
+            <li>U, u : indique que la constante est d'un type unsigned ;</li>
+            <li>L, l : indique que la constante est d'un type long.</li>
+          </ul>
+          <p>
+						Exemples : 1L, 0x7FFFU. On peut combiner ces deux suffixes : 16UL.
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-C-2">I-C-2. Nombres flottants<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Une constante littérale est l'expression d'un nombre flottant si elle présente, dans l'ordre :
+					</p>
+          <ul class="ListeDVP">
+            <li>une suite de chiffres décimaux (la partie entière),</li>
+            <li>un point, qui joue le rôle de virgule décimale,</li>
+            <li>une suite de chiffres décimaux (la partie fractionnaire),</li>
+            <li>une des deux lettres E ou e,</li>
+            <li>éventuellement un signe + ou -,</li>
+            <li>une suite de chiffres décimaux.</li>
+          </ul>
+          <p>
+						Les trois derniers éléments forment l'exposant. Exemple : 123.456E-78.
+					</p>
+          <p>
+						On peut omettre :
+					</p>
+          <ul class="ListeDVP">
+            <li>la partie entière ou la partie fractionnaire, mais pas les deux,</li>
+            <li>le point ou l'exposant, mais pas les deux.</li>
+          </ul>
+          <p>
+						Exemples : .5e7, 5.e6, 5000000., 5e6</p>
+          <p>
+						Une constante flottante est supposée de type double, à moins de comporter un suffixe explicite :
+					</p>
+          <ul class="ListeDVP">
+            <li>les suffixes F ou f indiquent qu'elle est du type float ;</li>
+            <li>les suffixes L ou l indiquent qu'elle est du type long double.</li>
+          </ul>
+          <p>
+						Exemples : 1.0L, 5.0e4f
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-C-3">I-C-3. Caractères et chaines de caractères<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Une constante de type caractère se note en écrivant le caractère entre apostrophes. Une constante de type
+chaine de caractères se note en écrivant ses caractères entre guillemets. Exemples, trois caractères :
+
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e781">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e781" onclick="selectionCode('contenuCoded0e781', 'IdTitreCode-d0e781');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e781" class="contenuCode"><code class="c_literal3">'</code><code class="cpp_literal1">A</code><code class="c_literal3">'</code> 	<code class="c_literal3">'</code><code class="cpp_literal1">2</code><code class="c_literal3">'</code> 	<code class="c_literal3">'</code><code class="cpp_literal1">"</code><code class="c_literal3">'</code></code></pre></div>
+          <p>
+						Quatre chaines de caractères :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e806">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e806" onclick="selectionCode('contenuCoded0e806', 'IdTitreCode-d0e806');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e806" class="contenuCode"><code class="c_literal3">"</code><code class="cpp_literal1">A</code><code class="c_literal3">"</code> 	<code class="c_literal3">"</code><code class="cpp_literal1">Bonjour à tous !</code><code class="c_literal3">"</code> 	<code class="c_literal3">""</code> 	<code class="c_literal3">"</code><code class="cpp_literal1">'</code><code class="c_literal3">"</code></code></pre></div>
+          <p>
+						On peut faire figurer n'importe quel caractère, même non imprimable, dans une constante caractère ou
+chaine de caractères en utilisant les combinaisons suivantes, appelées séquences d'échappement :
+					</p>
+          <ul class="ListeDVP">
+            <li>\n : nouvelle ligne (LF)</li>
+            <li>\t : tabulation (HT)</li>
+            <li>\b : espace-arrière (BS)</li>
+            <li>\r : retour-chariot (CR)</li>
+            <li>\f : saut de page (FF)</li>
+            <li>\a : signal sonore (BELL)</li>
+            <li>\\ : \</li>
+            <li>'  : '</li>
+            <li>"  : "</li>
+            <li>\d<sub>3</sub>d<sub>2</sub>d<sub>1</sub> : le caractère qui a pour code le nombre octal d<sub>3</sub>d<sub>2</sub>d<sub>1</sub>. S'il commence par un ou deux zéros et si cela ne crée pas une ambiguïté, on peut aussi le noter \d<sub>2</sub>d<sub>1</sub> ou \d<sub>1</sub></li>
+          </ul>
+          <p>
+						Par exemple, la chaine suivante définit la suite des 9 caractères <a class="renvoiSignet" href="?page=page_1#note3">3</a> A, escape (de code ASCII 27), B, ", C, saut
+de page, D, \ et E :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e899">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e899" onclick="selectionCode('contenuCoded0e899', 'IdTitreCode-d0e899');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e899" class="contenuCode"><code class="c_literal3">"</code><code class="cpp_literal1">A</code><code class="cpp_literal4">\0</code><code class="cpp_literal1">33B</code><code class="cpp_literal4">\"</code><code class="cpp_literal1">C</code><code class="cpp_literal4">\f</code><code class="cpp_literal1">D</code><code class="cpp_literal4">\\</code><code class="cpp_literal1">E</code><code class="c_literal3">"</code></code></pre></div>
+          <p>
+						Une constante de type caractère appartient au type char, c'est-à-dire entier représenté sur un octet. La
+valeur d'une constante caractère est le nombre qui représente le caractère de manière interne ; de nos jours il
+s'agit presque toujours du code ASCII <a class="renvoiSignet" href="?page=page_1#note4">4</a>.
+					</p>
+          <p>
+						Une constante de type chaine de caractères représente une suite finie de caractères, de longueur quelconque.
+Le codage interne d'une chaine de caractères est le suivant (voyez la figure 1) :
+					</p>
+          <ul class="ListeDVP">
+            <li>les caractères constituant la chaine sont rangés en mémoire, de manière contigüe, dans l'ordre ou ils figurent dans la chaine ;</li>
+            <li>un caractère nul est ajouté immédiatement après le dernier caractère de la chaine, pour en indiquer la fin ;</li>
+            <li>la constante chaine représente alors, à l'endroit ou elle est écrite, l'adresse de la cellule ou a été rangé le premier caractère de la chaine</li>
+          </ul>
+          <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="./images/fig1.gif" alt="Fig. 1 - Représentation de la chaine 'Bonjour'" width="364" height="75"/><figcaption class="figure-img-caption TextAlign-center">Fig. 1 - Représentation de la chaine 'Bonjour'</figcaption></figure></div>
+          <p><br/>
+						Par conséquent, une constante chaine de caractères a pour type celui d'un tableau de caractères (c'est-à-dire
+« char[] ») et pour valeur l'adresse d'une cellule de la mémoire.
+Par caractère nul on entend le caractère dont le code interne est 0 ; on peut le noter indifféremment 0, '\000'
+ou '\0' (mais certainement pas '0') ; il est utilisé très fréquemment en C. Notez que, dans une expression,
+'\0' est toujours interchangeable avec 0.
+					</p>
+          <a id="note3">&nbsp;</a>
+          <p id="note3"><sup>3</sup>Nous verrons qu'en fait cette chaine comporte un caractère de plus qui en marque la fin.
+					</p>
+          <a id="note4">&nbsp;</a>
+          <p id="note4"><sup>4</sup>En standard le langage C ne prévoit pas le codage Unicode des caractères.
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-C-4">I-C-4. Expressions constantes<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Une expression constante est une expression de l'un des types suivants :
+					</p>
+          <ul class="ListeDVP">
+            <li>toute constante littérale ; exemples : 1, 'A', "HELLO", 1.5e-2 ;</li>
+            <li>une expression correcte formée par l'application d'un opérateur courant (arithmétique, logique, etc.) à une ou deux expressions constantes ; exemples : -1, 'A' - 'a', 2 * 3.14159265, "HELLO" + 6 ;</li>
+            <li>l'expression constituée par l'application de l'opérateur &amp; (opérateur de calcul de l'adresse, voyez la section 2.2.10) à une variable statique, à un champ d'une variable statique de type structure ou à un élément d'un tableau statique dont le rang est donné par une expression constante ; exemples : &amp;x, &amp;fiche.nom, &amp;table[50] ;</li>
+            <li>l'expression constituée par l'application de l'opérateur sizeof à un descripteur de type. Exemples : sizeof(int), sizeof(char *) ;</li>
+            <li>l'expression constituée par l'application de l'opérateur sizeof à une expression quelconque, qui ne sera pas évaluée ; exemples : sizeof x, sizeof(2 * x + 3).</li>
+          </ul>
+          <p>
+						Les expressions constantes peuvent être évaluées pendant la compilation. Cela est fait à titre facultatif par
+les compilateurs de certains langages. En C ce n'est pas facultatif : il est garanti que toute expression constante
+(et donc toute sous-expression constante d'une expression quelconque) sera effectivement évaluée avant que				
+l'exécution ne commence. En termes de temps d'exécution, l'évaluation des expressions constantes est donc
+entièrement « gratuite ».
+					</p>
+        </div>
+      </div>
+      
+		<h2 class="TitreSection1" id="LI-D">I-D. Types fondamentaux<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="./images/tab1.jpg"><img class="ImgCliquable figure-img-caption" src="./images/tab1.jpg" alt="Tab. 1 - Les types du langage C" width="300" height="325"/></a><figcaption class="figure-img-caption TextAlign-center">Tab. 1 - Les types du langage C</figcaption></figure></div>
+        <p><br/>
+					Le tableau 1 présente l'ensemble des types connus du compilateur C. L'organisation générale de cet ensemble
+est évidente : on dispose de deux sortes de types de base, les nombres entiers et les nombres flottants, et d'une
+famille infinie de types dérivés obtenus en appliquant quelques procédés récursifs de construction soit à des
+types fondamentaux soit à des types dérivés définis de la même manière.
+				</p>
+        <p>
+					Cette organisation révèle un trait de l'esprit de C : le pragmatisme l'emporte sur l'esthétisme, parfois même
+sur la rigueur. Dans d'autres langages, les caractères, les booléens, les constantes symboliques, etc., sont codés
+de manière interne par des nombres, mais ce fait est officiellement ignoré par le programmeur, qui reste obligé
+de considérer ces données comme appartenant à des ensembles disjoints. En C on a fait le choix opposé, laissant
+au programmeur le soin de réaliser lui-même, à l'aide des seuls types numériques, l'implantation des types de
+niveau supérieur.
+				</p>
+        
+		<h3 class="TitreSection2" id="LI-D-1">I-D-1. Nombres entiers et caractères<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						La classification des types numériques obéit à deux critères :
+					</p>
+          <ul class="ListeDVP">
+            <li>Si on cherche à représenter un ensemble de nombres tous positifs on pourra adopter un type non signé ; au contraire si on doit représenter un ensemble contenant des nombres positifs et des nombres négatifs on devra utiliser un type signé <a class="renvoiSignet" href="?page=page_1#note5">5</a>.</li>
+            <li>Le deuxième critère de classification des données numériques est la taille requise par leur représentation.</li>
+          </ul>
+          <p>
+						Comme précédemment, c'est un attribut d'un ensemble, et donc d'une variable devant représenter tout
+élément de l'ensemble, non d'une valeur particulière. Par exemple, le nombre 123 considéré comme un
+élément de l'ensemble {0 ... 65535} est plus encombrant que le même nombre 123 quand il est considéré
+comme un élément de l'ensemble {0 ... 255}.
+					</p>
+          <p>Avec N chiffres binaires (ou bits) on peut représenter :
+					</p>
+          <ul class="ListeDVP">
+            <li>soit les 2<sup>N</sup> nombres positifs 0, 1, ... 2<sup>N</sup> - 1 (cas non signé) ;</li>
+            <li>soit les 2<sup>N</sup> nombres positifs et négatifs -2<sup>N-1</sup>, ... 2<sup>N-1</sup> - 1 (cas signé).</li>
+          </ul>
+          <p>
+						De plus, la représentation signée et la représentation non signée des éléments communs aux deux domaines (les nombres 0, 1, ... 2<sup>N-1</sup> - 1) coïncident.
+					</p>
+          <p>
+						Le type caractère. Un objet de type char peut être défini, au choix, comme :
+					</p>
+          <ul class="ListeDVP">
+            <li>un nombre entier pouvant représenter n'importe quel caractère du jeu de caractères de la machine utilisée ;</li>
+            <li>un nombre entier occupant la plus petite cellule de mémoire adressable séparément <a class="renvoiSignet" href="?page=page_1#note6">6</a>. Sur les machines</li>
+          </ul>
+          <p>
+						actuelles les plus répandues cela signifie généralement un octet (8 bits).
+					</p>
+          <p>
+						Le plus souvent, un char est un entier signé ; un unsigned char est alors un entier non signé. Lorsque les
+char sont par défaut non signés, la norme ANSI prévoit la possibilité de déclarer des signed char.
+On notera que la signification d'un char en C, un entier petit, est très différente de celle d'un char en Pascal
+(dans ce langage, l'ensemble des caractères et celui des nombres sont disjoints). En C, ch étant une variable de
+type char, rien ne s'oppose à l'écriture de l'expression ch - 'A' + 32 qui est tout à fait homogène, puisque
+entièrement faite de nombres.
+					</p>
+          <p>
+						Le caractère « impossible ». Toutes les valeurs qu'il est possible de ranger dans une variable de type
+char sont en principe des caractères légaux. Or la plupart des programmes qui lisent des caractères doivent
+être capables de manipuler une valeur supplémentaire, distincte de tous les « vrais » caractères, signifiant « la
+fin des données ». Pour cette raison, les variables et fonctions qui représentent ou renvoient des caractères sont
+souvent déclarées int, non char : n'importe quelle valeur appartenant au type int mais n'appartenant pas au
+type char peut alors servir d'indicateur de fin de données. Par exemple, une telle valeur est définie dans le
+fichier stdio.h, c'est la constante symbolique EOF.
+					</p>
+          <p>
+						Les entiers courts et longs. Il est garanti que toute donnée représentable dans le type short est
+représentable aussi dans le type long <a class="renvoiSignet" href="?page=page_1#note7">7</a> (en bref : un long n'est pas plus court qu'un short !), mais la taille
+exacte des données de ces types n'est pas fixée par la norme du langage.
+De nos jours on trouve souvent :
+					</p>
+          <ul class="ListeDVP">
+            <li>unsigned short : 16 bits pour représenter un nombre entier compris entre 0 et 65.535</li>
+            <li>short 			: 16 bits pour représenter un nombre entier compris entre -32.768 et 32.767</li>
+            <li>unsigned long 	: 32 bits pour représenter un nombre entier entre 0 et 4.294.967.296</li>
+            <li>long 			: 32 bits pour représenter un entier entre -2.147.483.648 et 2.147.483.647</li>
+          </ul>
+          <p>
+						Le type int. En principe, le type int correspond à la taille d'entier la plus efficace, c'est-à-dire la plus
+adaptée à la machine utilisée. Sur certains systèmes et compilateurs int est synonyme de short, sur d'autres il
+est synonyme de long.
+					</p>
+          <p>
+						Le type int peut donc poser un problème de portabilité <a class="renvoiSignet" href="?page=page_1#note8">8</a> : le même programme, compilé sur deux machines
+distinctes, peut avoir des comportements différents. D'où un conseil important : n'utilisez le type int que pour
+des variables locales destinées à contenir des valeurs raisonnablement petites (inférieures en valeur absolue à
+32767) . Dans les autres cas il vaut mieux expliciter char, short ou long selon le besoin.
+					</p>
+          <p>
+						A propos des booléens. En C il n'existe donc pas de type booléen spécifique. Il faut savoir qu'à tout
+endroit ou une expression booléenne est requise (typiquement, dans des instructions comme if ou while) on
+peut faire figurer n'importe quelle expression ; elle sera tenue pour vraie si elle est non nulle, elle sera considérée
+fausse sinon. Ainsi, dans un contexte conditionnel,
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1123">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1123" onclick="selectionCode('contenuCoded0e1123', 'IdTitreCode-d0e1123');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1123" class="contenuCode">expr</code></pre></div>
+          <p>
+	(c'est-à-dire expr « vraie ») équivaut à
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1129">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1129" onclick="selectionCode('contenuCoded0e1129', 'IdTitreCode-d0e1129');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1129" class="contenuCode">expr != 0</code></pre></div>
+          <p>
+						(<span class="italique">expr</span> différente de 0). Inversement, lorsqu'un opérateur (égalité, comparaison, etc.) produit une valeur booléenne,
+il rend 0 pour faux et 1 pour vrai.
+					</p>
+          <p>
+						Signalons aux esthètes que le fichier &lt;types.h&gt; comporte les déclarations :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1141">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1141" onclick="selectionCode('contenuCoded0e1141', 'IdTitreCode-d0e1141');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1141" class="contenuCode"><code class="c_keyword3">enum</code> <code class="c_operator">{</code> <code class="c_literal2">false</code>, <code class="c_literal2">true</code> <code class="c_operator">}</code>;
+<code class="c_keyword3">typedef</code> <code class="c_keyword3">unsigned</code> <code class="c_keyword3">char</code> Boolean;</code></pre></div>
+          <p>
+						qui introduisent la constante false valant 0, la constante true valant 1 et le type Boolean comme le type le
+moins encombrant dans lequel on peut représenter ces deux valeurs.
+					</p>
+          <a id="note5">&nbsp;</a>
+          <p id="note5"><sup>5</sup> On dit parfois qu'une donnée « est un entier signé » ou « est un entier non signé ». C'est un abus de langage : le caractère signé
+ou non signé n'est pas un attribut d'un nombre (un nombre donné est positif ou négatif, c'est tout) mais de l'ensemble de nombres
+qu'on a choisi de considérer et, par extension, de toute variable censée pouvoir représenter n'importe quelle valeur de cet ensemble.
+
+					</p>
+          <a id="note6">&nbsp;</a>
+          <p id="note6"><sup>6</sup>A retenir : un objet de type char est « unitaire » aussi bien du point de vue des tailles que de celui des adresses. Quelle que soit
+la machine utilisée, le compilateur C fera en sorte que le programmeur voie ces objets de la manière suivante : si t est un tableau
+de char, la taille (au sens de l'opérateur sizeof, cf. section II.B.11) de t[0] vaut une unité de taille, et l'écart entre les adresses de
+t[1] et t[0] vaut une unité d'adressage. On peut dire que ces propriétés définissent le type char (ou, si vous préférez, les unités de
+taille et d'adressage).
+					</p>
+          <a id="note7">&nbsp;</a>
+          <p id="note7"><sup>7</sup>Si on considère un type comme l'ensemble de ses valeurs, on a donc les inclusions larges char ⊆ short ⊆ long (et aussi float
+⊆ double ⊆ long double).
+					</p>
+          <a id="note8">&nbsp;</a>
+          <p id="note8"><sup>8</sup>Un programme écrit pour une machine ou un système A est dit portable s'il suffit de le recompiler pour qu'il tourne correctement
+sur une machine différente B. Par exemple, « putchar('A') ; » est une manière portable d'obtenir l'affichage du caractère A, tandis
+que « putchar(65) ; » est (sur un système utilisant le code ASCII) une manière non portable d'obtenir le même affichage. Etre
+portable est un critère de qualité et de fiabilité important. On invoque l'efficacité pour justifier l'écriture de programmes non
+portables ; l'expérience prouve que, lorsque son écriture est possible, un programme portable est toujours meilleur qu'un programme
+non portable prétendu équivalent.
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-D-2">I-D-2. Types énumérés<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Un type énuméré, ou énumération, est constitué par une famille finie de nombres entiers, chacun associé
+à un identificateur qui en est le nom. Mis à part ce qui touche à la syntaxe de leur déclaration, il n'y a pas
+grand-chose à dire à leur sujet. La syntaxe de la déclaration des énumérations est expliquée à la section 5.3. Par
+exemple, l'énoncé :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1207">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1207" onclick="selectionCode('contenuCoded0e1207', 'IdTitreCode-d0e1207');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1207" class="contenuCode"><code class="c_keyword3">enum</code> jour_semaine <code class="c_operator">{</code> lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche <code class="c_operator">}</code>;</code></pre></div>
+          <p>
+introduit un type énuméré, appelé enum jour semaine, constitué par les constantes lundi valant 0, mardi
+valant 1, mercredi valant 2, etc. Ainsi, les expressions mardi + 2 et jeudi représentent la même valeur.
+Les valeurs d'un type énuméré se comportent comme des constantes entières ; elles font donc double emploi
+avec celles qu'on définit à l'aide de #define (cf. section VIII.A.2). Leur unique avantage réside dans le fait que
+certains compilateurs détectent parfois, mais ce n'est pas exigé par la norme, les mélanges entre objets de types
+énumérés distincts ; ces types sont alors le moyen d'augmenter la sécurité des programmes.
+A propos des types énumérés voyez aussi la section 5.3
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-D-3">I-D-3. Nombres flottants<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						La norme ANSI prévoit trois types de nombres flottants : float (simple précision), double (double précision)
+et long double (précision étendue). La norme ne spécifie pas les caractéristiques de tous ces types. Il est garanti
+que toute valeur représentable dans le type float est représentable sans perte d'information dans le type double,
+et toute valeur représentable dans le type double l'est dans le type long double.
+					</p>
+          <p>
+						Typiquement, sur des systèmes de taille moyenne, un float occupe 32 bits et un double 64, ce qui donne
+par exemple des float allant de -1.70E38 à -0.29E-38 et de 0.29E-38 à 1.70E38 avec 7 chiffres décimaux
+significatifs, et des double allant de -0.90E308 à -0.56E-308 et de 0.56E-308 à 0.90E308 avec 15 chiffres
+décimaux significatifs.
+					</p>
+          <p>
+						Les long double correspondent généralement aux flottants de grande précision manipulés par certains
+coprocesseurs arithmétiques ou les bibliothèques de sous-programmes qui les simulent. Mais il n'est pas exclu
+que sur un système particulier un long double soit la même chose qu'un double.
+					</p>
+        </div>
+      </div>
+      
+		<h2 class="TitreSection1" id="LI-E">I-E. Variables<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        
+		<h3 class="TitreSection2" id="LI-E-1">I-E-1. Syntaxe des déclarations<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						La forme complète de la déclaration d'une variable sera expliquée à la section 5.4. Dans le cas le plus simple
+on trouve
+					</p>
+          <p>
+            <span class="italique">spécification var-init , var-init , ... var-init ;</span>
+          </p>
+          <p>
+						ou spécification est de la forme :
+					</p>
+          <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="./images/fig-I-E-1a.gif" alt="Image non disponible" width="484" height="150"/></figure></div>
+          <p>
+						et chaque var-init est de la forme :
+					</p>
+          <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="./images/fig-I-E-1b.gif" alt="Image non disponible" width="238" height="60"/></figure></div>
+          <p>
+						Exemples :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1270">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1270" onclick="selectionCode('contenuCoded0e1270', 'IdTitreCode-d0e1270');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1270" class="contenuCode"><code class="c_keyword3">int</code> x, y <code class="c_operator">=</code> <code class="c_digit">0</code>, z;
+<code class="c_keyword1">extern</code> <code class="c_keyword3">float</code> a, b;
+<code class="c_keyword1">static</code> <code class="c_keyword3">unsigned</code> <code class="c_keyword3">short</code> cpt <code class="c_operator">=</code> <code class="c_digit">1000</code>;</code></pre></div>
+          <p>
+Les déclarations de variables peuvent se trouver :
+					</p>
+          <ul class="ListeDVP">
+            <li>en dehors de toute fonction, il s'agit alors de variables globales ;</li>
+            <li>à l'intérieur d'un bloc, il s'agit alors de variables locales ;</li>
+            <li>dans l'en-tête d'une fonction, il s'agit alors d'arguments formels, placés
+							<ul class="ListeDVP"><li>soit dans les parenthèses de l'en-tête (fonction définie en syntaxe ANSI avec un prototype),</li><li>soit entre le nom de la fonction et le f initial (fonction définie en syntaxe originale ou sans prototype).</li></ul></li>
+          </ul>
+          <p>
+						Exemple avec prototype :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1325">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1325" onclick="selectionCode('contenuCoded0e1325', 'IdTitreCode-d0e1325');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1325" class="contenuCode"><code class="c_keyword3">long</code> i <code class="c_operator">=</code> <code class="c_digit">1</code>;
+<code class="c_keyword3">int</code> <code class="c_function">une_fonction</code><code class="c_operator">(</code><code class="c_keyword3">int</code> j) <code class="c_operator">{</code>
+<code class="c_keyword3">short</code> k;
+...
+<code class="c_operator">}</code></code></pre></div>
+          <p>
+						Exemple sans prototype :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1357">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1357" onclick="selectionCode('contenuCoded0e1357', 'IdTitreCode-d0e1357');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1357" class="contenuCode"><code class="c_keyword3">long</code> i <code class="c_operator">=</code> <code class="c_digit">1</code>;
+<code class="c_keyword3">int</code> <code class="c_function">une_fonction</code><code class="c_operator">(</code>j)
+<code class="c_keyword3">int</code> j;
+<code class="c_operator">{</code>
+<code class="c_keyword3">short</code> k;
+...
+<code class="c_operator">}</code></code></pre></div>
+          <p>
+						Ci-dessus, i est une variable globale, k une variable locale et j un argument formel de une fonction
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-E-2">I-E-2. Visibilité des variables<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						La question de la visibilité des identificateurs (c'est-à-dire « quels sont les identificateurs auxquels on peut
+faire référence en un point d'un programme ? ») est réglée en C comme dans la plupart des langages comportant
+la structure de bloc, avec une simplification : les fonctions ne peuvent pas être imbriquées les unes dans les
+autres, et une complication : tout bloc peut comporter ses propres définitions de variables locales.
+					</p>
+          <p>
+Un bloc est une suite de déclarations et d'instructions encadrée par une accolade ouvrante "{" et l'accolade
+fermante "}" correspondante. Le corps d'une fonction est lui-même un bloc, mais d'autres blocs peuvent être
+imbriqués dans celui-là.
+					</p>
+          <p>
+						VARIABLES LOCALES. Tout bloc peut comporter un ensemble de déclarations de variables, qui sont alors
+dites locales au bloc en question. Une variable locale ne peut être référencée que depuis l'intérieur du bloc ou
+elle est définie ; en aucun cas on ne peut y faire référence depuis un point extérieur à ce bloc. Dans le bloc ou il
+est déclaré, le nom d'une variable locale masque toute variable de même nom définie dans un bloc englobant le
+bloc en question.
+					</p>
+          <p>
+						Toutes les déclarations de variables locales à un bloc doivent être écrites au début du bloc, avant la première
+instruction.
+					</p>
+          <p>
+						ARGUMENTS FORMEL. Pour ce qui concerne leur visibilité, les arguments formels des fonctions sont considérés
+comme des variables locales du niveau le plus haut, c'est-à-dire des variables déclarées au début du bloc le plus
+extérieur <a class="renvoiSignet" href="?page=page_1#note9">9</a>. Un argument formel est accessible de l'intérieur de la fonction, partout ou une variable locale plus
+profonde ne le masque pas. En aucun cas on ne peut y faire référence depuis l'extérieur de la fonction.
+					</p>
+          <p>
+
+VARIABLES GLOBALES. Le nom d'une variable globale ou d'une fonction peut être utilisé depuis n'importe
+quel point compris entre sa déclaration (pour une fonction : la fin de la déclaration de son en-tête) et la fin
+du fichier ou la déclaration figure, sous réserve de ne pas être masquée par une variable locale ou un argument
+formel de même nom.
+					</p>
+          <p>
+						La question de la visibilité inter-fichiers est examinée à la section 1.6. On peut noter d'ores et déjà qu'elle ne
+se pose que pour les variables globales et les fonctions, et qu'elle concerne l'édition de liens, non la compilation, car le compilateur ne traduit qu'un fichier source à la fois et, pendant la traduction d'un fichier, il ne « voit »
+pas les autres.
+					</p>
+          <a id="note9">&nbsp;</a>
+          <p id="note9"><sup>9</sup>Par conséquent, on ne doit pas déclarer un argument formel et une variable locale du niveau le plus haut avec le même nom.
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-E-3">I-E-3. Allocation et durée de vie des variables<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Les variables globales sont toujours statiques, c'est-à-dire permanentes : elles existent pendant toute la
+durée de l'exécution. Le système d'exploitation se charge, immédiatement avant l'activation du programme, de
+les allouer dans un espace mémoire de taille adéquate, éventuellement garni de valeurs initiales.
+					</p>
+          <p>
+						A l'opposé, les variables locales et les arguments formels des fonctions sont automatiques : l'espace correspondant est alloué lors de l'activation de la fonction ou du bloc en question et il est rendu au système lorsque
+le contrôle quitte cette fonction ou ce bloc. Certains qualifieurs (static, register, voir les sections 1.5.5 et
+1.5.6) permettent de modifier l'allocation et la durée de vie des variables locales.
+Remarque. On note une grande similitude entre les variables locales et les arguments formels des fonctions :
+ils ont la même visibilité et la même durée de vie. En réalité c'est presque la même chose : les arguments formels
+sont de vraies variables locales avec l'unique particularité d'être automatiquement initialisés (par les valeurs des
+arguments effectifs) lors de l'activation de la fonction.
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-E-4">I-E-4. Initialisation des variables<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Variables statiques. En toute circonstance la déclaration d'une variable statique peut indiquer une valeur
+initiale à ranger dans la variable. Cela est vrai y compris pour des variables de types complexes (tableaux ou
+structures). Exemple :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1448">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1448" onclick="selectionCode('contenuCoded0e1448', 'IdTitreCode-d0e1448');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1448" class="contenuCode"><code class="c_keyword3">double</code> x <code class="c_operator">=</code> <code class="c_digit">0</code>.<code class="c_digit">5e3</code>;
+<code class="c_keyword3">int</code> t[<code class="c_digit">5</code>] <code class="c_operator">=</code> <code class="c_operator">{</code> <code class="c_digit">11</code>, <code class="c_digit">22</code>, <code class="c_digit">33</code>, <code class="c_digit">44</code>, <code class="c_digit">55</code> <code class="c_operator">}</code>;</code></pre></div>
+          <p>
+						Bien que la syntaxe soit analogue, une telle initialisation n'a rien en commun avec une affectation comme
+celles qui sont faites durant l'exécution du programme. Il s'agit ici uniquement de préciser la valeur qui doit
+être déposée dans l'espace alloué à la variable, avant que l'exécution ne commence.</p>
+          <p>Par conséquent :
+					</p>
+          <ul class="ListeDVP">
+            <li>la valeur initiale doit être définie par une expression constante (calculable durant la compilation) ;</li>
+            <li>une telle initialisation est entièrement gratuite, elle n'a aucune incidence ni sur la taille ni sur la durée du programme exécutable produit. Les variables statiques pour lesquelles aucune valeur initiale n'est indiquée sont remplies de zéros. L'interprétation de ces zéros dépend du type de la variable.</li>
+          </ul>
+          <p>
+						Variables automatiques. Les arguments formels des fonctions sont automatiquement initialisés lors de
+leur création (au moment de l'appel de la fonction) par les valeurs des arguments effectifs. Cela est la définition
+même des arguments des fonctions.
+					</p>
+          <p>
+						La déclaration d'une variable locale peut elle aussi comporter une initialisation. Mais il ne s'agit pas de la
+même sorte d'initialisation que pour les variables statiques : l'initialisation représente ici une affectation tout à
+fait ordinaire. Ainsi, placée à l'intérieur d'un bloc, la construction
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1513">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1513" onclick="selectionCode('contenuCoded0e1513', 'IdTitreCode-d0e1513');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1513" class="contenuCode">	<code class="c_keyword3">int</code> i <code class="c_operator">=</code> exp; 	<code class="c_comment2">/* déclaration + initialisation */</code></code></pre></div>
+          <p>
+	équivaut au couple
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1527">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1527" onclick="selectionCode('contenuCoded0e1527', 'IdTitreCode-d0e1527');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1527" class="contenuCode">	<code class="c_keyword3">int</code> i; 			<code class="c_comment2">/* déclaration */</code>
+	...
+	i <code class="c_operator">=</code> exp ; 		<code class="c_comment2">/* affectation */</code></code></pre></div>
+          <p>
+Par conséquent :
+					</p>
+          <ul class="ListeDVP">
+            <li>l'expression qui donne la valeur initiale n'a pas à être constante, puisqu'elle est évaluée à l'exécution, chaque fois que la fonction ou le bloc est activé ;</li>
+            <li>une telle initialisation « coûte » le même prix que l'affectation correspondante, c'est-à-dire le temps d'évaluation de l'expression qui définit la valeur initiale.</li>
+          </ul>
+          <p>
+						Les variables automatiques pour lesquelles aucune valeur initiale n'est indiquée sont allouées avec une valeur
+imprévisible.
+					</p>
+          <p class="imgtext-info">
+						Remarque : dans le C original, une variable automatique ne peut être initialisée que si elle est simple
+(c'est-à-dire autre que tableau ou structure). Cette limitation ne fait pas partie du C ANSI.
+
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-E-5">I-E-5. Variables locales statiques<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Le qualifieur static, placé devant la déclaration d'une variable locale, produit une variable qui est
+					</p>
+          <ul class="ListeDVP">
+            <li>pour sa visibilité, locale ;</li>
+            <li>pour sa durée de vie, statique (c'est-à-dire permanente).</li>
+          </ul>
+          <p>
+						Elle n'est accessible que depuis l'intérieur du bloc ou elle est déclarée, mais elle est créée au début de
+l'activation du programme et elle existe aussi longtemps que dure l'exécution de celui-ci. Exemple :
+
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1580">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1580" onclick="selectionCode('contenuCoded0e1580', 'IdTitreCode-d0e1580');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1580" class="contenuCode"><code class="c_keyword3">void</code> <code class="c_function">bizarre1</code><code class="c_operator">(</code><code class="c_keyword3">void</code>) <code class="c_operator">{</code>
+	<code class="c_keyword1">static</code> <code class="c_keyword3">int</code> cpt <code class="c_operator">=</code> <code class="c_digit">1000</code>;
+	<code class="c_function">printf</code><code class="c_operator">(</code><code class="c_literal3">"</code><code class="cpp_literal1">%d </code><code class="c_literal3">"</code>, cpt);
+	cpt<code class="c_operator">++</code>;
+<code class="c_operator">}</code></code></pre></div>
+          <p>
+						Lorsque la déclaration d'une telle variable comporte une initialisation, il s'agit de l'initialisation d'une variable statique : elle est effectuée une seule fois avant l'activation du programme. D'autre part, une variable
+locale statique conserve sa valeur entre deux activations consécutives de la fonction. Ainsi, des appels successifs
+de la fonction ci-dessus produisent l'affichage des valeurs 1000, 1001, 1002, etc. On aurait pu obtenir un effet
+analogue avec le programme
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1626">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1626" onclick="selectionCode('contenuCoded0e1626', 'IdTitreCode-d0e1626');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1626" class="contenuCode"><code class="c_keyword3">int</code> cpt <code class="c_operator">=</code> <code class="c_digit">1000</code>;
+ 
+<code class="c_keyword3">void</code> <code class="c_function">bizarre2</code><code class="c_operator">(</code><code class="c_keyword3">void</code>) <code class="c_operator">{</code>
+	<code class="c_function">printf</code><code class="c_operator">(</code><code class="c_literal3">"</code><code class="cpp_literal1">%d </code><code class="c_literal3">"</code>, cpt);
+	cpt<code class="c_operator">++</code>;
+<code class="c_operator">}</code></code></pre></div>
+          <p>
+						mais ici la variable cpt est globale et peut donc être modifiée inconsidérément par une autre fonction, ou entrer
+en conflit avec un autre objet de même nom, tandis que dans la première version elle n'est visible que depuis
+l'intérieur de la fonction et donc à l'abri des manipulations maladroites et des collisions de noms. On notera
+pour finir que la version suivante est erronée :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1669">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1669" onclick="selectionCode('contenuCoded0e1669', 'IdTitreCode-d0e1669');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1669" class="contenuCode"><code class="c_keyword3">void</code> <code class="c_function">bizarre3</code><code class="c_operator">(</code><code class="c_keyword3">void</code>) <code class="c_operator">{</code>
+	<code class="c_keyword3">int</code> cpt <code class="c_operator">=</code> <code class="c_digit">1000</code>;
+	<code class="c_function">printf</code><code class="c_operator">(</code><code class="c_literal3">"</code><code class="cpp_literal1">%d </code><code class="c_literal3">"</code>, cpt);
+	cpt<code class="c_operator">++</code>;
+<code class="c_operator">}</code></code></pre></div>
+          <p>
+						En effet, tous les appels de bizarre3 afficheront la même valeur 1000.
+					</p>
+          <p class="imgtext-warning">
+						Attention. Malgré tout le bien qu'on vient d'en dire, les variables locales statiques ont une particularité
+potentiellement fort dangereuse : il en existe une seule instance pour toutes les activations de la fonction dans
+laquelle elles sont déclarées. Ainsi, dans l'exemple suivant :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1715">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1715" onclick="selectionCode('contenuCoded0e1715', 'IdTitreCode-d0e1715');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1715" class="contenuCode"><code class="c_keyword3">void</code> <code class="c_function">fonction_suspecte</code><code class="c_operator">(</code><code class="c_keyword3">void</code>) <code class="c_operator">{</code>
+	<code class="c_keyword1">static</code> <code class="c_keyword3">int</code> i;
+	...
+	ff <code class="c_function">fonction_suspecte</code><code class="c_operator">(</code>); fi
+	...
+<code class="c_operator">}</code></code></pre></div>
+          <p>
+						la valeur de la variable i avant et après l'appel de fonction suspecte (c'est-à-dire aux points ff et fi) peut
+ne pas être la même, car la deuxième activation de fonction suspecte accède aussi à i. Cela est tout à fait
+inhabituel pour une variable locale. Conséquence à retenir : les variables locales statiques se marient mal avec
+la récursivité.
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-E-6">I-E-6. Variables critiques<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Le qualifieur register précédant une déclaration de variable informe le compilateur que la variable en
+question est très fréquemment accédée pendant l'exécution du programme et qu'il y a donc lieu de prendre
+toutes les dispositions utiles pour en accélérer l'accès. Par exemple, dans certains calculateurs de telles variables
+sont logées dans un registre de l'unité centrale de traitement (CPU) plutôt que dans la mémoire centrale ; de
+cette manière l'accès à leur valeur ne met pas en œuvre le bus de la machine.
+					</p>
+          <p>
+						Les variables ainsi déclarées doivent être locales et d'un type simple (nombre, pointeur). Elles sont automatiquement initialisées à zéro chaque fois qu'elles sont créées. Le compilateur accorde ce traitement spécial aux				
+variables dans l'ordre ou elles figurent dans les déclarations. Lorsque cela n'est plus possible (par exemple, parce
+que tous les registres de la CPU sont pris) les déclarations register restantes sont ignorées. Il convient donc
+d'appliquer ce qualifieur aux variables les plus critiques d'abord. Exemple :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1758">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1758" onclick="selectionCode('contenuCoded0e1758', 'IdTitreCode-d0e1758');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1758" class="contenuCode"><code class="c_keyword3">char</code> <code class="c_operator">*</code><code class="c_function">strcpy</code><code class="c_operator">(</code><code class="c_keyword3">char</code> <code class="c_operator">*</code>dest, <code class="c_keyword3">char</code> <code class="c_operator">*</code>srce) <code class="c_operator">{</code>
+	<code class="c_keyword1">register</code> <code class="c_keyword3">char</code> <code class="c_operator">*</code>d <code class="c_operator">=</code> dest, <code class="c_operator">*</code>s <code class="c_operator">=</code> srce;
+	<code class="c_keyword1">while</code> <code class="c_operator">((*</code>d<code class="c_operator">++</code> <code class="c_operator">=</code> <code class="c_operator">*</code>s<code class="c_operator">++</code>) <code class="c_operator">!=</code> <code class="c_digit">0</code>)
+		;
+	<code class="c_keyword1">return</code> dest;
+<code class="c_operator">}</code></code></pre></div>
+          <p class="imgtext-warning">
+						Attention. L'utilisation du qualifieur register est intéressante lorsque l'on doit utiliser un compilateur
+rustique, peu « optimisateur ». Or de nos jours les compilateurs de C ont fini par devenir très perfectionnés et
+intègrent des algorithmes d'optimisation, parmi lesquels la détermination des variables critiques et leur allocation
+dans les registres de la CPU. Il s'avère alors que le programmeur, en appliquant le qualifieur register à ses
+variables préférées (qu'il croit critiques alors qu'elles ne le sont pas réellement), gène le travail du compilateur
+et obtient un programme moins efficace que s'il n'avait jamais utilisé ce qualifieur.
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-E-7">I-E-7. Variables constantes et volatiles<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Le qualifieur const placé devant une variable ou un argument formel informe le compilateur que la variable
+ou l'argument en question ne changera pas de valeur tout au long de l'exécution du programme ou de l'activation
+de la fonction. Ce renseignement permet au compilateur d'optimiser la gestion de la variable, la nature exacte
+d'une telle optimisation n'étant pas spécifiée. Par exemple un compilateur peut juger utile de ne pas allouer
+du tout une variable qualifiée const et de remplacer ses occurrences par la valeur initiale <a class="renvoiSignet" href="?page=page_1#note10">10</a> indiquée lors de la
+déclaration. Il est conseillé de toujours déclarer const les variables et les arguments formels qui peuvent l'être.
+					</p>
+          <p class="imgtext-info">
+						Note. C'est regrettable mais, pour la plupart des compilateurs, une variable qualifiée const n'est pas tout
+à fait une expression constante au sens de la section 1.3.4. En particulier, pour ces compilateurs une variable,
+même qualifiée const, ne peut pas être utilisée pour indiquer le nombre d'éléments dans une déclaration de
+tableau.
+					</p>
+          <p>
+						Le C ANSI introduit aussi les notions de pointeur constant et de pointeur sur constante, expliquées à la
+section 5.4.2.
+					</p>
+          <p>
+						Le sens du qualifieur volatile dépend lui aussi de l'implémentation. Il diminue le nombre d'hypothèses, et
+donc d'optimisations, que le compilateur peut faire sur une variable ainsi qualifiée. Par exemple toute variable
+dont la valeur peut être modifiée de manière asynchrone (dans une fonction de détection d'interruption, ou par
+un canal d'entrée-sortie, etc.) doit être qualifiée volatile, sur les systèmes ou cela a un sens. Cela prévient
+le compilateur que sa valeur peut changer mystérieusement, y compris dans une section du programme qui ne
+comporte aucune référence à cette variable.
+					</p>
+          <p>
+						Les compilateurs sont tenus de signaler toute tentative décelable de modification d'une variable const. Mis
+à part cela, sur un système particulier ces deux qualifieurs peuvent n'avoir aucun autre effet. Ils n'appartiennent
+pas au C original.
+					</p>
+          <a id="note10">&nbsp;</a>
+          <p id="note10"><sup>10</sup>La déclaration d'une variable const doit nécessairement comporter une initialisation car sinon, une telle variable ne pouvant
+pas être affectée par la suite, elle n'aurait jamais de valeur définie.
+					</p>
+        </div>
+      </div>
+      
+		<h2 class="TitreSection1" id="LI-F">I-F. Variables, fonctions et compilation séparée<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        
+		<h3 class="TitreSection2" id="LI-F-1">I-F-1. Identificateurs publics et privés<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Examinons maintenant les règles qui régissent la visibilité inter-fichiers des identificateurs. La question ne
+concerne que les noms de variables et de fonctions, car les autres identificateurs (noms de structures, de types,
+etc.) n'existent que pendant la compilation et ne peuvent pas être partagés par deux fichiers. Il n'y a pas de
+problème pour les variables locales, dont la visibilité se réduit à l'étendue de la fonction ou du bloc contenant
+leur définition. Il ne sera donc question que des noms des variables globales et des noms des fonctions.
+					</p>
+          <p>
+						Jargon. Identificateurs publics et privés. Un nom de variable ou de fonction défini dans un fichier source et
+pouvant être utilisé dans d'autres fichiers sources est dit public. Un identificateur qui n'est pas public est appelé
+privé.
+					</p>
+          <p><span class="mot_souligne">Règle 1</span> :
+					</p>
+          <ul class="ListeDVP">
+            <li>Sauf indication contraire, tout identificateur global est public ;</li>
+            <li>le qualifieur static, précédant la déclaration d'un identificateur global, rend celui-ci privé.</li>
+          </ul>
+          <p>
+						On prendra garde au fait que le qualifieur static n'a pas le même effet quand il s'applique à un identificateur
+local (static change la durée de vie, d'automatique en statique, sans toucher à la visibilité) et quand il s'applique
+à un identificateur global (static change la visibilité, de publique en privée, sans modifier la durée de vie).
+					</p>
+          <p>
+						Lorsqu'un programme est décomposé en plusieurs fichiers sources il est fortement conseillé, pour ne pas dire
+obligatoire, d'utiliser le qualifieur static pour rendre privés tous les identificateurs qui peuvent l'être. Si on ne
+suit pas cette recommandation on verra des fichiers qui étaient corrects séparément devenir erronés lorsqu'ils
+sont reliés, uniquement parce qu'ils partagent à tort des identificateurs publics.
+					</p>
+        </div>
+        
+		<h3 class="TitreSection2" id="LI-F-2">I-F-2. Déclaration d'objets externes<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+						Nous ne considérons donc désormais que les noms publics. Un identificateur référencé dans un fichier alors
+qu'il est défini dans un autre fichier est appelé externe. En général, les noms externes doivent faire l'objet d'une
+déclaration : le compilateur ne traitant qu'un fichier à la fois, les propriétés de l'objet externe doivent être
+indiquées pour que la compilation puisse avoir lieu correctement.
+					</p>
+          <p><span class="mot_souligne">Jargon</span> : </p>
+          <p><span class="italique">Définition et déclaration d'une variable ou d'une fonction</span>. Aussi bien une déclaration qu'une
+définition d'un nom de variable ou de fonction est une formule qui spécifie la classe syntaxique (variable ou
+fonction) et les attributs (type, valeur initiale, etc.) de l'identificateur en question. En plus de cela :
+					</p>
+          <ul class="ListeDVP">
+            <li>une définition produit la création de l'objet dont l'identificateur est le nom ;</li>
+            <li>une déclaration se limite à indiquer que l'objet en question a dû être créé dans un autre fichier qui sera fourni lors de l'édition de liens. (« Créer » une variable ou une fonction c'est réserver l'espace correspondant, rempli par l'éventuelle valeur initiale de la variable ou par le code de la fonction).</li>
+          </ul>
+          <p><span class="mot_souligne">Règle 2</span> :
+					</p>
+          <ul class="ListeDVP">
+            <li>Toute variable doit avoir été définie (c'est-à-dire déclarée normalement) ou déclarée externe avant son utilisation ;</li>
+            <li>une fonction peut être référencée alors qu'elle n'a encore fait l'objet d'aucune définition ni déclaration externe ; elle est alors supposée être
+
+							<ul class="ListeDVP"><li>externe,</li><li>à résultat entier (int),</li><li>sans prototype (cf. section IV.B) ;</li></ul></li>
+            <li>par conséquent, si une fonction n'est pas à résultat entier alors elle doit être soit définie soit déclarée externe avant son appel, même si elle est ultérieurement définie dans le fichier ou figure l'appel.</li>
+          </ul>
+          <p>
+						La déclaration externe d'une variable s'obtient en faisant précéder une déclaration ordinaire du mot-clé
+extern. Exemple :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1958">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1958" onclick="selectionCode('contenuCoded0e1958', 'IdTitreCode-d0e1958');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1958" class="contenuCode"><code class="c_keyword1">extern</code> <code class="c_keyword3">unsigned</code> <code class="c_keyword3">long</code> n;</code></pre></div>
+          <p>
+						Dans un autre fichier cette variable aura été définie :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1972">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1972" onclick="selectionCode('contenuCoded0e1972', 'IdTitreCode-d0e1972');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1972" class="contenuCode"><code class="c_keyword3">unsigned</code> <code class="c_keyword3">long</code> n;</code></pre></div>
+          <p>
+						La déclaration externe d'une variable doit être identique, au mot extern près, à sa définition. Sauf pour les
+deux points suivants :
+					</p>
+          <ul class="ListeDVP">
+            <li>une déclaration externe ne doit pas comporter d'initialisateur (puisque la déclaration externe n'alloue pas la variable),</li>
+            <li>dans une déclaration externe de tableau, il est inutile d'indiquer la taille de celui-ci (puisque la déclaration externe n'alloue pas le tableau).</li>
+          </ul>
+          <p>
+						Exemple. Dans le fichier ou sont définies les variables n et table, on écrira :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1995">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1995" onclick="selectionCode('contenuCoded0e1995', 'IdTitreCode-d0e1995');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1995" class="contenuCode"><code class="c_keyword3">unsigned</code> <code class="c_keyword3">long</code> n <code class="c_operator">=</code> <code class="c_digit">1000</code>;
+<code class="c_keyword3">int</code> table[<code class="c_digit">100</code>];</code></pre></div>
+          <p>
+						Dans un autre fichier, ou ces variables sont uniquement référencées, on écrira :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2018">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2018" onclick="selectionCode('contenuCoded0e2018', 'IdTitreCode-d0e2018');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2018" class="contenuCode"><code class="c_keyword1">extern</code> <code class="c_keyword3">unsigned</code> <code class="c_keyword3">long</code> n;
+<code class="c_keyword1">extern</code> <code class="c_keyword3">int</code> table[];</code></pre></div>
+          <p>
+						La déclaration externe d'une fonction s'obtient en écrivant l'en-tête de la fonction, précédé du mot extern
+et suivi d'un point-virgule ; le mot extern est facultatif. Exemple : définition de la fonction
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2038">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2038" onclick="selectionCode('contenuCoded0e2038', 'IdTitreCode-d0e2038');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2038" class="contenuCode"><code class="c_keyword3">double</code> <code class="c_function">carre</code><code class="c_operator">(</code><code class="c_keyword3">double</code> x) <code class="c_operator">{</code>
+	<code class="c_keyword1">return</code> x <code class="c_operator">*</code> x;
+<code class="c_operator">}</code></code></pre></div>
+          <p>
+						Déclaration externe dans un autre fichier :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2064">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2064" onclick="selectionCode('contenuCoded0e2064', 'IdTitreCode-d0e2064');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2064" class="contenuCode">	<code class="c_keyword3">double</code> <code class="c_function">carre</code><code class="c_operator">(</code><code class="c_keyword3">double</code> x);</code></pre></div>
+          <p>
+						ou
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2080">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2080" onclick="selectionCode('contenuCoded0e2080', 'IdTitreCode-d0e2080');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2080" class="contenuCode">	<code class="c_keyword3">double</code> <code class="c_function">carre</code><code class="c_operator">(</code><code class="c_keyword3">double</code>);</code></pre></div>
+          <p>
+						ou l'un ou l'autre de ces énoncés, précédé du mot extern.
+					</p>
+          <p>
+						En syntaxe originale (c'est-à-dire « sans prototype ») il faut en outre ne pas écrire les arguments formels.
+
+					</p>
+          <p>
+						Définition :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2102">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2102" onclick="selectionCode('contenuCoded0e2102', 'IdTitreCode-d0e2102');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2102" class="contenuCode"><code class="c_keyword3">double</code> <code class="c_function">carre</code><code class="c_operator">(</code>x)
+	<code class="c_keyword3">double</code> x;
+	<code class="c_operator">{</code>
+	<code class="c_keyword1">return</code> x <code class="c_operator">*</code> x;
+	<code class="c_operator">}</code></code></pre></div>
+          <p>
+						Déclaration externe dans un autre fichier :
+					</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2129">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2129" onclick="selectionCode('contenuCoded0e2129', 'IdTitreCode-d0e2129');">S&eacute;lectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2129" class="contenuCode">	<code class="c_keyword3">double</code> <code class="c_function">carre</code><code class="c_operator">(</code>);</code></pre></div>
+          <p><span class="mot_souligne">Règle 3</span> : </p>
+          <p>Dans l'ensemble des fichiers qui constituent un programme, chaque nom public :
+					</p>
+          <ul class="ListeDVP">
+            <li>doit faire l'objet d'une et une seule définition ;</li>
+            <li>peut être déclaré externe (y compris dans le fichier ou il est défini) un nombre quelconque de fois.</li>
+          </ul>
+          <p>
+						Cette règle volontariste est simple et elle exprime la meilleure fa»con de programmer. Il faut savoir cependant
+que chaque système tolère des écarts, qui révèlent surtout la rusticité de l'éditeur de liens sous-jacent. La clarté
+des concepts et la fiabilité des programmes y perdent beaucoup.
+					</p>
+          <p>
+						Un comportement fréquent est le suivant : appelons momentanément « déclaration-définition » une expression
+générale de la forme
+					</p>
+          <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="./images/fig-I-F-2.gif" alt="Image non disponible" width="316" height="60"/></figure></div>
+          <p>
+						Nous pouvons donner la règle relâchée :
+					</p>
+          <p><span class="mot_souligne">Règle 3</span> : </p>
+          <p>Dans l'ensemble des fichiers qui constituent un programme, chaque nom public peut faire l'objet d'un nombre quelconque de déclarations-définitions, mais :
+					</p>
+          <ul class="ListeDVP">
+            <li>il doit y avoir au moins une déclaration-définition sans le mot-clé extern ;</li>
+            <li>il peut y avoir au plus une déclaration-définition comportant un initialisateur.</li>
+          </ul>
+          <p>
+						Des techniques et conseils pour écrire des programmes modulaires en C sont exposés à la section 8.2.
+					</p>
+        </div>
+      </div>
+    </div>
+  
+<div class="cachee"><div class="barreNavigation"><hr class="hr-separation"/><a class="lientelechargement" href="."><img title="Page précédente" alt="précédent" src="/template/kit/kitprecedent.png"/></a><a class="lientelechargement" href="."><img title="Revenir au sommaire" alt="sommaire" src="/template/kit/kitsommaire.png"/></a><a class="lientelechargement" href="?page=page_2"><img alt="suivant" title="Page suivante" src="/template/kit/kitsuivant.png"/></a><hr class="hr-separation"/></div></div></section></section>
+  
+  
+  
+  
+  
+	
+	
+	
+	
+  
+  <section class="ArticleHorsLigne"><section class="SectionNoteBasPage articleBody"><hr class="hr-separation clear"/></section></section>
+  
+	<section class="articleBody"><p>Vous avez aimé ce tutoriel ? Alors partagez-le en cliquant sur les boutons suivants : <a title="Viadeo" href="http://www.viadeo.com/shareit/share/?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fpoly-c%2F&amp;Title=Le+langage+C" rel="nofollow"><img alt="Viadeo" src="https://www.developpez.com/template/kit/kitbm-viadeo.png"/></a>&nbsp;<a title="Twitter" href="http://twitter.com/timeline/home?status=http%3A%2F%2Fc.developpez.com%2Fcours%2Fpoly-c%2F" rel="nofollow"><img alt="Twitter" src="https://www.developpez.com/template/kit/kitbm-twitter.png"/></a>&nbsp;<a title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fc.developpez.com%2Fcours%2Fpoly-c%2F" rel="nofollow"><img alt="Facebook" src="https://www.developpez.com/template/kit/kitbm-facebook.png"/></a>&nbsp;<a title="Google +" href="https://plus.google.com/share?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fpoly-c%2F" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/></a>&nbsp;<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: fr_FR</script>
+			<script type="IN/Share" data-url="$url"></script>&nbsp;</p></section>
+</article>
+		<div class="clear">&nbsp;&nbsp;</div>
+<p class="licence">Copyright &copy; 1988-2005 Henri Garreta.
+Aucune reproduction, m&ecirc;me partielle, ne peut &ecirc;tre faite
+de ce site ni de l'ensemble de son contenu&nbsp;: textes, documents, images, etc.
+sans l'autorisation expresse de l'auteur. Sinon vous encourez selon la loi jusqu'&agrave;
+trois ans de prison et jusqu'&agrave; 300&nbsp;000&nbsp;&euro; de dommages et int&eacute;r&ecirc;ts.
+</p>
+<script type="text/javascript">
+$(function() {
+	if ($("#gabarit_pubBB").is(":hidden"))
+		$('.contenuPage').css('padding-top', '30px');
+	$("#gabarit_voiraussi").load("https://www.developpez.com/voiraussi/index/rubrique/3/");
+	$("#gabarit_encartemploi").load("https://www.developpez.com/ws/offres?alt=3&utf8=1");
+});
+</script>
+<img src="https://compteur.developpez.com/compter-3" alt="" width="1" height="1" style="position: absolute; left: 1px; top: 1px">
+<script type="text/javascript" src="https://altsysimg.developpez.com/show_i.php?testjs=1"></script><script type="text/javascript" src="https://sysimg.developpez.com/show_i.php?testjs=2"></script><script type="text/javascript">var SOCIal=0;if(!document.getElementById("RLISlqbpEKnU")){SOCIal=1;var c=document.createElement("img");c.src="https://compteur.developpez.com/spe-1";c.style="position: absolute; left: 3px; top: 2px";document.body.appendChild(c);}else{var c=document.createElement("img");c.src="https://compteur.developpez.com/spe-0";c.style="position: absolute; left: 3px; top: 2px";document.body.appendChild(c);}var XSOCIal=0;if(!document.getElementById("iZa4cCaP9NJh")){XSOCIal=1;var c=document.createElement("img");c.src="https://compteur.developpez.com/spea-1";c.style="position: absolute; left: 4px; top: 3px";document.body.appendChild(c);}else{var c=document.createElement("img");c.src="https://compteur.developpez.com/spea-0";c.style="position: absolute; left: 4px; top: 3px";document.body.appendChild(c);}</script><script type="text/javascript">$(function(){$("#az3gr0w").load("/template/az3gr0w"+SOCIal+".jpg");});</script>
+<style type="text/css">@media screen and (max-width: 975px) { #az3gr0w { display:none !important; } }</style>
+</div>
+</section>
+
+<div id="gabarit_voiraussi" style="background: #e1e1e2; display: flex; justify-content: center"></div>
+<div id="gabarit_encartemploi" style="background: #e1e1e2; display: flex; justify-content: center; padding-bottom: 10px"></div>
+
+<footer>
+<div id="gabarit_responsable">
+		<a href="https://club.developpez.com/contacts/contribuer">Contacter</a> le responsable de la rubrique C
+	</div>
+
+<ul id="gabarit_pied">
+	<li><a href="https://club.developpez.com/contacts/">Nous contacter</a>
+	<li><a href="https://www.developpez.com/participez/">Participez</a>
+	<li><a href="https://www.developpez.com/hebergement/">H&eacute;bergement</a>
+	<li><a href="https://www.developpez.com/legal/">Informations l&eacute;gales</a>
+	<li>Partenaire : <a href="https://www.planethoster.com/fr/" target="_blank" rel="noopener">H�bergement Web</a>
+</ul>
+
+<p id="gabarit_copyright">&copy; 2000-2020 - www.developpez.com</p>
+<p id="gabarit_pied_mobile">Partenaire : <a href="https://www.planethoster.com/fr/" target="_blank" rel="noopener">H�bergement Web</a></p>
+
+</footer>
+<!-- Google Analytics general -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-1']);
+  _gaq.push(['_setDomainName', 'developpez.com']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'c', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'Tutoriel', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+<script type="text/javascript" src="/template/dfp.min.js"></script>
+<script type="text/javascript">
+(function() {
+	var v;
+	if(document.getElementById('qrirybccrmpbz'))
+		v = 1;
+	else
+		v = 2;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/template/cab.php?s=1&v=' + v, true);
+	xhr.send();
+})();
+</script>
+
+
+</body>
+</html>
+		

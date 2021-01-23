@@ -1,0 +1,53 @@
+.microphone {
+    border-top-right-radius: 32px ;
+    border-bottom-right-radius: 32px ;
+}
+
+.google {
+    border-top-left-radius: 32px ;
+    border-bottom-left-radius: 32px ;
+}
+
+.input-group-append {
+    margin-left: -2px !important
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: 0 0 0 0 !important
+}
+
+.form-control {
+    border-right: 0 !important;
+    border-left: 0 !important
+}
+
+.tagcloud {
+    background:#CFE3FF;
+    color:#0066FF;
+    padding: 10px;
+    border: 1px solid #559DFF;
+    text-align:center;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.btn-style{
+ float: right;
+}
+
+.input-style{
+    border-radius: 24px;
+    border: 1px solid black;
+    box-shadow: none;
+}
+
+
+.input-style:hover {
+    transform: scale(1.001);
+    box-shadow: 0 0 2em #dfe1e5;
+}
